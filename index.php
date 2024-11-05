@@ -1,4 +1,4 @@
 <?php
 ob_start();
-header('Location: site/index.php');
+header('Location: controllers');
 ?>

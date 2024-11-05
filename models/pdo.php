@@ -1,5 +1,4 @@
 <?php
-// require_once('../.php');
 session_start();
 function PDOconnect(){
     // $svname = 'localhost';
@@ -7,7 +6,10 @@ function PDOconnect(){
     $DBname = 'dam';
     $pass = '';
     try {
-        $conn = new PDO("mysql:dbname={$DBname}", $username, $pass);
+        $conn = new PDO(
+            "mysql:dbname={$DBname}",
+            $username, 
+            $pass);
         $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         $conn->query("SET GLOBAL FOREIGN_KEY_CHECKS=0;")->fetchAll(PDO::FETCH_ASSOC); 
         return $conn;
