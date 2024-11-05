@@ -1,0 +1,57 @@
+<script>
+    // Dữ liệu ví dụ cho tài khoản
+const accounts = [
+  { owner: 'Alice', movements: [200, 450, -400, 3000, -650, -130, 70, 1300] },
+  { owner: 'Bob', movements: [4000, -150, -790, -3210, -1000, 8500, -30] },
+  { owner: 'Charlie', movements: [200, -200, 340, -300, -20, 50, 400, -460] },
+  { owner: 'David', movements: [430, 1000, 700, 50, 90] },
+];
+
+// 1. Tính tổng số tiền gửi trong tất cả tài khoản
+const bankDepositSum = accounts
+  .flatMap(acc => acc.movements) // Kết hợp tất cả các giao dịch từ các tài khoản thành 1 mảng
+  .filter(mov => mov > 0) // Lọc chỉ lấy các giao dịch là tiền gửi
+  .reduce((sum, cur) => sum + cur, 0); // Tính tổng số tiền gửi
+console.log('Tổng tiền gửi trong các tài khoản:', bankDepositSum);
+
+// 2. Đếm số lần tiền gửi có giá trị từ 1000 trở lên
+const numDeposits1000 = accounts
+  .flatMap(acc => acc.movements)
+  .reduce((count, cur) => (cur >= 1000 ? ++count : count), 0); // Tăng biến đếm nếu giá trị >= 1000
+console.log('Số lần tiền gửi >= 1000:', numDeposits1000);
+
+// Thử nghiệm với toán tử tiền tố ++
+let a = 10;
+console.log(++a); // In ra 11 vì ++a tăng a lên 1 trước khi in ra
+console.log(a); // In ra 11 vì a đã tăng
+
+// 3. Tính tổng tiền gửi và tiền rút ra
+const { deposits, withdrawals } = accounts
+  .flatMap(acc => acc.movements)
+  .reduce(
+    (sums, cur) => {
+      sums[cur > 0 ? 'deposits' : 'withdrawals'] += cur; // Thêm vào 'deposits' nếu là tiền gửi và vào 'withdrawals' nếu là tiền rút
+      return sums;
+    },
+    { deposits: 0, withdrawals: 0 }
+  );
+console.log('Tổng tiền gửi:', deposits, '| Tổng tiền rút:', withdrawals);
+
+// 4. Chuyển đổi tiêu đề thành dạng title case
+const convertTitleCase = function (title) {
+  const capitalize = str => str[0].toUpperCase() + str.slice(1);
+  const exceptions = ['a', 'an', 'and', 'the', 'but', 'or', 'on', 'in', 'with'];
+  
+  const titleCase = title
+    .toLowerCase() // Đưa tất cả chữ về dạng thường
+    .split(' ') // Tách từng từ thành phần tử của mảng
+    .map(word => (exceptions.includes(word) ? word : capitalize(word))) // Chuyển chữ cái đầu thành hoa, trừ khi là từ nằm trong exceptions
+    .join(' '); // Ghép lại thành chuỗi
+  return capitalize(titleCase);
+};
+
+console.log(convertTitleCase('this is a nice title')); // "This Is a Nice Title"
+console.log(convertTitleCase('this is a LONG title but not too long')); // "This Is a Long Title but Not Too Long"
+console.log(convertTitleCase('and here is another title with an EXAMPLE')); // "And Here Is Another Title with an Example"
+
+</script>
