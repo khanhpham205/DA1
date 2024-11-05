@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chuyển đổi underscore sang camelCase</title>
+</head>
+<body>
+    <h2>Chuyển đổi biến từ underscore sang camelCase</h2>
+    
+    <textarea id="inputText" rows="5" cols="50" placeholder="Nhập danh sách biến với kiểu underscore, mỗi biến trên 1 dòng..."></textarea>
+    <br><br>
+    <button onclick="convertToCamelCase()">Chuyển đổi</button>
+    
+    <h3>Kết quả:</h3>
+    <pre id="outputText"></pre>
+
+    <script>
+        function convertToCamelCase() {
+            // Lấy giá trị từ vùng văn bản đầu vào
+            const inputText = document.getElementById('inputText').value;
+            
+            // Tách từng dòng để xử lý riêng
+            const lines = inputText.split('\n');
+            
+            // Mảng để lưu trữ kết quả sau khi chuyển đổi
+            const camelCaseVariables = lines.map(line => {
+                // Chuyển đổi mỗi biến từ underscore sang camelCase
+                return line
+                    .toLowerCase()
+                    .split('_')
+                    .map((word, index) => index === 0 ? word : word.charAt(0).toUpperCase() + word.slice(1))
+                    .join('');
+            });
+            
+            // Xuất kết quả sau khi chuyển đổi
+            document.getElementById('outputText').textContent = camelCaseVariables.join('\n');
+        }
+    </script>
+</body>
+</html>

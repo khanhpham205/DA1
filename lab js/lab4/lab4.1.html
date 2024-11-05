@@ -1,0 +1,30 @@
+<script>
+    // Biến lưu trữ tài khoản hiện tại
+let currentAccount;
+
+// Sự kiện khi nhấn nút đăng nhập
+btnLogin.addEventListener('click', function (e) {
+  // Ngăn chặn hành động mặc định của form (nếu có)
+  e.preventDefault();
+
+  // Tìm tài khoản trùng với username mà người dùng nhập vào
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  // Kiểm tra nếu tài khoản tồn tại và mã PIN khớp
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    // Hiển thị giao diện người dùng và thông báo chào mừng
+    labelWelcome.textContent = `Welcome back, ${currentAccount.owner.split(' ')[0]}`;
+    containerApp.style.opacity = 100; // Hiển thị giao diện app bằng cách thay đổi opacity
+
+    // Xóa dữ liệu trong các ô nhập sau khi đăng nhập thành công
+    inputLoginUsername.value = inputLoginPin.value = '';
+    inputLoginPin.blur(); // Bỏ focus khỏi ô nhập mã PIN
+
+    // Cập nhật giao diện với thông tin tài khoản hiện tại
+    updateUI(currentAccount);
+  }
+});
+
+</script>

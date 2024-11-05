@@ -1,0 +1,44 @@
+<script>
+  // lab3.2
+// Hàm kiểm tra độ tuổi của chó
+function checkDogs(dogsJulia, dogsKate) {
+  // 1. Tạo bản sao mảng dogsJulia và xóa tuổi mèo
+  const dogsJuliaCorrected = dogsJulia.slice(1, -2);
+
+  // 2. Kết hợp mảng đã sửa của Julia với mảng của Kate
+  const allDogs = dogsJuliaCorrected.concat(dogsKate);
+
+  // 3. Kiểm tra và in ra console tuổi của từng con chó
+  allDogs.forEach((age, i) => {
+    if (age >= 3) {
+      console.log(`Chó số ${i + 1} là người lớn và ${age} tuổi`);
+    } else {
+      console.log(`Chó số ${i + 1} vẫn là chó con 🐶`);
+    }
+  });
+}
+
+// TEST DATA 1
+checkDogs([3, 5, 2, 12, 7], [4, 1, 15, 8, 3]);
+// TEST DATA 2
+checkDogs([9, 16, 6, 8, 3], [10, 5, 6, 1, 4]);
+
+// lab3.3
+function calcAverageHumanAge(ages) {
+  // 1. Chuyển đổi tuổi chó sang tuổi người
+  const humanAges = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
+
+  // 2. Lọc các chú chó trưởng thành (tuổi người >= 18)
+  const adults = humanAges.filter(age => age >= 18);
+
+  // 3. Tính tuổi trung bình của các chú chó trưởng thành
+  const average = adults.reduce((acc, age) => acc + age, 0) / adults.length;
+
+  return average;
+}
+
+// TEST DATA
+console.log(calcAverageHumanAge([5, 2, 4, 1, 15, 8, 3])); // Kết quả cho TEST DATA 1
+console.log(calcAverageHumanAge([16, 6, 10, 5, 6, 1, 4])); // Kết quả cho TEST DATA 2
+
+</script>
