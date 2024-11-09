@@ -5,23 +5,22 @@
         /* background-color: #272727; */
     }
     .banner{
-        filter: brightness(90%);
-        background: url('contents/imgs/banner/banner (1).png') no-repeat center;
-        background-size: cover ;
-        height: 100vh;
-        height: 80vh;
         position: relative;
         cursor: none;
+        user-select: none;
+        height: 80vh;
+        background-size: cover;
+        background: url('./imgs/banner (1).png') no-repeat center;
         #handlebannerimg{
             margin: 3%;
             position: absolute;
             bottom: 0;
             right: 0;
             button{
-                user-select: none;
-                position: relative;
-                background: none;
-                border: none;
+            user-select: none;
+            position: relative;
+            background: none;
+            border: none;
                 svg{
                     width: 30px;
                     aspect-ratio: 1/1;
@@ -58,8 +57,8 @@
                 
             }
         }
-    }   
-
+        
+    }       
     #bannercursor{
         opacity: 1;
         position: absolute;
@@ -157,8 +156,8 @@
     
     banner.parentElement.addEventListener('mousemove',(e)=>{
         cur.classList.remove('hide')
-        cur.style.left=e.x - cur.offsetHeight/2;
-        cur.style.top=e.y - cur.offsetHeight/2;  
+        cur.style.left=e.pageX - cur.offsetHeight/2;
+        cur.style.top=e.pageY - cur.offsetHeight/2;  
         const bannerpo = {
             x : banner.parentElement.offsetLeft,
             x1 : banner.parentElement.offsetLeft + banner.parentElement.offsetWidth,
@@ -172,7 +171,7 @@
             y1 : banner.offsetTop + banner.offsetHeight
         };     
 
-        if(!banner_check_po(e.x,e.y,bannerpo,bannerhandlepo)){
+        if(!banner_check_po(e.pXage,e.pageY,bannerpo,bannerhandlepo)){
             cur.classList.add('hide')
         }
         cur.children[1].innerText= (e.x<(bannerpo.x1/2) && e.x > bannerpo.x) && '<'||'>';

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 08, 2024 lúc 01:04 PM
+-- Thời gian đã tạo: Th10 09, 2024 lúc 06:30 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -57,6 +57,13 @@ CREATE TABLE `danhmuc` (
   `mota_danhmuc` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `danhmuc`
+--
+
+INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`) VALUES
+(1, 'chuột', 'Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Poly Computer sẽ xuất hiện tại đây.');
+
 -- --------------------------------------------------------
 
 --
@@ -69,6 +76,13 @@ CREATE TABLE `hang` (
   `mota_hang` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `hang`
+--
+
+INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`) VALUES
+(1, 'Pulsar', 'Là thương hiệu rất nổi tại thị trường Mỹ và Nhật, Pulsar Gaming Gears là thương hiệu gaming gear đến từ Hàn Quốc nổi tiếng với các sản phẩm tuy đơn giản nhưng tương xứng với giá trị mà người dùng phải bỏ ra.');
+
 -- --------------------------------------------------------
 
 --
@@ -78,7 +92,8 @@ CREATE TABLE `hang` (
 CREATE TABLE `img` (
   `id_img` int(5) NOT NULL,
   `id_sanpham` int(5) NOT NULL,
-  `content` varchar(255) NOT NULL
+  `content` varchar(255) NOT NULL,
+  `id_optioncontents` int(10) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -93,6 +108,13 @@ CREATE TABLE `option` (
   `id_sanpham` int(5) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `option`
+--
+
+INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
+(1, 'Màu', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -102,8 +124,17 @@ CREATE TABLE `option` (
 CREATE TABLE `option_contents` (
   `id_optioncontents` int(10) NOT NULL,
   `noidung` varchar(255) NOT NULL,
-  `id_option` int(6) NOT NULL
+  `id_option` int(6) NOT NULL,
+  `isDefault` bit(1) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `option_contents`
+--
+
+INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isDefault`) VALUES
+(1, 'Đen', 1, b'1'),
+(2, 'Trắng', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -117,8 +148,16 @@ CREATE TABLE `sanpham` (
   `id_danhmuc` int(5) NOT NULL,
   `ten_sanpham` varchar(255) NOT NULL,
   `mota_sanpham` varchar(255) NOT NULL,
-  `ngaydang` date NOT NULL DEFAULT current_timestamp()
+  `ngaydang` date NOT NULL DEFAULT current_timestamp(),
+  `giamgia` float DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `sanpham`
+--
+
+INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mota_sanpham`, `ngaydang`, `giamgia`) VALUES
+(1, 1, 1, 'Chuột không dây siêu nhẹ Pulsar Xlite V4', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm \r\n|Switch quang học. Cuộn chuột Pulsar chống bụi.\r\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn \r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)', '2024-11-09', 5);
 
 -- --------------------------------------------------------
 
@@ -171,7 +210,8 @@ ALTER TABLE `hang`
 --
 ALTER TABLE `img`
   ADD PRIMARY KEY (`id_img`),
-  ADD KEY `id_sanpham` (`id_sanpham`);
+  ADD KEY `id_sanpham` (`id_sanpham`),
+  ADD KEY `id_optioncontents` (`id_optioncontents`);
 
 --
 -- Chỉ mục cho bảng `option`
@@ -202,6 +242,64 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
+-- AUTO_INCREMENT cho các bảng đã đổ
+--
+
+--
+-- AUTO_INCREMENT cho bảng `cart`
+--
+ALTER TABLE `cart`
+  MODIFY `id_card` int(6) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `cart_item`
+--
+ALTER TABLE `cart_item`
+  MODIFY `id_carditem` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `danhmuc`
+--
+ALTER TABLE `danhmuc`
+  MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `hang`
+--
+ALTER TABLE `hang`
+  MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `img`
+--
+ALTER TABLE `img`
+  MODIFY `id_img` int(5) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT cho bảng `option`
+--
+ALTER TABLE `option`
+  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `option_contents`
+--
+ALTER TABLE `option_contents`
+  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT cho bảng `user`
+--
+ALTER TABLE `user`
+  MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT;
+
+--
 -- Các ràng buộc cho các bảng đã đổ
 --
 
@@ -228,7 +326,8 @@ ALTER TABLE `option`
 -- Các ràng buộc cho bảng `option_contents`
 --
 ALTER TABLE `option_contents`
-  ADD CONSTRAINT `option_contents_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option` (`id_option`);
+  ADD CONSTRAINT `option_contents_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option` (`id_option`),
+  ADD CONSTRAINT `option_contents_ibfk_2` FOREIGN KEY (`id_optioncontents`) REFERENCES `img` (`id_optioncontents`);
 
 --
 -- Các ràng buộc cho bảng `sanpham`
