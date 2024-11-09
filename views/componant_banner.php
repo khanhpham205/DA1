@@ -17,48 +17,49 @@
             position: absolute;
             bottom: 0;
             right: 0;
-        }
-    }   
-    button{
-        user-select: none;
-        position: relative;
-        background: none;
-        border: none;
-        svg{
-            width: 30px;
-            aspect-ratio: 1/1;
-            transform: rotate(-90deg);
-            border-radius: 50%;
-            border:solid grey 1px; 
-            circle{
-                height: 100%;
-                width: 100%;
-                aspect-ratio: 1/1;
-                stroke-width: 3;
-                stroke:none;
-                fill:none;
-                stroke-Linecap: round;  
-                stroke-dasharray: 305%;
-                stroke-dashoffset:301%;   
-                animation:none;
-            }   
-            circle.active{
-                stroke:white;
-                animation: loading 3.99s linear infinite ;
+            button{
+                user-select: none;
+                position: relative;
+                background: none;
+                border: none;
+                svg{
+                    width: 30px;
+                    aspect-ratio: 1/1;
+                    transform: rotate(-90deg);
+                    border-radius: 50%;
+                    border:solid grey 1px; 
+                    circle{
+                        height: 100%;
+                        width: 100%;
+                        aspect-ratio: 1/1;
+                        stroke-width: 3;
+                        stroke:none;
+                        fill:none;
+                        stroke-Linecap: round;  
+                        stroke-dasharray: 305%;
+                        stroke-dashoffset:301%;   
+                        animation:none;
+                    }   
+                    circle.active{
+                        stroke:white;
+                        animation: loading 3.99s linear infinite ;
+                    }
+                }
+                span.bannerspan.active{
+                    color:white;
+                }
+                span.bannerspan{
+                    color:grey;
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%,-50%);
+                }
+                
             }
         }
-        span.bannerspan.active{
-            color:white;
-        }
-        span.bannerspan{
-            color:grey;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%,-50%);
-        }
-        
-    }
+    }   
+
     #bannercursor{
         opacity: 1;
         position: absolute;

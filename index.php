@@ -1,6 +1,7 @@
 <?php
 ob_start();
-include_once('./controllers/pageController.php');
+include_once('controllers/adminController.php');
+include_once('controllers/pageController.php');
 $pageC = new PageController;
 
 $page = (isset($_GET['page'])) ? $_GET['page']: null;
