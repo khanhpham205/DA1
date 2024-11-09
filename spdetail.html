@@ -1,0 +1,131 @@
+<style>
+    .col12{
+        display: grid;
+        grid-template-columns: repeat(12,80px);
+        justify-content: center;
+        /* align-items: center; */
+        gap: 20px;
+    }
+    .full12col{
+        grid-column:1/13;
+    }
+    .pricetag{
+        color: red;
+        font-weight: bold;
+    }
+    /*______________________________ san pham chi tiet ______________________________*/
+    main{
+        .img_list{
+            grid-column:span 1;
+            background-color: #272727;
+            height: 100%;
+            width: 100%;
+            overflow-y: auto;
+            img{
+                width: 100%;
+                padding: 0;
+                margin: 0;
+                aspect-ratio: 1/1;
+            }
+        }
+        .imglist::-webkit-scrollbar {
+            display: none;
+        }
+        .img_main{
+            grid-column: span 6;
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #272727;
+            img{
+                height: 100%;
+                width: 100%;
+            }
+        }
+        .info{
+            grid-column: span 5;
+            h1,h2,h3,h4,h5,h6{
+                margin: 0;
+                padding: 0;
+            }
+            .sl{
+                display: flex;
+                margin: 2%;
+                width: 20%;
+                /* overflow: hidden; */
+                border-radius: 100vh;
+                justify-content: space-between;
+                box-shadow: 0 0 5px black;
+                div{
+                    background-color: white;
+                    height: 3vh;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+                    text-align: center;
+                    display: flex;
+                    justify-content: center ;
+                    align-items: center;
+                    cursor: pointer;
+                    user-select: none;
+                    border: none;
+                }
+                input{
+                    border: none;
+                    text-align: center;
+                    width: 40px;
+                }
+                input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+                    -webkit-appearance: none;
+                    margin: 0;
+                    }
+            }
+            button{
+                width: 100%;
+                cursor: pointer;
+                color: white;
+                font-size: larger;
+                background-color: #FF794C;
+                border: 3px solid #FF794C;
+                border-radius: 200px;
+                padding: 10px;
+            }
+            button:hover{
+                background: none;
+                color:#FF794C;
+            }
+        }
+        .info_detail{
+            height: 400px;
+            background-color: #272727 ;
+        }
+    }
+    /*_______________________________________________________________________________*/
+</style>
+
+<main class="col12">
+    <div class="img_list">
+    </div>
+    <div class="img_main">
+        <img src="" alt="img_main">
+    </div>
+    <div class="info">
+        <h1 >Chuột không dây siêu nhẹ teste ste setste set se asdtyuast dayus tduyas dtuasy dtuasytd uasd</h1>
+        <p  class="pricetag">250.000 đ</p>
+        <hr>
+        <div class="order_zone">
+            <div>
+                <label>Số lượng</label>
+                <div class="sl">
+                    <div onclick="this.parentElement.children[1].stepUp(-1)">-</div>
+                    <input type="number" min="1" id="sluo" oninput="validity.valid||(value=1);" value="1">
+                    <div onclick="this.parentElement.children[1].stepUp(1)">+</div>
+                </div>
+            </div>
+            <button id="addbt" type="1">Add to cart</button>
+        </div>
+    </div>
+    <div class="info_detail full12col"></div>
+</main>
+
+<script>
+    
+</script>
