@@ -2,9 +2,8 @@
     
 
     <?php
-      // include_once('conponant_navbar.php');
-      // include_once('componant_banner.php');
-      echo $allSp;
+      include_once('conponant_navbar.php');
+      include_once('componant_banner.php');
     ?>
 
 </body>
