@@ -61,7 +61,7 @@
     <?php
       include_once('conponant_navbar.php');
       include_once('componant_banner.php');
-      var_dump($newSp);
+    //   var_dump($newSp);
     ?>
       <div class="danhmuc col12">
         <div style="grid-column: span 2;"></div>
@@ -112,14 +112,21 @@
     <div class=" box_sp sale col12">
         <h2 class="full12col">Khuyến Mãi Hời</h2>
         <?php
-          foreach($newSp as $sp){
-            echo("
-                <div class='sp>
-                    <img src='contents/img/products/{$sp['']}'>
-                    <h3 title='{$sp['ten_sanpham']}'></h3>
-                    <p>250.000đ <del>300.000đ</del></p>
-            </div>  
-            ");
+            foreach($newSp as $sp){
+                $tensp = $sp['ten_sanpham'];
+                $giasp = number_format($sp['gia_sanpham']);
+                $img = $sp[0]['id_img'];
+                if($sp['giamgia']){
+                    $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
+                    $giasp = $giaspgiam.'đ <del>'.$giasp.'đ</del>';
+                }
+                echo("
+                <div class='sp'>
+                    <img src='contents/imgs/products/{$img}'>
+                    <h3 title='{$tensp}'> {$tensp} </h3>
+                    <p>{$giasp}</p>
+                </div>  
+                ");
 
           }
         ?>
@@ -129,5 +136,4 @@
             <p>250.000đ <del>300.000đ</del></p>
         </div>
     </div>
-  <div class=""style="height:1000px;"></div>
 </body>
