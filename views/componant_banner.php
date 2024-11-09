@@ -6,7 +6,7 @@
     }
     .banner{
         filter: brightness(90%);
-        background: url('./imgs/banner (1).png') no-repeat center;
+        background: url('contents/imgs/banner/banner (1).png') no-repeat center;
         background-size: cover ;
         height: 100vh;
         height: 80vh;
@@ -223,7 +223,7 @@
             ban=4
         }
         const imgban = bannerlist[ban];
-        banner.parentElement.style.background=`url('../contents/imgs/banner/${imgban}') no-repeat center`;
+        banner.parentElement.style.background=`url('contents/imgs/banner/${imgban}') no-repeat center`;
         
         //______________Set new______________
         banner.children[ban].children[0].children[0].classList.add('active');
