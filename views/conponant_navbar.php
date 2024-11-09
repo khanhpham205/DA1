@@ -135,12 +135,10 @@
     }
 </style>
 <nav class="col12">
-    <a href="./testesma.html" class="logo">
-        <!-- <img src="./imgs/logo/3.png"> -->
-    </a>
+    <a href="?page=home" class="logo"></a>
     <button popovertarget="nav_menu_popover">Products</button>
     <a href="">About</a>
-    <a href="" id="user">
+    <a href="?page=account" id="user">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="6" r="4" stroke="#fff" stroke-width="1.5"/>
             <path d="M19.9975 18C20 17.8358 20 17.669 20 17.5C20 15.0147 16.4183 13 12 13C7.58172 13 4 15.0147 4 17.5C4 19.9853 4 22 12 22C14.231 22 15.8398 21.8433 17 21.5634" stroke="#fff" stroke-width="1.5" stroke-linecap="round"/>
@@ -191,4 +189,5 @@
         }
         
     }
+
 </script>

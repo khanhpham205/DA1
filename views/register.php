@@ -11,8 +11,9 @@
         }
     }
     .container-register{
-        top: 150px;
-        left: 600px;
+        /* top: 150px; */
+        /* left: 600px; */
+        margin-top: 150px;
         background-color: #fff;
         border-radius: 30px;
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.35);
@@ -21,6 +22,7 @@
         width: 768px;
         max-width: 100%;
         min-height: 480px;
+        justify-self: center;
         p{
             font-size: 14px;
             line-height: 20px;
@@ -200,59 +202,57 @@
         }
     }
     * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
-}
-
-ul {
-    list-style: none;
-}
-
-a {
-    text-decoration: none;
-    color: black;
-}
-    .register {
-            width: 100%;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 20px;
-            background-color: #fff;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Arial, Helvetica, sans-serif;
     }
-    .register h2 {
-    font-size: 18px;
-    margin-top: 20px;
-}
 
-.register ul {
-    display: flex;
-}
+    ul {
+        list-style: none;
+    }
 
-.register ul li {
-    padding: 6px 12px;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    margin: 0 5px;
-}
+    a {
+        text-decoration: none;
+        color: black;
+    }
+        .register {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 20px;
+                background-color: #fff;
+        }
+        .register h2 {
+        font-size: 18px;
+        margin-top: 20px;
+    }
 
-.register ul li a:hover {
-    color: #F51212;
-}
+    .register ul {
+        display: flex;
+    }
 
-.register ul li a {
-    transition: all 0.3s ease;
-} 
+    .register ul li {
+        padding: 6px 12px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        margin: 0 5px;
+    }
+
+    .register ul li a:hover {
+        color: #F51212;
+    }
+
+    .register ul li a {
+        transition: all 0.3s ease;
+    } 
 
 </style>
-<div class="register">
-        <h2>Login | <i class="fas fa-angle-double-right"></i> Register</h2>
-        <ul>
-            <li><a href="home.php">trang chủ</a></li>
-        </ul>
-    </div>
+<?php
+  include_once('views/conponant_navbar.php');
+?>
+
 <div class="container-register">
     <div class="form-container sign-up">
 
@@ -297,7 +297,9 @@ a {
         </div>
     </div>
 </div>
+
 <script>
+    document.querySelector('nav').classList.add('active')
     const login = document.getElementById('login');
     const register = document.getElementById('register');
     const container = document.querySelector('.container-register');
