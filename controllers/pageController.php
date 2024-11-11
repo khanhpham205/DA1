@@ -9,6 +9,10 @@ class PageController{
     }
     public function account($id){
         $user = getUserById($id);
+        if(isset($_POST['logout'])){
+            logout();
+            header("Refresh:0; url=index.php?page=account");
+        }
         include_once('views/account.php');
     }
     public function register(){

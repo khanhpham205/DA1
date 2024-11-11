@@ -6,6 +6,12 @@
       where id_user = :id
     ",["id"=>$id_user]);
   }
+  function checkAdminUser($id_user){
+    return PDO_query("
+      select role from user 
+      where id_user = :id
+    ",["id"=>$id_user])[0];
+  }
 
   function login($username,$pass){
     $re= PDO_query("
@@ -21,4 +27,8 @@
     }
     unset($re);
     return 0;
+}
+  function logout(){
+    session_unset();
+    
 }
