@@ -1,18 +1,4 @@
 <style>
-    .col12{
-        display: grid;
-        grid-template-columns: repeat(12,80px);
-        justify-content: center;
-        /* align-items: center; */
-        gap: 20px;
-    }
-    .full12col{
-        grid-column:1/13;
-    }
-    .pricetag{
-        color: red;
-        font-weight: bold;
-    }
     main{
         input,select{
             background-color: #eee;
@@ -76,19 +62,19 @@
         .addbutn:hover{
             box-shadow: 0 0 5px grey;
         }
-        button.delete{
+        .delete{
             border: 2px solid red ;
             color :red;
         }
-        button.edit{
+        .edit{
             color :blue;
             border: 2px solid blue ;
         }
-        button.edit:hover{
+        .edit:hover{
             background: blue !important;
             color:white;
         }
-        button.delete:hover{
+        .delete:hover{
             color:white;
             background: red !important;
         }
@@ -99,7 +85,6 @@
             .admin_sanpham{
                 display: grid;
                 grid-template-columns: 150px 552px 88px 88px;
-                /* grid-template-rows:  10px 110px; */
                 gap: 20px;
                 justify-content: center ;
                 height: 150px;
@@ -119,7 +104,9 @@
                 p{
                     margin: 0;
                 }
-                button{
+                a,button{
+                    text-decoration: none;
+                    cursor: pointer;
                     align-self: end;
                     justify-self: end;
                     width: 100%;
@@ -127,11 +114,12 @@
                     background: none;
                     border-radius: 20px;
                     font-size: 15px;
+                    text-align: center;
                 }
-                button.delete{
+                .delete{
                     grid-column: 4/5;
                 }
-                button.edit{
+                .edit{
                     grid-column: 3/4;
                 }
             }
@@ -190,10 +178,6 @@
         }
     }
 </style>
-<body>
-<nav>
-    <a href="?">HOME</a>
-</nav>
 <main class="col12">
     <div class="admin_tag">
         <button aria-valuetext="thongke" class="active" >Thống Kê</button>
@@ -219,6 +203,7 @@
                 <p>Add</p>
             </a>
             <hr>
+            
             <!-- <h3>Them San Pham</h3>
             <form method="post" enctype="multipart/form-data">
                 <input type="text" placeholder="Name" name="name" id="addpdname"required>
@@ -232,30 +217,22 @@
                 <input type="file" accept="image/*" name="image" multiple required>
                 <input type="submit" name="AddPd" value="Thêm Sản Phẩm">
             </form> -->
-            <div class="admin_sanpham">
-                <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg">
-                <h3>ten san pham ten san pham ten san pham ten san phamten san phamten san pham ten san pham ten san pham ten san pham ten san pham  <br><p class="pricetag">250.000đ</p></h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_sanpham">
-                <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg">
-                <h3>ten san pham ten san pham ten san pham ten san phamten san phamten san pham ten san pham ten san pham ten san pham ten san pham  <br><p class="pricetag">250.000đ</p></h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_sanpham">
-                <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg">
-                <h3>ten san pham ten san pham ten san pham ten san phamten san phamten san pham ten san pham ten san pham ten san pham ten san pham  <br><p class="pricetag">250.000đ</p></h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_sanpham">
-                <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg">
-                <h3>ten san pham ten san pham ten san pham ten san phamten san phamten san pham ten san pham ten san pham ten san pham ten san pham  <br><p class="pricetag">250.000đ</p></h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
+            <?php
+                foreach($allPd as $sp){
+                    $giasp = number_format($sp['gia_sanpham']);
+                    if($sp['giamgia']){
+                        $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
+                        $giasp = $giaspgiam.' đ <del>'.$giasp.' đ</del>';
+                    }
+                    echo "
+                    <div class='admin_sanpham'>
+                        <img src='contents/imgs/products/{$sp[0]['id_img']}'>
+                        <h3>{$sp['ten_sanpham']}<br><p class='pricetag'>{$giasp}</p></h3>
+                        <a href='' class='edit'>edit</a>
+                        <button class='delete'>delete</button>
+                    </div>";
+                }
+            ?>
         </div>
         <div id="danhmuc">
             <h1>Danh Mục</h1>
@@ -320,6 +297,7 @@
 </main>
 
 <script>
+    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
     const butts = [...document.querySelectorAll('button')];
     const contents = [...document.querySelector('.admin_contents').children];
     butts.forEach((element)=>{element.addEventListener('click',(e)=>{
@@ -337,4 +315,3 @@
 
 
 </script>
-</body>

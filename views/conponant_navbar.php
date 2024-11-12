@@ -8,18 +8,8 @@
         margin: 0;
         padding: 0;
     }
-    .col12{
-        display: grid;
-        grid-template-columns: repeat(12,80px);
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-        gap: 25px;
-    }
-    .full12col{
-        grid-column:1/13;
-    }
     nav{
+        align-items:center !important;
         position: fixed;
         top:0;
         z-index: 998;
@@ -138,6 +128,11 @@
     <a href="?page=home" class="logo"></a>
     <button popovertarget="nav_menu_popover">Products</button>
     <a href="">About</a>
+    <?php
+      if($_SESSION['role']==1){
+        echo "<a href='?page=admin'>Admin</a>";
+      }
+    ?>
     <a href="?page=account" id="user">
         <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="12" cy="6" r="4" stroke="#fff" stroke-width="1.5"/>
@@ -190,7 +185,6 @@
         
     }
     const page = new URLSearchParams(window.location.search).get('page');
-    console.log(page);
     if(page=='home' || page==null){
         document.body.onscroll = navbaronscroll;
     }else{
