@@ -12,6 +12,30 @@ function getProductImg($idpro){
     ",['idsanpham'=>$idpro]);
     return $img;
 }
+function getProductById($idpro){
+    $imgs = getProductImg($idpro);
+    $sp= PDO_query("
+        SELECT * FROM sanpham
+        where id_sanpham = :id
+    ",['id'=>$idpro])[0];
+    $sp['imgs'] = $imgs;
+    return $sp;
+}
+
+function getOpsProById($idpro){
+    $op = PDO_query("
+        SELECT * from option
+        where id_sanpham = :idsp
+    ",['idsp'=>$idpro]);
+    foreach($op as &$option){
+        $option['ops'] = PDO_query(
+            "SELECT * from option_contents where id_option = :id",
+            ['id'=>$option['id_option']]);
+    }
+    return $op;
+}
+
+
 function getProductImgThumbnail($idpro){
     return PDO_query("
         SELECT * from img
@@ -28,8 +52,8 @@ function getNewProduct(){
     return $sp;
 }
 
-function getDiscountProduct(){
-    return PDO_query("
-        SELECT * FROM sanpham
-    ");
-}
+// function getDiscountProduct(){
+//     return PDO_query("
+//         SELECT * FROM sanpham
+//     ");
+// }

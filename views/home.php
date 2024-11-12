@@ -21,6 +21,8 @@
         }
     }
     .sp{
+        text-decoration: none;
+        color: black;
         cursor: pointer;
         grid-column: span 3;
         display: flex;
@@ -57,12 +59,9 @@
         }
     }
 </style>
-<body onscroll="navbaronscroll()">
-    <?php
-      include_once('conponant_navbar.php');
-      include_once('componant_banner.php');
-    //   var_dump($newSp);
-    ?>
+<!-- <body onscroll="navbaronscroll()"> -->
+<body>
+    <?php include_once('componant_banner.php');?>
       <div class="danhmuc col12">
         <div style="grid-column: span 2;"></div>
         <a href="">
@@ -121,19 +120,19 @@
                     $giasp = $giaspgiam.'đ <del>'.$giasp.'đ</del>';
                 }
                 echo("
-                <div class='sp'>
+                <a href='?page=product&id={$sp['id_sanpham']}' class='sp'>
                     <img src='contents/imgs/products/{$img}'>
                     <h3 title='{$tensp}'> {$tensp} </h3>
                     <p>{$giasp}</p>
-                </div>  
+                </a>  
                 ");
 
           }
         ?>
-        <div class="sp">
+        <!-- <a href class="sp">
             <img src="https://mtek3d.com/wp-content/uploads/2018/01/image-placeholder-500x500.jpg">
             <h3 title="chuot khong day">Chuột không dây siêu nhẹ teste ste setste set se asdtyuast dayus tduyas dtuasy dtuasytd uasd</h3>
             <p>250.000đ <del>300.000đ</del></p>
-        </div>
+        </a> -->
     </div>
 </body>

@@ -191,7 +191,6 @@
     }
 </style>
 <body>
-<div class="">123213</div>
 <nav>
     <a href="?">HOME</a>
 </nav>
@@ -207,7 +206,6 @@
         <div class="active" id="thongke">
             <h1>Thong ke</h1>
             <!-- <form action="">
-                
             </form> -->
         </div>
         <div id="sanpham">

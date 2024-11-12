@@ -189,5 +189,12 @@
         }
         
     }
-
+    const page = new URLSearchParams(window.location.search).get('page');
+    console.log(page);
+    if(page=='home' || page==null){
+        document.body.onscroll = navbaronscroll;
+    }else{
+        document.querySelector('nav').classList.add('active');
+    }
+    
 </script>

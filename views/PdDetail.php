@@ -1,87 +1,111 @@
 <style>
-    .col12{
+    .col12 {
         display: grid;
-        grid-template-columns: repeat(12,80px);
+        grid-template-columns: repeat(12, 80px);
         justify-content: center;
-        /* align-items: center; */
         gap: 20px;
     }
-    .full12col{
-        grid-column:1/13;
+
+    .full12col {
+        grid-column: 1/13;
     }
-    .pricetag{
+
+    .pricetag {
         color: red;
         font-weight: bold;
+        del{
+            color: grey;
+            font-size: 10px;
+        }
+    }
+    hr{
+        width: 100%;
     }
 
     /*______________________________ san pham chi tiet ______________________________*/
-    main{
-        .img_list{
-            grid-column:span 1;
-            /* background-color: #272727; */
-            height: 100%;
+    main {
+        #imglist::-webkit-scrollbar {
+            display: none;
+        }
+        #imglist {
             width: 100%;
             overflow-y: auto;
-            img{
+            img {
+                user-select: none;
                 width: 100%;
                 padding: 0;
                 margin: 0;
                 aspect-ratio: 1/1;
             }
+            img.active {
+                border-bottom: 2px solid black;
+            }
         }
-        .imglist::-webkit-scrollbar {
-            display: none;
-        }
-       
-        .deg{
-            grid-column: span 6 13;
-            width: 100%;
+
+        #product_img {
+            grid-column: span 6;
             aspect-ratio: 1/1;
+            img {
+                width: 100%;
+                aspect-ratio: 1/1;
+            }
         }
-        .col3{
-            img{
+
+        .col3 {
+            img {
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
+
             grid-column: span 3;
 
         }
+
         .info6col {
             grid-column: span 6/13;
             width: 100%;
             aspect-ratio: 1/1;
+
             hr {
-                background-color:black;
+                background-color: black;
             }
         }
+
         .info6col1 {
             display: flex;
             grid-column: span 6;
             width: 100%;
             aspect-ratio: 1/1;
             align-items: center;
-            justify-content: center ;
+            justify-content: center;
+
             hr {
-                background-color:black;
+                background-color: black;
             }
-            
+
         }
-        .see{h1{
+
+        .see {
+            h1 {
                 text-align: center;
                 color: #00ff4c;
             }
-            h2,h3,h4{
-                text-align: center;
-            }}
 
-        .info{
+            h2,
+            h3,
+            h4 {
+                text-align: center;
+            }
+        }
+
+        .info {
             grid-column: span 5;
-            h1,h2,h3,h4,h5,h6{
+            h1,h2,h3,h4,h5,h6 {
                 margin: 0;
                 padding: 0;
             }
-            .sl{
+            .sl {
                 display: flex;
                 margin: 2%;
                 width: 20%;
@@ -89,30 +113,34 @@
                 border-radius: 100vh;
                 justify-content: space-between;
                 box-shadow: 0 0 5px black;
-                div{
+
+                div {
                     background-color: white;
                     height: 3vh;
                     aspect-ratio: 1/1;
                     border-radius: 50%;
                     text-align: center;
                     display: flex;
-                    justify-content: center ;
+                    justify-content: center;
                     align-items: center;
                     cursor: pointer;
                     user-select: none;
                     border: none;
                 }
-                input{
+
+                input {
                     border: none;
                     text-align: center;
                     width: 40px;
                 }
-                input::-webkit-outer-spin-button,input::-webkit-inner-spin-button {
+
+                input::-webkit-outer-spin-button,
+                input::-webkit-inner-spin-button {
                     -webkit-appearance: none;
                     margin: 0;
-                    }
+                }
             }
-            button{
+            button {
                 width: 100%;
                 cursor: pointer;
                 color: white;
@@ -122,175 +150,200 @@
                 border-radius: 200px;
                 padding: 10px;
             }
-            button:hover{
+            button:hover {
                 background: none;
-                color:#FF794C;
+                color: #FF794C;
+            }
+
+            .deg{
+                width:100%;
+
             }
         }
-        .info_detail{    
+
+        .info_detail {
             height: 400px;
-            background-color: #272727 ;
+            background-color: #272727;
         }
     }
-        .color-picker {
-      margin-top: 20px;
-    }
-         .color-option {
-      display: inline-block;
-      width: 100px;
-      height: 100px;
-      margin: 10px;
-      border: 2px solid #ccc;
-      cursor: pointer;
-      background-size: cover;
-      background-position: center;
-      border-radius: 8px;
-      transition: transform 0.3s;
-    }
-        .color-option:hover {
-      transform: scale(1.1);
-    }
-        .selected-image {
-    margin-top: 20px;
-    border: 2px solid #ccc;
-    display: inline-block;
-    background-size: cover;
-    background-position: center;
-    border-radius: 8px;
-    width: 100%;
-    aspect-ratio: 1/1;
-    position: relative;
-    grid-column: span 6;
 
-}
+    .color-picker {
+        margin-top: 20px;
+    }
 
-        .selected-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
+    .color-option {
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        margin: 10px;
+        border: 2px solid #ccc;
+        cursor: pointer;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        transition: transform 0.3s;
+    }
 
-        .card-container {
-            
-            display: flex;
-            flex-direction: column; 
-            align-items: center;
-            gap: 16px; 
-         }
+    .color-option:hover {
+        transform: scale(1.1);
+    }
+
+    .selected-image {
+        margin-top: 20px;
+        border: 2px solid #ccc;
+        display: inline-block;
+        background-size: cover;
+        background-position: center;
+        border-radius: 8px;
+        width: 100%;
+        aspect-ratio: 1/1;
+        position: relative;
+        grid-column: span 6;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .card-container {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 16px;
+    }
 
     .card {
-      width: 70px;
-      height: 70px;
-      border: 2px solid #ccc;
-      border-radius: 10px;
-      overflow: hidden;
-      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      cursor: pointer;
+        width: 70px;
+        height: 70px;
+        border: 2px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
     }
 
     .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        transform: scale(1.05);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
-    /* .card.selected {
-      border-color: #007bff;
-      box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3);
-    } */
     .product-info {
-            display: block; 
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px; 
-        }
+        display: block;
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 600px;
 
-        .product-info div {
+        div {
             padding: 10px;
             background-color: #f9f9f9;
             border-radius: 5px;
-            margin-bottom: 20px;  
+            margin-bottom: 20px;
         }
 
-        .product-info h3 {
+        h3 {
             margin-bottom: 10px;
             font-size: 18px;
             font-weight: bold;
         }
 
-        .product-info p {
+        p {
             margin: 5px 0;
             font-size: 14px;
             color: #555;
         }
+    }
+
+
     /*_______________________________________________________________________________*/
 </style>
 <main class="col12">
-    <div class="img_list">
-        <div class="card-container">
-            <div class="card" onclick="selectCard(this)">
-            <img src="../contents/imgs/cc/1.png" alt="Hình 1">
-            </div>
-            <div class="card" onclick="selectCard(this)">
-              <img src="../contents/imgs/cc/2.png" alt="Hình 2">
-            </div>
-            <div class="card" onclick="selectCard(this)">
-              <img src="../contents/imgs/cc/3.png" alt="Hình 3">
-            </div>
-            <div class="card" onclick="selectCard(this)">
-              <img src="../contents/imgs/cc/4.png" alt="Hình 4">
-            </div>            
-        </div>
-    </div>
-    
-    <div class="selected-image" id="selected-image">
-        <img id="selected-img" src="../contents/imgs/cc/1.png" alt="Selected Image">
-    </div>
-    <script>
-        function selectCard(card) {
-            const imgSrc = card.querySelector('img').src;
-            const selectedImage = document.getElementById('selected-img');
-            selectedImage.src = imgSrc; 
+    <div id="imglist">
+        <?php
+        foreach ($sp['imgs'] as $img) {
+            echo "
+            <img class=''  src='contents/imgs/products/{$img['id_img']}'>
+            ";
         }
-            function selectColor(imageUrl) {
-            const selectedImage = document.getElementById('selected-img');
-            selectedImage.src = imageUrl;
-        }
-    </script>
-    
-    
+        ?>
+    </div>
+    <div id="product_img">
+        <img src="">
+    </div>
+
+
     <div class="info">
-        <h1>Chuột không dây siêu nhẹ Pulsar Xlite V3 (Hỗ trợ 4K Polling Rate)</h1>
-        <p class="pricetag">250.000 đ</p>
+        <h1>
+            <?php
+                echo $sp['ten_sanpham'];
+            ?>
+        </h1>
+        <p class="pricetag">
+            <?php
+                $gia='';
+                $giasp = number_format($sp['gia_sanpham']);
+                if($sp['giamgia']){
+                    $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
+                    $giasp = $giaspgiam.' đ <del>'.$giasp.' đ</del>';
+                }
+
+                echo $giasp;
+            ?>
+        </p>
         <hr>
         <div class="order_zone">
             <div>
                 <div class="deg">
-                    <h3> Phiên bản giới hạn hợp tác giữa Pulsar và Demon Slayer</h3>
-                    <br>
-                    <h4> Phiên bản mới của chuột Pulsar X2 cực kỳ thành công. Ở X2V2 có các thay đổi:</h4><br>
-                    <h4> &#8226; Switch quang học. Cuộn chuột Pulsar chống bụi.</h4><br>
-                    <h4> &#8226;Hỗ trợ report rate 4000Hz nhờ MCU Nordic (dongle 4000Hz bán rời).</h4><br>
-                    <h4> &#8226;Và một số thay đổi nhỏ, tăng trải nghiệm sử dụng sản phẩm.</h4><br>
-                    <h4> &#8226;Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn.</h4><br>
-                    <h4> &#8226;Designed in Korea</h4><br>
-                    <h3>Chọn màu sắc cho sản phẩm</h3>
+                    <h2>Chi tiết sản phẩm</h2>
+                    <?php
+                        //___________________________ chi tiet san pham ___________________________ 
+                        $mota = explode("|",$sp['mota_sanpham']);
+                        foreach($mota as $mt ){
+                            echo "<h4> &#8226; {$mt}</h4>";
+                        }
+                    ?>
+                    
+                    <?php
+                        // ___________________________ options ___________________________  
+                        // var_dump($option);
+                        foreach($option as $op){
+                            echo "<h3>{$op['tieude_option']}:</h3>";
+                            foreach($op['ops'] as $opitems){
+                                echo"{$opitems['noidung']}";
+
+
+
+
+
+
+                            }
+                        }
+                        
+                        
+                        
+                        
+                        
+                    ?>
+                    <!-- <h3>Chọn màu sắc cho sản phẩm</h3> -->
 
                     <div class="color-picker">
-                        <div class="color-option" 
+                        <div class="color-option"
                             style="background-image: url('../contents/imgs/cc/1.png');"
                             onclick="selectColor('../contents/imgs/cc/1.png')">
                         </div>
-                        
-                        <div class="color-option" 
+
+                        <div class="color-option"
                             style="background-image: url('../contents/imgs/cc/2.png');"
                             onclick="selectColor('../contents/imgs/cc/2.png')">
                         </div>
                     </div>
-                
+
                 </div>
                 <label>Số lượng</label>
                 <div class="sl">
@@ -302,60 +355,67 @@
             <button id="addbt" type="1">Add to cart</button>
         </div>
     </div>
-    <div class="full12col">
-        <hr>
-    </div> 
+    <hr class="full12col">
     <div class="info6col1">
         <div class="see">
-        <h3><strong>Chuột không dây siêu nhẹ Pulsar Xlite V3 (Hỗ trợ 4K Polling Rate)</strong></h3><br>
-        <h1>Ultralight - Cảm biến 26K - Lag-free 2.4GHz</h1><br>
-        <h4>Trọng lượng siêu nhẹ dưới 60gram mà không đục lỗ. Trang bị cảm biến mới nhất 26K. Kết nối không dây lag-free 2.4GHz. Dáng chuột hoàn toàn hướng đến sự thoải mái.</h4><br>
-        <h4>Đây là Pulsar Xlite V3, thế hệ tiếp theo tiếp nối sự thành công của phiên bản Xlite V3 đầu tiên với hàng loạt cải tiến về công nghệ, chất lượng và thiết kế sản phẩm. Kết hợp dáng chuột công thái học.</h4>
+            <h3><strong>Chuột không dây siêu nhẹ Pulsar Xlite V3 (Hỗ trợ 4K Polling Rate)</strong></h3><br>
+            <h1>Ultralight - Cảm biến 26K - Lag-free 2.4GHz</h1><br>
+            <h4>Trọng lượng siêu nhẹ dưới 60gram mà không đục lỗ. Trang bị cảm biến mới nhất 26K. Kết nối không dây lag-free 2.4GHz. Dáng chuột hoàn toàn hướng đến sự thoải mái.</h4><br>
+            <h4>Đây là Pulsar Xlite V3, thế hệ tiếp theo tiếp nối sự thành công của phiên bản Xlite V3 đầu tiên với hàng loạt cải tiến về công nghệ, chất lượng và thiết kế sản phẩm. Kết hợp dáng chuột công thái học.</h4>
         </div>
     </div>
     <div class="info6col">
         <div class="product-info">
-         <div>
-            <h3>Kích Thước</h3>
-            <p><strong>Large (Size 3):</strong> 126.6mm x 69.5mm x 44.5mm</p>
-            <p><strong>Medium (Size 2):</strong> 122mm x 66mm x 43mm</p>
-            <p><strong>Mini (Size 1):</strong> 115.6mm x 63.4mm x 40.7mm</p>
-        </div>
+            <div>
+                <h3>Kích Thước</h3>
+                <p><strong>Large (Size 3):</strong> 126.6mm x 69.5mm x 44.5mm</p>
+                <p><strong>Medium (Size 2):</strong> 122mm x 66mm x 43mm</p>
+                <p><strong>Mini (Size 1):</strong> 115.6mm x 63.4mm x 40.7mm</p>
+            </div>
 
-        <div>
-            <h3>Trọng Lượng</h3>
-            <p><strong>Large (Size 3):</strong> 58g (+- 1g)</p>
-            <p><strong>Medium (Size 2):</strong> 55g (+- 1g)</p>
-            <p><strong>Mini (Size 1):</strong> 52g (+- 1g)</p>
-        </div>
+            <div>
+                <h3>Trọng Lượng</h3>
+                <p><strong>Large (Size 3):</strong> 58g (+- 1g)</p>
+                <p><strong>Medium (Size 2):</strong> 55g (+- 1g)</p>
+                <p><strong>Mini (Size 1):</strong> 52g (+- 1g)</p>
+            </div>
 
-        <div>
-            <h3>Thông Tin Khác</h3>
-            <p><strong>Dáng chuột:</strong> Công thái học</p>
-            <p><strong>Switch:</strong> Optical Switch</p>
-            <p><strong>Con lăn:</strong> Pulsar Blue chống bụi</p>
-            <p><strong>Pin:</strong> Lên đến 100 giờ (±10%) tại 1000Hz polling rate</p>
-            <p><strong>Thời lượng pin:</strong> Có thể thay đổi tùy vào môi trường sử dụng</p>
+            <div>
+                <h3>Thông Tin Khác</h3>
+                <p><strong>Dáng chuột:</strong> Công thái học</p>
+                <p><strong>Switch:</strong> Optical Switch</p>
+                <p><strong>Con lăn:</strong> Pulsar Blue chống bụi</p>
+                <p><strong>Pin:</strong> Lên đến 100 giờ (±10%) tại 1000Hz polling rate</p>
+                <p><strong>Thời lượng pin:</strong> Có thể thay đổi tùy vào môi trường sử dụng</p>
+            </div>
         </div>
+        <!-- san pham cung danh muc -->
     </div>
-</div>
 
-    <div class="col3">
-        <hr>
-            <img src="../contents/imgs/cc/1.png" alt="Hình 1">
-    </div>
-    <div class="col3">
-        <hr>
-            <img src="../contents/imgs/cc/1.png" alt="Hình 1">
-    </div><div class="col3">
-        <hr>
-            <img src="../contents/imgs/cc/1.png" alt="Hình 1">
-    </div><div class="col3">
-        <hr>
-            <img src="../contents/imgs/cc/1.png" alt="Hình 1">
-</div>
+
 </main>
-
 <script>
+    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
+    const img_list = [...document.getElementById('imglist').children];
+    const mainimg = document.getElementById('product_img').children[0];
+    img_list[0].parentElement.style.height = mainimg.offsetHeight;
     
+
+    function resetimgs(){
+        img_list.forEach(element=>{
+            element.classList.remove('active');
+        })
+    }
+
+    console.log(img_list);
+    img_list.forEach((el)=>{
+        el.addEventListener('click',(event)=>{
+            mainimg.src = el.src;
+            resetimgs()
+            el.classList.add('active');
+            img_list[0].parentElement.scroll(0, el.offsetHeight *  (img_list.indexOf(el)-2) );
+        })
+    })
+    img_list[0].click();
+
 </script>

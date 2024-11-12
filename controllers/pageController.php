@@ -15,6 +15,7 @@ class PageController{
         }
         include_once('views/account.php');
     }
+
     public function register(){
         if(isset($_POST['login'])&&$_POST['login']){
             // danh nhap
@@ -31,5 +32,11 @@ class PageController{
             }
         }
         include_once('views/register.php');
+    }
+    
+    public function spDetail($idsp){
+        $option = getOpsProById($idsp);
+        $sp = getProductById($idsp);
+        include_once('views/PdDetail.php');
     }
 }
