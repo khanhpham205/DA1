@@ -1,29 +1,6 @@
 <style>
-    .col12 {
-        display: grid;
-        grid-template-columns: repeat(12, 80px);
-        justify-content: center;
-        gap: 20px;
-    }
-
-    .full12col {
-        grid-column: 1/13;
-    }
-
-    .pricetag {
-        color: red;
-        font-weight: bold;
-        del{
-            color: grey;
-            font-size: 10px;
-        }
-    }
-    hr{
-        width: 100%;
-    }
-
     /*______________________________ san pham chi tiet ______________________________*/
-    main {
+    main{
         #imglist::-webkit-scrollbar {
             display: none;
         }
@@ -49,17 +26,6 @@
                 width: 100%;
                 aspect-ratio: 1/1;
             }
-        }
-
-        .col3 {
-            img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
-
-            grid-column: span 3;
-
         }
 
         .info6col {
@@ -107,16 +73,15 @@
             }
             .sl {
                 display: flex;
-                margin: 2%;
-                width: 20%;
-                /* overflow: hidden; */
+                margin: 2% 0;
+                width: 100px;
+                height: 30px;
                 border-radius: 100vh;
                 justify-content: space-between;
                 box-shadow: 0 0 5px black;
-
                 div {
                     background-color: white;
-                    height: 3vh;
+                    height: 100%;
                     aspect-ratio: 1/1;
                     border-radius: 50%;
                     text-align: center;
@@ -127,13 +92,11 @@
                     user-select: none;
                     border: none;
                 }
-
                 input {
                     border: none;
                     text-align: center;
                     width: 40px;
                 }
-
                 input::-webkit-outer-spin-button,
                 input::-webkit-inner-spin-button {
                     -webkit-appearance: none;
@@ -154,10 +117,20 @@
                 background: none;
                 color: #FF794C;
             }
+            form{
+                input[type="radio"]{
+                    -webkit-appearance: none;
+                    border: 2px solid grey;
+                    background-size: 100%; 
+                    aspect-ratio: 1/1;
+                    width: 80px;
+                    border-radius: 10px;
+                }
+                input[type="radio"]:checked {
+                    border: 2px solid #FF794C;
 
-            .deg{
-                width:100%;
-
+                    /* background: url(images/radio_checked.png) left center no-repeat; */
+                }
             }
         }
 
@@ -165,70 +138,6 @@
             height: 400px;
             background-color: #272727;
         }
-    }
-
-    .color-picker {
-        margin-top: 20px;
-    }
-
-    .color-option {
-        display: inline-block;
-        width: 100px;
-        height: 100px;
-        margin: 10px;
-        border: 2px solid #ccc;
-        cursor: pointer;
-        background-size: cover;
-        background-position: center;
-        border-radius: 8px;
-        transition: transform 0.3s;
-    }
-
-    .color-option:hover {
-        transform: scale(1.1);
-    }
-
-    .selected-image {
-        margin-top: 20px;
-        border: 2px solid #ccc;
-        display: inline-block;
-        background-size: cover;
-        background-position: center;
-        border-radius: 8px;
-        width: 100%;
-        aspect-ratio: 1/1;
-        position: relative;
-        grid-column: span 6;
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-    }
-
-    .card-container {
-
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .card {
-        width: 70px;
-        height: 70px;
-        border: 2px solid #ccc;
-        border-radius: 10px;
-        overflow: hidden;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-        cursor: pointer;
-    }
-
-    .card:hover {
-        transform: scale(1.05);
-        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
     }
 
     .product-info {
@@ -246,21 +155,17 @@
             border-radius: 5px;
             margin-bottom: 20px;
         }
-
         h3 {
             margin-bottom: 10px;
             font-size: 18px;
             font-weight: bold;
         }
-
         p {
             margin: 5px 0;
             font-size: 14px;
             color: #555;
         }
     }
-
-
     /*_______________________________________________________________________________*/
 </style>
 <main class="col12">
@@ -268,7 +173,7 @@
         <?php
         foreach ($sp['imgs'] as $img) {
             echo "
-            <img class=''  src='contents/imgs/products/{$img['id_img']}'>
+            <img class='' aria-valuetext='{$img['id_optioncontents']}' src='contents/imgs/products/{$img['id_img']}'>
             ";
         }
         ?>
@@ -276,8 +181,6 @@
     <div id="product_img">
         <img src="">
     </div>
-
-
     <div class="info">
         <h1>
             <?php
@@ -298,61 +201,35 @@
         </p>
         <hr>
         <div class="order_zone">
-            <div>
-                <div class="deg">
-                    <h2>Chi tiết sản phẩm</h2>
-                    <?php
-                        //___________________________ chi tiet san pham ___________________________ 
-                        $mota = explode("|",$sp['mota_sanpham']);
-                        foreach($mota as $mt ){
-                            echo "<h4> &#8226; {$mt}</h4>";
+            <h2>Chi tiết sản phẩm</h2>
+            <?php
+                //_____________ chi tiet san pham _____________ 
+                foreach(explode("|",$sp['mota_sanpham']) as $mt ){
+                    echo "<h4> &#8226; {$mt}</h4>";
+                }
+            ?>
+          
+            <form action="POST">
+                <?php
+                    // ___________________________ options ___________________________  
+                    foreach($option as $op){
+                        echo "<h3>{$op['tieude_option']}:</h3>";
+                        foreach($op['ops'] as $opitems){
+                            echo"<input type='radio' name='option' onclick='chooseOption(this)' aria-valuetext='{$opitems['id_optioncontents']}'
+                                    style='background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
+                                    value='{$opitems['id_optioncontents']}' checked></input>";
                         }
-                    ?>
-                    
-                    <?php
-                        // ___________________________ options ___________________________  
-                        // var_dump($option);
-                        foreach($option as $op){
-                            echo "<h3>{$op['tieude_option']}:</h3>";
-                            foreach($op['ops'] as $opitems){
-                                echo"{$opitems['noidung']}";
-
-
-
-
-
-
-                            }
-                        }
-                        
-                        
-                        
-                        
-                        
-                    ?>
-                    <!-- <h3>Chọn màu sắc cho sản phẩm</h3> -->
-
-                    <div class="color-picker">
-                        <div class="color-option"
-                            style="background-image: url('../contents/imgs/cc/1.png');"
-                            onclick="selectColor('../contents/imgs/cc/1.png')">
-                        </div>
-
-                        <div class="color-option"
-                            style="background-image: url('../contents/imgs/cc/2.png');"
-                            onclick="selectColor('../contents/imgs/cc/2.png')">
-                        </div>
-                    </div>
-
-                </div>
-                <label>Số lượng</label>
+                    }
+                ?>
+                <h3>Số lượng: </h3>
                 <div class="sl">
                     <div onclick="this.parentElement.children[1].stepUp(-1)">-</div>
                     <input type="number" min="1" id="sluo" oninput="validity.valid||(value=1);" value="1">
                     <div onclick="this.parentElement.children[1].stepUp(1)">+</div>
                 </div>
-            </div>
-            <button id="addbt" type="1">Add to cart</button>
+                <button id="addbt" value=" <?php echo $sp['id_sanpham']?> ">Add to cart</button>
+            </form>
+
         </div>
     </div>
     <hr class="full12col">
@@ -399,7 +276,6 @@
     const img_list = [...document.getElementById('imglist').children];
     const mainimg = document.getElementById('product_img').children[0];
     img_list[0].parentElement.style.height = mainimg.offsetHeight;
-    
 
     function resetimgs(){
         img_list.forEach(element=>{
@@ -407,7 +283,6 @@
         })
     }
 
-    console.log(img_list);
     img_list.forEach((el)=>{
         el.addEventListener('click',(event)=>{
             mainimg.src = el.src;
@@ -417,5 +292,14 @@
         })
     })
     img_list[0].click();
+
+    function chooseOption(x){
+        for(const e of img_list){
+            if(e.getAttribute('aria-valuetext')==x.getAttribute('aria-valuetext')){
+                e.click();
+                break;
+            }
+        }
+    }
 
 </script>
