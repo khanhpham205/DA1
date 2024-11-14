@@ -43,17 +43,14 @@
             color: #fff;
             font-size: 12px;
             padding: 10px 45px;
-            border: 1px solid transparent;
+            border: 1px solid #fff;
             border-radius: 8px;
             font-weight: 600;
             letter-spacing: 0.5px;
             text-transform: uppercase;
             margin-top: 10px;
             cursor: pointer;
-        }
-        button.hidden{
-            background-color: transparent;
-            border-color: #fff;
+
         }
         form{
             background-color: #fff;
@@ -287,12 +284,12 @@
             <div class="toggle-panel toggle-left">
                 <h2>You have an account</h2>
                 <p>Enter your personal details to use all of site features</p>
-                <button class="hidden" id="login">Log In</button>
+                <button class="" id="login">Log In</button>
             </div>
             <div class="toggle-panel toggle-right">
                 <h2> Create your own account </h2>
                 <p>Register with your personal details to use all of site features</p>
-                <button class="hidden" id="register">Sign In</button>
+                <button class="" id="register">Sign In</button>
             </div>
         </div>
     </div>
