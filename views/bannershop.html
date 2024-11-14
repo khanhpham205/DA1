@@ -1,23 +1,37 @@
 
 <style>
+     .col12{
+        display: grid;
+        grid-template-columns: repeat(12,80px);
+        justify-content: center;
+        align-items: start;
+        gap: 20px;
+        hr{
+            width: 100%;
+        }
+    }
+    .full12col{
+        grid-column:1/13;
+    }
     .banner_danhmuc{
         position: relative;
         color: white; 
-        /* width; */
-        height: 90vh;
+        background: url('../contents/imgs/banner/123.webp') center no-repeat;
+        height:900px;
         
         .cc{
-            position: absolute;
+            /* position: absolute; */
             /* top: 200px;
             left: 250px; */
             /* width: 500px;
             height: 200px; */
-            width: 30vw;
-            height: 20vh;
-            top: 20vh;
-            left: 10vw;
+            /* width: ; */
+            /* top: 20vh;
+            left: 10vw; */
+            height: fit-content;
+            grid-column: 1/6;
             background-color: #272727;
-        
+            margin-top: 80%;
             h1{
                 font-size: 40px;
                 padding: 0 10px;
@@ -38,8 +52,8 @@
     }
 </style>
 
-<div class="banner_danhmuc">
-    <img src="../contents/imgs/banner/123.webp">  
+<div class="banner_danhmuc col12">
+    <!-- <img src="../contents/imgs/banner/123.webp">   -->
     <div class="cc">
         <h1>Chuột</h1>
         <p>Chọn chuột tốt nhất cho bạn từ các thương hiệu nổi tiếng như Finalmouse, Glorious, Pulsar, Lamzu, Ninjutso, Logitech và Razer.</p>
