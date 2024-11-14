@@ -1,21 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport">
-        <title>bán đồ công nghệ</title>
-    </head>
-    <style>
-        .banner_danhmuc{
-            position: relative;
-            .cc{
-                position: absolute;
-                top: 200px;
-                left: 250px;
-                background-color: #272727;
-                width: 500px;
-                height: 200px;
-            
+
+<style>
+    .banner_danhmuc{
+        position: relative;
+        color: white; 
+        /* width; */
+        height: 90vh;
+        
+        .cc{
+            position: absolute;
+            /* top: 200px;
+            left: 250px; */
+            /* width: 500px;
+            height: 200px; */
+            width: 30vw;
+            height: 20vh;
+            top: 20vh;
+            left: 10vw;
+            background-color: #272727;
+        
             h1{
                 font-size: 40px;
                 padding: 0 10px;
@@ -25,50 +27,22 @@
                 padding: 0 10px;
             }
         }
+        img{
+            width: 100%;
+            /* position: relative; */
+            /* cursor: none; */
+            user-select: none;
+            height: 80vh;
+            background-size: cover;
+        }
     }
-    .col12 {
-        display: grid;
-        grid-template-columns: repeat(12, 80px);
-        justify-content: center;
-        gap: 20px;
-    }
-    
-    .full12col {
-        grid-column: 1/13;
-    }
-    .col3{
-        img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
-            }
+</style>
 
-            grid-column: span 3;
-    }
-    hr{
-        width: 100%;
-    }
-    </style>
-    <body>
-
-            <div class="banner_danhmuc">
-                <img id="myImage" src="../contents/imgs/cc/123.jpg"width="1520" height="500"> 
-                <div class="cc">
-                    <h1>Chuột</h1>
-                    <p>Chọn chuột tốt nhất cho bạn từ các thương hiệu nổi tiếng như Finalmouse, Glorious, Pulsar, Lamzu, Ninjutso, Logitech và Razer.</p>
-                    <p>Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Phong Cách Xanh sẽ xuất hiện tại đây.</p>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-
-    </body>
-</html>
+<div class="banner_danhmuc">
+    <img src="../contents/imgs/banner/123.webp">  
+    <div class="cc">
+        <h1>Chuột</h1>
+        <p>Chọn chuột tốt nhất cho bạn từ các thương hiệu nổi tiếng như Finalmouse, Glorious, Pulsar, Lamzu, Ninjutso, Logitech và Razer.</p>
+        <p>Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Poly Computer sẽ xuất hiện tại đây.</p>
+    </div>
+</div>
