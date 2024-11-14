@@ -73,3 +73,9 @@ function getNewProduct(){
 //         SELECT * FROM sanpham
 //     ");
 // }
+
+
+// Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm 
+// Switch quang học. Cuộn chuột Pulsar chống bụi.
+// Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn 
+// Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)

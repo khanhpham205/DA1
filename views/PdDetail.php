@@ -217,7 +217,7 @@
                         foreach($op['ops'] as $opitems){
                             echo"<input type='radio' name='option' onclick='chooseOption(this)' aria-valuetext='{$opitems['id_optioncontents']}'
                                     style='background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
-                                    value='{$opitems['img']['id_img']}' checked></input>";
+                                    value='{$opitems['id_optioncontents']}' checked></input>";
                         }
                     }
                 ?>
@@ -276,7 +276,6 @@
     const img_list = [...document.getElementById('imglist').children];
     const mainimg = document.getElementById('product_img').children[0];
     img_list[0].parentElement.style.height = mainimg.offsetHeight;
-    
 
     function resetimgs(){
         img_list.forEach(element=>{

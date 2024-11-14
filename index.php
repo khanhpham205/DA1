@@ -20,6 +20,18 @@
             color: grey;
         }
     }
+    #notifi{
+        .warning{
+            color:yellow;
+        }
+        .error{
+            color:red;
+            
+        }
+        .success{
+            color:green;
+        }
+    }
 </style>
 <body> 
     <?php
@@ -29,7 +41,6 @@
     include_once('controllers/pageController.php');
     $pageC = new PageController;
     $pageA = new AdminController;
-
     include_once('views/conponant_navbar.php');
 
     $page = (isset($_GET['page'])) ? $_GET['page']: null;
@@ -38,7 +49,7 @@
             $pageC->home();
             break;
         case 'account':
-            if($_SESSION['user']){
+            if(isset($_SESSION['user']) && $_SESSION['user']){
                 $pageC->account($_SESSION['user']);
             }else{
                 $pageC->register();
@@ -58,5 +69,22 @@
             $pageC->home();
         }
     ?>
+    <div id="notifi" popover>
+        <div class="warning"></div>
+        <div class="error"></div>
+        <div class="success"></div>
+    </div>
+    <script>
+        const notifi = document.getElementById('notifi');
+        const urlweb = new URLSearchParams(window.location.search);
+        const no = [
+            urlweb.get('warning'),
+            urlweb.get('error'),
+            urlweb.get('success')
+        ]
+        console.log(no);
+
+        
+    </script>
 </body>
 

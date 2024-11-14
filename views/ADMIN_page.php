@@ -203,20 +203,6 @@
                 <p>Add</p>
             </a>
             <hr>
-            
-            <!-- <h3>Them San Pham</h3>
-            <form method="post" enctype="multipart/form-data">
-                <input type="text" placeholder="Name" name="name" id="addpdname"required>
-                <input type="number" min="1" name="cost" placeholder="Cost" oninput="validity.valid||(value=0);"required>
-                <input type="number" name="discount" placeholder="discount (max 90) %" max="90" oninput="validity.valid||(value=0)">
-                <select name="danhmuc">
-                    <option value="chuot">chuot</option>
-                    <option value="ban phim">ban phim</option>
-                    <option value="tai nghe">tai nghe</option>
-                </select>
-                <input type="file" accept="image/*" name="image" multiple required>
-                <input type="submit" name="AddPd" value="Thêm Sản Phẩm">
-            </form> -->
             <?php
                 foreach($allPd as $sp){
                     $giasp = number_format($sp['gia_sanpham']);

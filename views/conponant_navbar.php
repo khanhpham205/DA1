@@ -102,7 +102,9 @@
         height: 100vh;
         position: fixed;
         color: black;
-        background-color: rgba(255, 255, 255,.3);
+        top:0;
+        left: 0;
+        background-color: rgba(0, 0, 0,.3);
         z-index: 999;
         display: none;
         cursor: none;
@@ -129,7 +131,7 @@
     <button popovertarget="nav_menu_popover">Products</button>
     <a href="">About</a>
     <?php
-      if($_SESSION['role']==1){
+      if(isset($_SESSION['role']) && $_SESSION['role']==1){
         echo "<a href='?page=admin'>Admin</a>";
       }
     ?>

@@ -1,7 +1,7 @@
 <!-- quan ly tai khoan -->
 <main>
   <?php
-  var_dump($user);
+  // var_dump($user);
   ?>
 
   <form method="POST">
