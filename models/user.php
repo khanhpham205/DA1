@@ -27,8 +27,41 @@
     }
     unset($re);
     return 0;
-}
+  }
+  function register($name,$email,$phone,$pass){
+    //0: email || phonenunber da ton tai
+    //1: thanh cong
+    //-1: sai dinh dang
+    if(checkphonenumber($phone) && checkmail($email) && checkpass($pass)){
+      if(//email || phonenunber da ton tai
+        count(
+          PDO_query("select * from user where mail =:mail or phonenumber =:phone",['mail'=>$email,['phone']=>$phone])
+        )>0){
+        return 0;
+      }
+      else{
+        //INSERT INTO table_name (column1, column2, column3, ...)
+        PDO_execute("
+        INSERT INTO user(ten_user,password,gmail,phonenumber)
+        Value(:name,:pass,:mail,:phone)",
+        ['name'=>$name,'pass'=>$pass,'gmail'=>$email,'phone'=>$phone]);
+        return 1;
+      }      
+    }else{
+      return -1;
+    }
+  }
+
+  function checkpass($pass){
+    return preg_match('((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,})', $pass);
+  }
+  function checkmail($mail){
+    // return str_contains($mail,'@');
+    return preg_match('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$', $mail);
+  }
+  function checkphonenumber($phone){
+    return strlen($phone) > 9 && strlen($phone) <15 && is_numeric($phone);
+  }
   function logout(){
-    session_unset();
-    
-}
+      session_unset();
+  }

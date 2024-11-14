@@ -22,13 +22,26 @@ class PageController{
             $lomail=$_POST['login_mail'];
             $lopass=$_POST['login_password'];
             $usersession = login($lomail,$lopass);
-            // var_dump($usersession);
             if($usersession){
-                // header('location: index.php');
-                echo"<script>window.location.href='index.php'</script>";
+                header('Location: index.php');
             }else{
                 //danh nhap thai bai
                 // echo"<script> alert('Ten dang nhap hoac mat khau khong ton tai')</script>";
+            }
+        }
+        if(isset($_POST['register']) && $_POST['register']){
+            // danh ky
+            $rename=$_POST['rename'];
+            $reemail=$_POST['reemail'];
+            $rephonenumber=$_POST['rephonenumber'];
+            $repassword=$_POST['repassword'];
+            switch(register($rename,$reemail,$rephonenumber,$repassword)){
+                case -1 :
+                    break;
+                case 0 : 
+                    break;
+                case 1 : 
+                    break;
             }
         }
         include_once('views/register.php');

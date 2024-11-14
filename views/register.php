@@ -136,7 +136,6 @@
         .toggle{
             background-color: #FF794C;
             height: 100%;
-            background: linear-gradient(to right, #e5af9d, #FF794C);
             color: #fff;
             position: relative;
             left: -100%;
@@ -260,10 +259,11 @@
             <h1>Create account</h1>
             <span>or use your email for registeration</span>
 
-            <input type="text"     name="rename"       placeholder="Name"  required>
-            <input type="email"    name="reemail"      placeholder="Email"  required>
-            <input type="password" name="repassword"   pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Phải ít nhất 8 ký tự (bao gồm: In thường, In Hoa, Số)" placeholder="Password"  required>
-            <input type="submit"   name="register"     value="Sign Up">
+            <input type="text"     name="rename"         placeholder="Name"        required>
+            <input type="email"    name="reemail"        placeholder="Email"       required>
+            <input type="number"   name="rephonenumber"  placeholder="PhoneNumber" required>
+            <input type="password" name="repassword"     placeholder="Password"    pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Phải ít nhất 8 ký tự (bao gồm: In thường, In Hoa, Số)" required>
+            <input type="submit"   name="register"       value="Sign Up">
         </form>
     </div>
     <div class="form-container sign-in">
