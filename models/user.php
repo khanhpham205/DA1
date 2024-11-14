@@ -35,7 +35,7 @@
     if(checkphonenumber($phone) && checkmail($email) && checkpass($pass)){
       if(//email || phonenunber da ton tai
         count(
-          PDO_query("select * from user where mail =:mail or phonenumber =:phone",['mail'=>$email,['phone']=>$phone])
+          PDO_query("select * from user where gmail =:mail or phonenumber =:phone",['mail'=>$email,['phone']=>$phone])
         )>0){
         return 0;
       }
