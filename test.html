@@ -1,0 +1,116 @@
+<?php
+// Bắt đầu session để quản lý thông tin người dùng
+session_start();
+
+// Kiểm tra nếu người dùng đã đăng nhập (có ID người dùng trong session)
+if (isset($_SESSION['user'])) {
+    $user = $_SESSION['user']; // Lấy thông tin người dùng từ session
+} else {
+    $user = null; // Nếu không có thông tin người dùng trong session
+}
+
+// Nếu người dùng muốn đăng xuất
+if (isset($_POST['logout'])) {
+    // Xóa thông tin người dùng trong session
+    session_unset();
+    session_destroy();
+    // Chuyển hướng về trang đăng nhập
+    header("Location: login.php");
+    exit();
+}
+?>
+
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tài Khoản Của Bạn</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        .avatar {
+            width: 128px;
+            height: 128px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans antialiased">
+    <div class="container mx-auto pt-8 pb-8">
+        <!-- Thông tin người dùng -->
+        <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+            <div class="flex justify-center">
+                <!-- Ảnh đại diện -->
+                <img src="<?= $user ? $user['avatar_url'] : 'https://via.placeholder.com/150' ?>" alt="Ảnh đại diện" class="avatar">
+            </div>
+            <h2 class="text-2xl font-bold text-center text-gray-800 mt-4">Thông Tin Tài Khoản</h2>
+            <div class="mt-6 space-y-4">
+                <!-- ID Tài khoản -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">ID Tài Khoản:</span>
+                    <span id="userID" class="text-gray-800 font-semibold"><?= $user ? $user['id'] : 'Chưa đăng nhập' ?></span>
+                </div>
+                <!-- Tên tài khoản -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Tên Tài Khoản:</span>
+                    <span id="userName" class="text-gray-800 font-semibold"><?= $user ? $user['username'] : 'Chưa đăng nhập' ?></span>
+                </div>
+                <!-- Email -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Email:</span>
+                    <span id="userEmail" class="text-gray-800 font-semibold"><?= $user ? $user['email'] : 'Chưa đăng nhập' ?></span>
+                </div>
+                <!-- Số dư tài khoản -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Số Dư:</span>
+                    <span id="userBalance" class="text-red-600 font-semibold"><?= $user ? number_format($user['money'], 0, ',', '.') . ' VNĐ' : 'Chưa đăng nhập' ?></span>
+                </div>
+                <!-- Nhóm tài khoản -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Nhóm Tài Khoản:</span>
+                    <span id="userGroup" class="text-gray-800 font-semibold"><?= $user ? $user['group_name'] : 'Chưa đăng nhập' ?></span>
+                </div>
+                <!-- Ngày tham gia -->
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Ngày Tham Gia:</span>
+                    <span id="userJoinDate" class="text-gray-800 font-semibold"><?= $user ? $user['createdate'] : 'Chưa đăng nhập' ?></span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form đăng xuất -->
+        <form method="POST">
+            <button name="logout" class="mt-6 bg-red-500 text-white py-2 px-4 rounded">Đăng Xuất</button>
+        </form>
+    </div>
+
+    <script>
+        // Hàm định dạng số dư
+        function formatCash(amount) {
+            return amount.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+        }
+
+        // Chèn dữ liệu vào trang (dữ liệu từ PHP)
+        const user = <?php echo json_encode($user); ?>;
+
+        // Kiểm tra nếu có dữ liệu người dùng
+        if (user) {
+            // Cập nhật các phần tử với dữ liệu người dùng
+            document.getElementById('userID').textContent = user.id;
+            document.getElementById('userName').textContent = user.username;
+            document.getElementById('userEmail').textContent = user.email;
+            document.getElementById('userBalance').textContent = formatCash(user.money);
+            document.getElementById('userGroup').textContent = user.group_name;
+            document.getElementById('userJoinDate').textContent = user.createdate;
+
+            // Thay đổi ảnh đại diện người dùng
+            document.querySelector('.avatar').src = user.avatar_url;
+        } else {
+            console.error("Không có thông tin người dùng.");
+        }
+    </script>
+</body>
+
+</html>
