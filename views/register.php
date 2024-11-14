@@ -201,7 +201,7 @@
         }
     }
     * {
-        margin: 0;
+        /* margin: 0; */
         padding: 0;
         box-sizing: border-box;
         font-family: Arial, Helvetica, sans-serif;
@@ -285,12 +285,12 @@
     <div class="toggle-container">
         <div class="toggle">
             <div class="toggle-panel toggle-left">
-                <h1>You have an account</h1>
+                <h2>You have an account</h2>
                 <p>Enter your personal details to use all of site features</p>
                 <button class="hidden" id="login">Log In</button>
             </div>
             <div class="toggle-panel toggle-right">
-                <h1>Create your own account</h1>
+                <h2> Create your own account </h2>
                 <p>Register with your personal details to use all of site features</p>
                 <button class="hidden" id="register">Sign In</button>
             </div>

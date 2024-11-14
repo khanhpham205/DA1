@@ -37,11 +37,14 @@ class PageController{
             $repassword=$_POST['repassword'];
             switch(register($rename,$reemail,$rephonenumber,$repassword)){
                 case -1 :
+                    header("Refresh:0; url=index.php?page=account&warning=gmail hoac so dien thoai da ton tai");
                     break;
                 case 0 : 
+                    header("Refresh:0; url=index.php?page=account&success=dang ky tai khoan thanh cong");
                     break;
                 case 1 : 
-                    break;
+                    header("Refresh:0; url=index.php?page=account&error=sai dinh dang");
+                break;
             }
         }
         include_once('views/register.php');
