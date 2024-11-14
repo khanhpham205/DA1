@@ -1,49 +1,35 @@
+<style>
+    .avatar {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+    }
+</style>
 <?php
-session_start();
 
-try {
-    $pdo = new PDO('mysql:host=localhost;dbname=duan1', 'root', ''); 
-    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-} catch (PDOException $e) {
-    die("Kết nối cơ sở dữ liệu thất bại: " . $e->getMessage());
-}
+// try {
+//     $pdo = new PDO('mysql:host=localhost;dbname=duan1', 'root', ''); 
+//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
+// } catch (PDOException $e) {
+//     die("Kết nối cơ sở dữ liệu thất bại: " . $e->getMessage());
+// }
 
-if (isset($_SESSION['id_user'])) {
-    $user_id = $_SESSION['id_user'];
-    $stmt = $pdo->prepare("SELECT id_user, ten_user, gmail, address, phonenumber, password FROM users WHERE id_user = :user_id");
-    $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-    $stmt->execute();
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-} else {
-    $user = null;
-}
-
-if (isset($_POST['logout'])) {
-    session_unset();
-    session_destroy();
-    header("Location: register.php");
-    exit();
-}
+// if (isset($_SESSION['id_user'])) {
+//     $user_id = $_SESSION['id_user'];
+//     $stmt = $pdo->prepare("SELECT id_user, ten_user, gmail, address, phonenumber, password FROM users WHERE id_user = :user_id");
+//     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+//     $stmt->execute();
+//     $user = $stmt->fetch(PDO::FETCH_ASSOC);
+// } else {
+//     $user = null;
+// }
+var_dump($user);
 ?>
 
-<!DOCTYPE html>
-<html lang="vi">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>account</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        .avatar {
-            width: 128px;
-            height: 128px;
-            border-radius: 50%;
-        }
-    </style>
-</head>
+    
 
-<body class="bg-gray-100 font-sans antialiased">
+<main class="bg-gray-100 font-sans antialiased">
     <div class="container mx-auto pt-8 pb-8">
         <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
             <div class="flex justify-center">
@@ -64,12 +50,12 @@ if (isset($_POST['logout'])) {
                     <span id="userEmail" class="text-gray-800 font-semibold"><?= $user ? $user['gmail'] : 'Chưa đăng nhập' ?></span>
                 </div>
                 <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">Địa Chỉ:</span>
-                    <span id="userAddress" class="text-gray-800 font-semibold"><?= $user ? $user['address'] : 'Chưa đăng nhập' ?></span>
-                </div>
-                <div class="flex justify-between items-center">
                     <span class="text-gray-600 font-medium">Số Điện Thoại:</span>
                     <span id="userPhone" class="text-gray-800 font-semibold"><?= $user ? $user['phonenumber'] : 'Chưa đăng nhập' ?></span>
+                </div>
+                <div class="flex justify-between items-center">
+                    <span class="text-gray-600 font-medium">Địa Chỉ:</span>
+                    <span id="userAddress" class="text-gray-800 font-semibold"><?= $user ? $user['address'] : 'Chưa đăng nhập' ?></span>
                 </div>
             </div>
         </div>
@@ -79,19 +65,17 @@ if (isset($_POST['logout'])) {
         </form>
     </div>
 
-    <script>
-        const user = <?php echo json_encode($user); ?>;
-
-        if (user) {
-            document.getElementById('userID').textContent = user.id_user;
-            document.getElementById('userName').textContent = user.ten_user;
-            document.getElementById('userEmail').textContent = user.gmail;
-            document.getElementById('userAddress').textContent = user.address;
-            document.getElementById('userPhone').textContent = user.phonenumber;
-        } else {
-            console.error("Không có thông tin người dùng.");
-        }
-    </script>
-</body>
-
-</html>
+</main>
+<script>
+    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
+    const user = <?php echo json_encode($user); ?>;
+    if (user) {
+        document.getElementById('userID').textContent = user.id_user;
+        document.getElementById('userName').textContent = user.ten_user;
+        document.getElementById('userEmail').textContent = user.gmail;
+        document.getElementById('userAddress').textContent = user.address;
+        document.getElementById('userPhone').textContent = user.phonenumber;
+    } else {
+        console.error("Không có thông tin người dùng.");
+    }
+</script>
