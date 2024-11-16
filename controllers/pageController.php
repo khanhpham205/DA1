@@ -57,25 +57,26 @@ class PageController{
         $option = getOpsProById($idsp);
         $sp = getProductById($idsp);
         if(isset($_POST['addtocart']) && $_POST['addtocart']){
-            $id_option = $_POST['option'];
-            $sl = $_POST['soluong'];
-            $id_sanpham = $_POST['addtocart'];
-            // $id_user = $s;
+            $id_option = (int)$_POST['option'];
+            $sl = (int)$_POST['soluong'];
+            $id_sanpham = (int)$_POST['addtocart'];
             if(isset($_SESSION['user']) && $_SESSION['user']){
-                $id_user = $_SESSION['user'];
+                $id_user = (int)$_SESSION['user'];
             }else{
                 header("Refresh:0; url=?page=account");
             }
+            // echo (json_encode(addToCart($id_sanpham,$sl,$id_option,$id_user),JSON_FORCE_OBJECT));
+            print_r (addToCart($id_sanpham,$sl,$id_option,$id_user));
             
-            switch(addToCart($id_sanpham,$sl,$id_option,$id_user)){
-                case 1:
-                    header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
-                    break;
-                case 0:
-                    header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
-                    break;
+            // switch(addToCart($id_sanpham,$sl,$id_option,$id_user)){
+            //     case 1:
+            //         header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
+            //         break;
+            //     case 0:
+            //         header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
+            //         break;
 
-            }
+            // }
         }
         include_once('views/PdDetail.php');
     }

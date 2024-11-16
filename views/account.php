@@ -1,77 +1,77 @@
 <style>
 
-.avatar {
-    width: 128px;
-    height: 128px;
-    border-radius: 50%;
-    object-fit: cover;
-}
+    .avatar {
+        width: 128px;
+        height: 128px;
+        border-radius: 50%;
+        object-fit: cover;
+    }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f3f4f6;
-    margin: 0;
-    padding: 0;
-}
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f3f4f6;
+        margin: 0;
+        padding: 0;
+    }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-    padding-top: 40px;
-    padding-bottom: 40px;
-}
+    .container {
+        width: 80%;
+        margin: 0 auto;
+        padding-top: 40px;
+        padding-bottom: 40px;
+    }
 
-.card {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    max-width: 800px;
-    margin: 0 auto;
-}
+    .card {
+        background-color: white;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        max-width: 800px;
+        margin: 0 auto;
+    }
 
-.card h2 {
-    text-align: center;
-    font-size: 24px;
-    color: #333;
-    margin-top: 20px;
-}
+    .card h2 {
+        text-align: center;
+        font-size: 24px;
+        color: #333;
+        margin-top: 20px;
+    }
 
-.card .user-info {
-    margin-top: 30px;
-}
+    .card .user-info {
+        margin-top: 30px;
+    }
 
-.card .user-info div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    font-size: 16px;
-}
+    .card .user-info div {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        font-size: 16px;
+    }
 
-.card .user-info span {
-    color: #555;
-}
+    .card .user-info span {
+        color: #555;
+    }
 
-.card .user-info .value {
-    font-weight: bold;
-    color: #333;
-}
+    .card .user-info .value {
+        font-weight: bold;
+        color: #333;
+    }
 
-button {
-    background-color: #e53e3e;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    display: block;
-    width: 100%;
-    margin-top: 20px;
-}
+    button {
+        background-color: #e53e3e;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: block;
+        width: 100%;
+        margin-top: 20px;
+    }
 
-button:hover {
-    background-color: #c53030;
-}
+    button:hover {
+        background-color: #c53030;
+    }
 
 </style>
 <?php
@@ -91,11 +91,7 @@ if ($user) {
 }
 
 ?>
-?>
-
-
 <main>
-    
     <div class="container">
         <div class="card">
             <div class="avatar-container">

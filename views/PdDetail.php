@@ -215,8 +215,7 @@
                     foreach($option as $op){
                         echo "<h3>{$op['tieude_option']}:</h3>";
                         foreach($op['ops'] as $opitems){
-                            echo"<input type='radio' name='option' onclick='chooseOption(this)' aria-valuetext='{$opitems['id_optioncontents']}'
-                                    style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
+                            echo"<input type='radio' name='option' onclick='chooseOption(this)' style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
                                     value='{$opitems['id_optioncontents']}' checked></input>";
                         }
                     }
@@ -295,7 +294,7 @@
 
     function chooseOption(x){
         for(const e of img_list){
-            if(e.getAttribute('aria-valuetext')==x.getAttribute('aria-valuetext')){
+            if(e.getAttribute('aria-valuetext')==x.value){
                 e.click();
                 break;
             }
