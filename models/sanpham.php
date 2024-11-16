@@ -51,7 +51,6 @@ function getOpsProById($idpro){
     return $op;
 }
 
-
 function getProductImgThumbnail($idpro){
     return PDO_query("
         SELECT * from img
@@ -67,7 +66,9 @@ function getNewProduct(){
     }
     return $sp;
 }
-
+function addToCart($idpro,$sl,$option,$id_user){
+    return 1;
+}
 // function getDiscountProduct(){
 //     return PDO_query("
 //         SELECT * FROM sanpham
