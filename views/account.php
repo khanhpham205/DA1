@@ -1,71 +1,140 @@
 <style>
-    .avatar {
-        width: 128px;
-        height: 128px;
-        border-radius: 50%;
-    }
+
+.avatar {
+    width: 128px;
+    height: 128px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f4f6;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+.card {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.card h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-top: 20px;
+}
+
+.card .user-info {
+    margin-top: 30px;
+}
+
+.card .user-info div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.card .user-info span {
+    color: #555;
+}
+
+.card .user-info .value {
+    font-weight: bold;
+    color: #333;
+}
+
+button {
+    background-color: #e53e3e;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: block;
+    width: 100%;
+    margin-top: 20px;
+}
+
+button:hover {
+    background-color: #c53030;
+}
+
 </style>
 <?php
-
-// try {
-//     $pdo = new PDO('mysql:host=localhost;dbname=duan1', 'root', ''); 
-//     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); 
-// } catch (PDOException $e) {
-//     die("Kết nối cơ sở dữ liệu thất bại: " . $e->getMessage());
-// }
-
-// if (isset($_SESSION['id_user'])) {
-//     $user_id = $_SESSION['id_user'];
-//     $stmt = $pdo->prepare("SELECT id_user, ten_user, gmail, address, phonenumber, password FROM users WHERE id_user = :user_id");
-//     $stmt->bindParam(':user_id', $user_id, PDO::PARAM_INT);
-//     $stmt->execute();
-//     $user = $stmt->fetch(PDO::FETCH_ASSOC);
-// } else {
-//     $user = null;
-// }
 var_dump($user);
-?>
-    
+$user = [
+    "id_user" => $user.["userID"],
+    "ten_user" => $user.["userName"],
+    "gmail" =>  ['gmail'],
+    "phonenumber" => ['phonenumber'],
+    "address" => ['address'],
+    "avatar_url" => ['avatar_url']
+];
 
-<main class="bg-gray-100 font-sans antialiased">
-    <div class="container mx-auto pt-8 pb-8">
-        <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
-            <div class="flex justify-center">
+if ($user) {
+} else {
+    echo 'Chưa đăng nhập';
+}
+
+?>
+?>
+
+
+<main>
+    
+    <div class="container">
+        <div class="card">
+            <div class="avatar-container">
                 <img src="<?= $user ? $user['avatar_url'] : 'https://via.placeholder.com/150' ?>" alt="Ảnh đại diện" class="avatar">
             </div>
-            <h2 class="text-2xl font-bold text-center text-gray-800 mt-4">Thông Tin Tài Khoản</h2>
-            <div class="mt-6 space-y-4">
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">ID Tài Khoản:</span>
-                    <span id="userID" class="text-gray-800 font-semibold"><?= $user ? $user['id_user'] : 'Chưa đăng nhập' ?></span>
+            <h2>Thông Tin Tài Khoản</h2>
+            <div class="user-info">
+                <div>
+                    <span>ID Tài Khoản:</span>
+                    <span class="value" id="userID"><?= $user ? $user['id_user'] : 'Chưa đăng nhập' ?></span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">Tên Tài Khoản:</span>
-                    <span id="userName" class="text-gray-800 font-semibold"><?= $user ? $user['ten_user'] : 'Chưa đăng nhập' ?></span>
+                <div>
+                    <span>Tên Tài Khoản:</span>
+                    <span class="value" id="userName"><?= $user ? $user['ten_user'] : 'Chưa đăng nhập' ?></span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">Email:</span>
-                    <span id="userEmail" class="text-gray-800 font-semibold"><?= $user ? $user['gmail'] : 'Chưa đăng nhập' ?></span>
+                <div>
+                    <span>Email:</span>
+                    <span class="value" id="userEmail"><?= $user ? $user['gmail'] : 'Chưa đăng nhập' ?></span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">Số Điện Thoại:</span>
-                    <span id="userPhone" class="text-gray-800 font-semibold"><?= $user ? $user['phonenumber'] : 'Chưa đăng nhập' ?></span>
+                <div>
+                    <span>Số Điện Thoại:</span>
+                    <span class="value" id="userPhone"><?= $user ? $user['phonenumber'] : 'Chưa đăng nhập' ?></span>
                 </div>
-                <div class="flex justify-between items-center">
-                    <span class="text-gray-600 font-medium">Địa Chỉ:</span>
-                    <span id="userAddress" class="text-gray-800 font-semibold"><?= $user ? $user['address'] : 'Chưa đăng nhập' ?></span>
+                <div>
+                    <span>Địa Chỉ:</span>
+                    <span class="value" id="userAddress"><?= $user ? $user['address'] : 'Chưa đăng nhập' ?></span>
                 </div>
             </div>
+
+            <form method="POST">
+                <button name="logout">Đăng Xuất</button>
+            </form>
         </div>
-
-        <form method="POST">
-            <button name="logout" class="mt-6 bg-red-500 text-white py-2 px-4 rounded">Đăng Xuất</button>
-        </form>
     </div>
-
 </main>
+
 <script>
-    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
+    document.querySelector('main').style.marginTop = document.querySelector('nav') ? document.querySelector('nav').offsetHeight + 10 + 'px' : '0px';
+
     const user = <?php echo json_encode($user); ?>;
     if (user) {
         document.getElementById('userID').textContent = user.id_user;
