@@ -63,9 +63,9 @@
         display: flex;
     }
 </style>
-<head>
+<!-- <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head>
+</head> --> 
 <body> 
     <?php
     ob_start();
@@ -132,7 +132,6 @@
             urlweb.get('error'),
             urlweb.get('success')
         ]
-        // console.log(no);
         if(no[0]||no[1]||no[2]){
             notifi.children[0].children[1].innerText += no[0];
             notifi.children[1].children[1].innerText += no[1];

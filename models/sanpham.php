@@ -25,7 +25,6 @@ function getProductById($idpro){
     $sp['imgs'] = $imgs;
     return $sp;
 }
-
 function getOpsProById($idpro){
     $op = PDO_query("
         SELECT * from option
@@ -51,7 +50,6 @@ function getOpsProById($idpro){
     return $op;
 }
 
-
 function getProductImgThumbnail($idpro){
     return PDO_query("
         SELECT * from img
@@ -67,15 +65,27 @@ function getNewProduct(){
     }
     return $sp;
 }
+function addToCart($idpro,$sl,$option,$id_user){
+    $check = PDO_query("SELECT * From cart_item
+        where id_user = :id_user and id_option = :id_option
+     ",
+    ['id_user' => $id_user,'id_option' => $option]);
+    // echo json_encode($check,JSON_FORCE_OBJECT);
+    if(!$check){
+        // ko co 
+        PDO_execute("INSERT INTO cart_item(id_user,soluong,id_option) 
+        value(:user, :sl, :op)",
+        ['user'=>$id_user,'sl'=>$sl,'op'=>$option]);
+        return 1;
+    }
+    else if(count($check)>0){
+        PDO_execute("UPDATE  cart_item Set soluong = soluong + {$sl} 
+        where id_user = :id_user and id_option = :id_option",
+        ['id_user' => $id_user,'id_option' => $option]);
+        return 1;
+    }
+    
+    
+    return $check;
 
-// function getDiscountProduct(){
-//     return PDO_query("
-//         SELECT * FROM sanpham
-//     ");
-// }
-
-
-// Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm 
-// Switch quang học. Cuộn chuột Pulsar chống bụi.
-// Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn 
-// Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)
+}

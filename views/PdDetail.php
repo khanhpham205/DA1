@@ -209,14 +209,13 @@
                 }
             ?>
           
-            <form action="POST">
+            <form method="POST">
                 <?php
                     // ___________________________ options ___________________________  
                     foreach($option as $op){
                         echo "<h3>{$op['tieude_option']}:</h3>";
                         foreach($op['ops'] as $opitems){
-                            echo"<input type='radio' name='option' onclick='chooseOption(this)' aria-valuetext='{$opitems['id_optioncontents']}'
-                                    style='background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
+                            echo"<input type='radio' name='option' onclick='chooseOption(this)' style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
                                     value='{$opitems['id_optioncontents']}' checked></input>";
                         }
                     }
@@ -224,10 +223,10 @@
                 <h3>Số lượng: </h3>
                 <div class="sl">
                     <div onclick="this.parentElement.children[1].stepUp(-1)">-</div>
-                    <input type="number" min="1" id="sluo" oninput="validity.valid||(value=1);" value="1">
+                    <input type="number" min="1" id="sluo" name="soluong" oninput="validity.valid||(value=1);" value="1">
                     <div onclick="this.parentElement.children[1].stepUp(1)">+</div>
                 </div>
-                <button id="addbt" value=" <?php echo $sp['id_sanpham']?> ">Add to cart</button>
+                <button id="addbt" name="addtocart" value=" <?php echo $sp['id_sanpham']?> ">Add to cart</button>
             </form>
 
         </div>
@@ -295,7 +294,7 @@
 
     function chooseOption(x){
         for(const e of img_list){
-            if(e.getAttribute('aria-valuetext')==x.getAttribute('aria-valuetext')){
+            if(e.getAttribute('aria-valuetext')==x.value){
                 e.click();
                 break;
             }
