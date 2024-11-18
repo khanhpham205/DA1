@@ -1,0 +1,46 @@
+<style>
+    .col12{
+        display: grid;
+        grid-template-columns: repeat(12,80px);
+        justify-content: center;
+        align-items: start;
+        gap: 20px;
+        hr{
+            width: 100%;
+        }
+    }
+    .full12col{
+        grid-column:1/13;
+    }
+    .pricetag{
+        color: red;
+        font-weight: bold;
+        del{
+            font-size: 10px;
+            color: grey;
+        }
+    }
+    body{
+        margin: 0;
+    }
+    .shopbanner{
+        height: 400px;
+        background-image: url('../contents/imgs/banner/Ban-phim-co.webp');
+        align-items:center ;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        overflow: hidden;
+        >div{
+            background-color: #272727;
+            grid-column: 2/6;
+            height: 200px;
+
+        }
+    }
+</style>
+<main class="shopbanner col12">
+    <div >
+        content
+    </div>
+</main>

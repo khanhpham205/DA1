@@ -11,6 +11,9 @@
         height: 80vh;
         background-size: cover;
         background: url('./imgs/banner (1).png') no-repeat center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
         #handlebannerimg{
             margin: 3%;
             position: absolute;
