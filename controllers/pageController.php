@@ -8,7 +8,7 @@ class PageController{
         include_once('views/home.php');
     }
     public function account($id){
-        $user = getUserById($id);
+        $user = getUserById($id)[0];
         if(isset($_POST['logout'])){
             logout();
             header("Refresh:0; url=index.php?page=account");
