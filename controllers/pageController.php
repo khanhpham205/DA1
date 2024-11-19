@@ -65,18 +65,12 @@ class PageController{
             }else{
                 header("Refresh:0; url=?page=account");
             }
-
-            switch(addToCart($id_sanpham,$sl,$id_option,$id_user)){
-                case 1:
-                    header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
-                    break;
-                case 0:
-                    header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
-                    break;
-
-
+            if(addToCart($id_sanpham,$sl,$id_option,$id_user)){
+                header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
+            }else{
+                header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
+            }
         }
         include_once('views/PdDetail.php');
-        }
     }
 }

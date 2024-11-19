@@ -22,9 +22,10 @@ class AdminController{
             // header("Refresh:0; url=index.php?page=admin");
             $allDm = getAllDm();
             $allHang = getAllHang();
+            var_dump(PDO_query("SELECT LAST_INSERT_ID()"));
             if(isset($_POST['addproduct']) && $_POST['addproduct']){
-                echo json_encode($_POST,JSON_FORCE_OBJECT);  
-                var_dump($_POST['option_item_imgs']);
+                // echo json_encode($_POST,JSON_FORCE_OBJECT);  
+                adminAddProduct($_POST);
             }
         }
         include_once('views/ADMIN_edit.php');

@@ -189,7 +189,6 @@
         </h1>
         <p class="pricetag">
             <?php
-                $gia='';
                 $giasp = number_format($sp['gia_sanpham']);
                 if($sp['giamgia']){
                     $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
