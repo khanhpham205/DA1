@@ -45,6 +45,9 @@
                 h1{
                     text-align: center;
                 }
+                >a{
+                    color: black;
+                }
             }
             >div.active{
                 display: block;
@@ -194,7 +197,7 @@
         </div>
         <div id="sanpham">
             <h1>Sản Phẩm</h1>
-            <a href="" class="addbutn">
+            <a href="?page=admin_edit&type=product" class="addbutn">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 12H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 9L12 15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -284,6 +287,7 @@
 
 <script>
     document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
+    
     const butts = [...document.querySelectorAll('button')];
     const contents = [...document.querySelector('.admin_contents').children];
     butts.forEach((element)=>{element.addEventListener('click',(e)=>{

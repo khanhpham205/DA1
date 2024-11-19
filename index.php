@@ -7,6 +7,7 @@
         gap: 20px;
         hr{
             width: 100%;
+            grid-column: 1/13 ;
         }
     }
     .full12col{
@@ -68,16 +69,16 @@
 </head> --> 
 <body> 
     <?php
-    ob_start();
-    session_start();
-    include_once('controllers/adminController.php');
-    include_once('controllers/pageController.php');
-    $pageC = new PageController;
-    $pageA = new AdminController;
-    include_once('views/conponant_navbar.php');
+        ob_start();
+        session_start();
+        include_once('controllers/adminController.php');
+        include_once('controllers/pageController.php');
+        $pageC = new PageController;
+        $pageA = new AdminController;
+        include_once('views/conponant_navbar.php');
 
-    $page = (isset($_GET['page'])) ? $_GET['page']: null;
-    switch($page){
+        $page = (isset($_GET['page'])) ? $_GET['page']: null;
+        switch($page){
         case 'home':
             $pageC->home();
             break;
@@ -97,6 +98,11 @@
             break;
         case 'admin':
             $pageA->home($_SESSION['user']);
+            break;
+        case 'admin_edit':
+            $type = (isset($_GET['type'])) ? $_GET['type']: null;
+            $id = (isset($_GET['id'])) ? $_GET['id']: null;
+            $pageA->edit($_SESSION['user'],$type,$id);
             break;
         default:
             $pageC->home();
