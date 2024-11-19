@@ -21,14 +21,6 @@
         
             
         .cc{
-            /* position: absolute; */
-            /* top: 200px;
-            left: 250px; */
-            /* width: 500px;
-            height: 200px; */
-            /* width: ; */
-            /* top: 20vh;
-            left: 10vw; */
             height: fit-content;
             grid-column: 1/6;
             background-color: #272727;
@@ -44,29 +36,25 @@
         }
         img{
             width: 100%;
-            /* position: relative; */
-            /* cursor: none; */
             user-select: none;
             height: 80vh;
             background-size: cover;
         }
     }
-      //css cho thanh trượt//
-      body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
+    body {
+        font-family: Arial, sans-serif;
+        margin: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
 
-        .container {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
-
+    .price_box {
+        grid-column: span 7;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
         .value-box {
             width: 100px;
             text-align: center;
@@ -78,119 +66,121 @@
             border-radius: 5px;
             background: #f9f9f9;
         }
-
         .slider-container {
             position: relative;
-            width: 400px;
+            /* width: 400px; */
+            width: 100%;
         }
-
         .range-slider {
             position: relative;
             height: 5px;
             background: #ddd;
             border-radius: 5px;
+            .range {
+                position: absolute;
+                height: 5px;
+                background: #FF794C;
+                border-radius: 5px;
+            }
+            input[type="range"] {
+                position: absolute;
+                width: 100%;
+                -webkit-appearance: none;
+                appearance: none;
+                background: transparent;
+                pointer-events: none;
+                margin: 0;
+            }
+            input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                background: #FF794C;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                cursor: pointer;
+                pointer-events: all;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                position: relative;
+                top: -8px; 
+            }
+            input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                background: #FF794C;
+                border: 2px solid #fff;
+                border-radius: 50%;
+                cursor: pointer;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+                position: relative;
+                top: -8px; 
+    
+            }
         }
+    }
 
-        .range-slider .range {
-            position: absolute;
-            height: 5px;
-            background: #FF794C;
-            border-radius: 5px;
-        }
-
-        .range-slider input[type="range"] {
-            position: absolute;
-            width: 100%;
-            -webkit-appearance: none;
-            appearance: none;
-            background: transparent;
-            pointer-events: none;
-            margin: 0;
-        }
-
-        .range-slider input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background: #FF794C;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            cursor: pointer;
-            pointer-events: all;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: relative;
-            top: -8px; /* Đẩy nút tròn lên giữa */
-        }
-
-        .range-slider input[type="range"]::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background: #FF794C;
-            border: 2px solid #fff;
-            border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-            position: relative;
-            top: -8px; /* Đẩy nút tròn lên giữa */
-        }
 </style>
 
 <div class="banner_danhmuc col12">
-    <!-- <img src="../contents/imgs/banner/123.webp">   -->
     <div class="cc">
         <h1>Chuột</h1>
         <p>Chọn chuột tốt nhất cho bạn từ các thương hiệu nổi tiếng như Finalmouse, Glorious, Pulsar, Lamzu, Ninjutso, Logitech và Razer.</p>
         <p>Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Poly Computer sẽ xuất hiện tại đây.</p>
     </div>
 </div>
-        <div class="container">
-            <div class="value-box" id="minValue">đ 0</div>
+<div class="col12">
+    <div class="price_box">
+        <div class="value-box" id="minValue">đ 0</div>
 
-            <div class="slider-container">
-                <div class="range-slider">
-                    <div class="range" id="range"></div>
-                    <input type="range" id="minSlider" min="0" max="4620000" step="1000" value="0">
-                    <input type="range" id="maxSlider" min="0" max="4620000" step="1000" value="4620000">
-                </div>
+        <div class="slider-container">
+            <div class="range-slider">
+                <div class="range" id="range"></div>
+                <input type="range" id="minSlider" min="0" max="4620000" step="1000" value="0">
+                <input type="range" id="maxSlider" min="0" max="4620000" step="1000" value="4620000">
             </div>
-
-            <div class="value-box" id="maxValue">đ 4,620,000</div>
         </div>
- <script>
-            const minSlider = document.getElementById('minSlider');
-            const maxSlider = document.getElementById('maxSlider');
-            const range = document.getElementById('range');
-            const minValue = document.getElementById('minValue');
-            const maxValue = document.getElementById('maxValue');
-    
-            const updateRange = () => {
-                const min = parseInt(minSlider.value);
-                const max = parseInt(maxSlider.value);
-    
-                const rangeMin = (min / maxSlider.max) * 100;
-                const rangeMax = (max / maxSlider.max) * 100;
-                range.style.left = `${rangeMin}%`;
-                range.style.right = `${100 - rangeMax}%`;
-    
-                minValue.textContent = `đ ${min.toLocaleString()}`;
-                maxValue.textContent = `đ ${max.toLocaleString()}`;
-            };
-    
-            minSlider.addEventListener('input', () => {
-                if (parseInt(minSlider.value) >= parseInt(maxSlider.value)) {
-                    minSlider.value = maxSlider.value - 1000; 
-                }
-                updateRange();
-            });
-    
-            maxSlider.addEventListener('input', () => {
-                if (parseInt(maxSlider.value) <= parseInt(minSlider.value)) {
-                    maxSlider.value = parseInt(minSlider.value) + 1000; 
-                }
-                updateRange();
-            });
-    
-            updateRange(); 
- </script>
+
+        <div class="value-box" id="maxValue">đ 4,620,000</div>
+    </div>
+</div>
+
+<script>
+    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
+
+    const minSlider = document.getElementById('minSlider');
+    const maxSlider = document.getElementById('maxSlider');
+    const range = document.getElementById('range');
+    const minValue = document.getElementById('minValue');
+    const maxValue = document.getElementById('maxValue');
+
+    const updateRange = () => {
+        const min = parseInt(minSlider.value);
+        const max = parseInt(maxSlider.value);
+
+        const rangeMin = (min / maxSlider.max) * 100;
+        const rangeMax = (max / maxSlider.max) * 100;
+        range.style.left = `${rangeMin}%`;
+        range.style.right = `${100 - rangeMax}%`;
+
+        minValue.textContent = `đ ${min.toLocaleString()}`;
+        maxValue.textContent = `đ ${max.toLocaleString()}`;
+    };
+
+    minSlider.addEventListener('input', () => {
+        if (parseInt(minSlider.value) >= parseInt(maxSlider.value)) {
+            minSlider.value = maxSlider.value - 1000; 
+        }
+        updateRange();
+    });
+
+    maxSlider.addEventListener('input', () => {
+        if (parseInt(maxSlider.value) <= parseInt(minSlider.value)) {
+            maxSlider.value = parseInt(minSlider.value) + 1000; 
+        }
+        updateRange();
+    });
+
+    updateRange(); 
+</script>
          

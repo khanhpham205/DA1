@@ -166,6 +166,7 @@
 
 
 <script>
+    
     document.querySelector('.filter').addEventListener('mousemove',(e)=>{
         const curs = document.querySelector('.cursor');
         curs.style.top = e.y - curs.offsetWidth/2;
