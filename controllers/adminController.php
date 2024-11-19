@@ -16,13 +16,16 @@ class AdminController{
     function edit($iduser,$type,$id){
         if(!checkAdminUser($iduser)){
             header("Refresh:0; url=index.php");
-        }
-        
+        } 
         if(!$id){
             // add san pham
             // header("Refresh:0; url=index.php?page=admin");
             $allDm = getAllDm();
             $allHang = getAllHang();
+            if(isset($_POST['addproduct']) && $_POST['addproduct']){
+                echo json_encode($_POST,JSON_FORCE_OBJECT);  
+                var_dump($_POST['option_item_imgs']);
+            }
         }
         include_once('views/ADMIN_edit.php');
     }
