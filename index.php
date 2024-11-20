@@ -63,6 +63,50 @@
     #notifi:popover-open {
         display: flex;
     }
+    .box_sp{
+        margin-bottom: 50px;
+        h1,h2,h3,h4,h5,h6{
+            font-weight: bold;
+        }
+    }
+    .sp{
+        text-decoration: none;
+        color: black;
+        cursor: pointer;
+        grid-column: span 3;
+        display: flex;
+        justify-content: space-between;
+        height: 100%;
+        flex-direction: column;
+        user-select:text;
+        img{
+            user-select: none;
+            width: 100%;
+            aspect-ratio: 1/1;
+        }
+        h3{
+
+            margin: 0;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            padding-top: 5px ;
+        }
+        p{
+            margin: 0;
+            padding-top: 5px;
+            color:red;
+            font-size: 17px;
+            font-weight: bold;
+            del{
+                font-size: 10px;
+                font-weight: normal;
+                color: grey;
+            }   
+        }
+    }
 </style>
 <!-- <head>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">

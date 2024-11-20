@@ -1,5 +1,4 @@
 <style>
-    /*______________________________ san pham chi tiet ______________________________*/
     main{
         #imglist::-webkit-scrollbar {
             display: none;
@@ -68,7 +67,7 @@
         .info {
             grid-column: span 5;
             h1,h2,h3,h4,h5,h6 {
-                margin: 0;
+                margin:2px 0;
                 padding: 0;
             }
             .sl {
@@ -133,40 +132,7 @@
                 }
             }
         }
-
-        .info_detail {
-            height: 400px;
-            background-color: #272727;
-        }
     }
-
-    .product-info {
-        display: block;
-        background-color: white;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 100%;
-        max-width: 600px;
-
-        div {
-            padding: 10px;
-            background-color: #f9f9f9;
-            border-radius: 5px;
-            margin-bottom: 20px;
-        }
-        h3 {
-            margin-bottom: 10px;
-            font-size: 18px;
-            font-weight: bold;
-        }
-        p {
-            margin: 5px 0;
-            font-size: 14px;
-            color: #555;
-        }
-    }
-    /*_______________________________________________________________________________*/
 </style>
 <main class="col12">
     <div id="imglist">
@@ -204,7 +170,7 @@
             <?php
                 //_____________ chi tiet san pham _____________ 
                 foreach(explode("|",$sp['mota_sanpham']) as $mt ){
-                    echo "<h4> &#8226; {$mt}</h4>";
+                    echo "<h5> &#8226; {$mt}</h5>";
                 }
             ?>
           
@@ -231,42 +197,29 @@
         </div>
     </div>
     <hr class="full12col">
-    <div class="info6col1">
-        <div class="see">
-            <h3><strong>Chuột không dây siêu nhẹ Pulsar Xlite V3 (Hỗ trợ 4K Polling Rate)</strong></h3><br>
-            <h1>Ultralight - Cảm biến 26K - Lag-free 2.4GHz</h1><br>
-            <h4>Trọng lượng siêu nhẹ dưới 60gram mà không đục lỗ. Trang bị cảm biến mới nhất 26K. Kết nối không dây lag-free 2.4GHz. Dáng chuột hoàn toàn hướng đến sự thoải mái.</h4><br>
-            <h4>Đây là Pulsar Xlite V3, thế hệ tiếp theo tiếp nối sự thành công của phiên bản Xlite V3 đầu tiên với hàng loạt cải tiến về công nghệ, chất lượng và thiết kế sản phẩm. Kết hợp dáng chuột công thái học.</h4>
-        </div>
+
+    <div class="box_sp col12 full12col">
+        <h2 class="full12col">Sản Phẩm Liên Quan</h2>
+        <?php
+            foreach($likelyPd as $sp){
+                $tensp = $sp['ten_sanpham'];
+                $giasp = number_format($sp['gia_sanpham']);
+                $img = $sp[0]['id_img'];
+                if($sp['giamgia']){
+                    $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
+                    $giasp = $giaspgiam.'đ <del>'.$giasp.'đ</del>';
+                }
+                echo("
+                <a href='?page=product&id={$sp['id_sanpham']}' class='sp'>
+                    <img src='contents/imgs/products/{$img}'>
+                    <h3 title='{$tensp}'> {$tensp} </h3>
+                    <p>{$giasp}</p>
+                </a>  
+                ");
+
+          }
+        ?>
     </div>
-    <div class="info6col">
-        <div class="product-info">
-            <div>
-                <h3>Kích Thước</h3>
-                <p><strong>Large (Size 3):</strong> 126.6mm x 69.5mm x 44.5mm</p>
-                <p><strong>Medium (Size 2):</strong> 122mm x 66mm x 43mm</p>
-                <p><strong>Mini (Size 1):</strong> 115.6mm x 63.4mm x 40.7mm</p>
-            </div>
-
-            <div>
-                <h3>Trọng Lượng</h3>
-                <p><strong>Large (Size 3):</strong> 58g (+- 1g)</p>
-                <p><strong>Medium (Size 2):</strong> 55g (+- 1g)</p>
-                <p><strong>Mini (Size 1):</strong> 52g (+- 1g)</p>
-            </div>
-
-            <div>
-                <h3>Thông Tin Khác</h3>
-                <p><strong>Dáng chuột:</strong> Công thái học</p>
-                <p><strong>Switch:</strong> Optical Switch</p>
-                <p><strong>Con lăn:</strong> Pulsar Blue chống bụi</p>
-                <p><strong>Pin:</strong> Lên đến 100 giờ (±10%) tại 1000Hz polling rate</p>
-                <p><strong>Thời lượng pin:</strong> Có thể thay đổi tùy vào môi trường sử dụng</p>
-            </div>
-        </div>
-        <!-- san pham cung danh muc -->
-    </div>
-
 
 </main>
 <script>

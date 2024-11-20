@@ -43,7 +43,6 @@ function PDO_query($sql){
         $conn = PDOconnect();
         $stmt = $conn->prepare($sql);
         $stmt->execute($sql_args);
-
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     } catch (PDOException $e) {
         throw $e;

@@ -54,8 +54,9 @@ class PageController{
     }
     
     public function spDetail($idsp){
-        $option = getOpsProById($idsp);
-        $sp = getProductById($idsp);
+        $option   = getOpsProById($idsp);
+        $sp       = getProductById($idsp);
+        $likelyPd = getLikelyPd($idsp);
         if(isset($_POST['addtocart']) && $_POST['addtocart']){
             $id_option = (int)$_POST['option'];
             $sl = (int)$_POST['soluong'];

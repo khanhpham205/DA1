@@ -28,9 +28,13 @@
 
     }
 
+    $a = 'Chuột không dây siêu nhẹ Pulsar Xlite V4';
+    $b = 'Chuột không  dây   siêu nhẹ    Pulsar    Xlite     V4 ';
+    $string = str_replace(' ', '', $b);
+    $string1 = str_replace(' ', '', $a);
+    echo $string == $string1;
+
 ?>
-
-
 
 <form method="POST" enctype="multipart/form-data">
     <input type="file" name="image[]" id="image" accept="image/*" multiple>

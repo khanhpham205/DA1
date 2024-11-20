@@ -18,14 +18,22 @@ class AdminController{
             header("Refresh:0; url=index.php");
         } 
         if(!$id){
-            // add san pham
             // header("Refresh:0; url=index.php?page=admin");
             $allDm = getAllDm();
             $allHang = getAllHang();
-            var_dump(PDO_query("SELECT LAST_INSERT_ID()"));
             if(isset($_POST['addproduct']) && $_POST['addproduct']){
-                // echo json_encode($_POST,JSON_FORCE_OBJECT);  
-                adminAddProduct($_POST);
+                // echo json_encode($_POST,JSON_FORCE_OBJECT); 
+                switch(adminAddProduct($_POST)){
+                    case 0 : 
+                        header("Refresh:0; url=?page=admin_edit&type=product&warning=them san pham that bai");
+                        break;
+                    case 1 : 
+                        header("Refresh:0; url=?page=admin_edit&type=product&success=them san pham thanh cong");
+                        break;
+                    default:
+                        header("Refresh:0; url=?page=admin_edit&type=product&warning=them san pham that bai");
+                } 
+                ;
             }
         }
         include_once('views/ADMIN_edit.php');

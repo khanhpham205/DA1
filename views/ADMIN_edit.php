@@ -79,7 +79,7 @@
     <form action="" method="POST" id="addsp" class="formadd full12col col12" enctype="multipart/form-data">
         <input type="text"     id="ten_sanpham"     name="ten_sp" placeholder="Product Name" required>
         <input type="number"   id="gia_sanpham"     name="gia_sp" placeholder="Product Price" required>
-        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" max="90">
+        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" min='0' max="90">
         <textarea class="mota_sanpham" name="mota_sanpham" required></textarea>
         <div id="danhmuc">
             <label for="danhmuc">Danh muc:</label>
@@ -120,6 +120,9 @@
     var numOfOptions = 1;
     document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
     function imgview(blockimg,inputimgs){
+        [...blockimg.children].forEach(e=>{
+            e.remove();
+        });
         imgs=[...inputimgs.files]
         imgs.forEach(e => {
             let imgtag = document.createElement('img');
