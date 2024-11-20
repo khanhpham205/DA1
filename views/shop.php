@@ -1,5 +1,5 @@
 <style>
-        .price_box{
+    .price_box{
         user-select: none;
         align-items: center ;
         padding: 10px 0;
