@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 19, 2024 lúc 03:56 PM
+-- Thời gian đã tạo: Th10 20, 2024 lúc 12:38 PM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -83,7 +83,8 @@ CREATE TABLE `hang` (
 
 INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
 (1, 'Pulsar', 'Là thương hiệu rất nổi tại thị trường Mỹ và Nhật, Pulsar Gaming Gears là thương hiệu gaming gear đến từ Hàn Quốc nổi tiếng với các sản phẩm tuy đơn giản nhưng tương xứng với giá trị mà người dùng phải bỏ ra.', ''),
-(2, 'Filco', 'Filco mechanical keyboards have been prized for years for their excellent longevity and superior typing experience.\r\nThe Japanese-designed Majestouch keyboards have been produced since 2004, but only around 2008 did they become popular when they were adop', '');
+(2, 'Filco', 'Filco mechanical keyboards have been prized for years for their excellent longevity and superior typing experience.\r\nThe Japanese-designed Majestouch keyboards have been produced since 2004, but only around 2008 did they become popular when they were adop', ''),
+(3, 'DrunkDeer', 'DrunkDeer được thành lập từ năm 2018 với đội ngũ kỹ sư nghiên cứu chuyên sâu vào thế giới bàn phím cơ.|Quá trình nghiên cứu của DrunkDeer được hoàn tất vào tháng 12/2022 với loại switch nam châm (magnetic switch) hoàn toàn mới đạt chuẩn sản xuất hàng loạt', 'DrunkDeer-Banner.webp');
 
 -- --------------------------------------------------------
 
@@ -123,7 +124,96 @@ INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VAL
 ('Chuột không dây siêu nhẹ Pulsar Xlite V4 (5).webp', 1, 1, NULL),
 ('Chuột không dây siêu nhẹ Pulsar Xlite V4 (6).webp', 1, NULL, NULL),
 ('Chuột không dây siêu nhẹ Pulsar Xlite V4 (7).webp', 1, NULL, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (8).webp', 1, NULL, NULL);
+('Chuột không dây siêu nhẹ Pulsar Xlite V4 (8).webp', 1, NULL, NULL),
+('Product_30_18__0.webp', 30, 18, b'1'),
+('Product_30_18__1.webp', 30, 18, NULL),
+('Product_30_18__2.webp', 30, 18, NULL),
+('Product_30_19__0.webp', 30, 19, b'1'),
+('Product_30_19__1.webp', 30, 19, NULL),
+('Product_30_19__2.webp', 30, 19, NULL),
+('Product_30_19__3.webp', 30, 19, NULL),
+('Product_31_20__0.webp', 31, 20, b'1'),
+('Product_31_20__1.webp', 31, 20, NULL),
+('Product_31_20__2.webp', 31, 20, NULL),
+('Product_31_20__3.webp', 31, 20, NULL),
+('Product_31_20__4.webp', 31, 20, NULL),
+('Product_31_20__5.webp', 31, 20, NULL),
+('Product_31_20__6.webp', 31, 20, NULL),
+('Product_31_21__0.webp', 31, 21, b'1'),
+('Product_31_21__1.webp', 31, 21, NULL),
+('Product_31_21__2.webp', 31, 21, NULL),
+('Product_31_21__3.webp', 31, 21, NULL),
+('Product_31_21__4.webp', 31, 21, NULL),
+('Product_31_21__5.webp', 31, 21, NULL),
+('Product_31_21__6.webp', 31, 21, NULL),
+('Product_32_22__0.webp', 32, 22, b'1'),
+('Product_32_22__1.webp', 32, 22, NULL),
+('Product_32_22__2.webp', 32, 22, NULL),
+('Product_32_22__3.webp', 32, 22, NULL),
+('Product_32_22__4.webp', 32, 22, NULL),
+('Product_32_22__5.webp', 32, 22, NULL),
+('Product_32_22__6.webp', 32, 22, NULL),
+('Product_32_23__0.webp', 32, 23, b'1'),
+('Product_32_23__1.webp', 32, 23, NULL),
+('Product_32_23__2.webp', 32, 23, NULL),
+('Product_32_23__3.webp', 32, 23, NULL),
+('Product_32_23__4.webp', 32, 23, NULL),
+('Product_32_23__5.webp', 32, 23, NULL),
+('Product_32_23__6.webp', 32, 23, NULL),
+('Product_33_24__0.webp', 33, 24, b'1'),
+('Product_33_24__1.webp', 33, 24, NULL),
+('Product_33_24__2.webp', 33, 24, NULL),
+('Product_33_24__3.webp', 33, 24, NULL),
+('Product_33_24__4.webp', 33, 24, NULL),
+('Product_33_24__5.webp', 33, 24, NULL),
+('Product_33_24__6.webp', 33, 24, NULL),
+('Product_33_25__0.webp', 33, 25, b'1'),
+('Product_33_25__1.webp', 33, 25, NULL),
+('Product_33_25__2.webp', 33, 25, NULL),
+('Product_33_25__3.webp', 33, 25, NULL),
+('Product_33_25__4.webp', 33, 25, NULL),
+('Product_33_25__5.webp', 33, 25, NULL),
+('Product_33_25__6.webp', 33, 25, NULL),
+('Product_34_26__0.webp', 34, 26, b'1'),
+('Product_34_26__1.webp', 34, 26, NULL),
+('Product_34_26__2.webp', 34, 26, NULL),
+('Product_34_26__3.webp', 34, 26, NULL),
+('Product_34_26__4.webp', 34, 26, NULL),
+('Product_34_26__5.webp', 34, 26, NULL),
+('Product_34_26__6.webp', 34, 26, NULL),
+('Product_34_26__7.webp', 34, 26, NULL),
+('Product_34_26__8.webp', 34, 26, NULL),
+('Product_36_28__0.webp', 36, 28, b'1'),
+('Product_36_28__1.webp', 36, 28, NULL),
+('Product_36_28__2.webp', 36, 28, NULL),
+('Product_36_28__3.webp', 36, 28, NULL),
+('Product_36_28__4.webp', 36, 28, NULL),
+('Product_36_28__5.webp', 36, 28, NULL),
+('Product_36_28__6.webp', 36, 28, NULL),
+('Product_36_28__7.webp', 36, 28, NULL),
+('Product_36_28__8.webp', 36, 28, NULL),
+('Product_36_29__0.webp', 36, 29, b'1'),
+('Product_36_29__1.webp', 36, 29, NULL),
+('Product_36_29__2.webp', 36, 29, NULL),
+('Product_36_29__3.webp', 36, 29, NULL),
+('Product_36_29__4.webp', 36, 29, NULL),
+('Product_36_29__5.webp', 36, 29, NULL),
+('Product_36_29__6.webp', 36, 29, NULL),
+('Product_36_29__7.webp', 36, 29, NULL),
+('Product_36_29__8.webp', 36, 29, NULL),
+('Product_36_29__9.webp', 36, 29, NULL),
+('Product_37_30__0.webp', 37, 30, b'1'),
+('Product_37_30__1.webp', 37, 30, NULL),
+('Product_37_30__2.webp', 37, 30, NULL),
+('Product_37_30__3.webp', 37, 30, NULL),
+('Product_37_30__4.webp', 37, 30, NULL),
+('Product_37_30__5.webp', 37, 30, NULL),
+('Product_37_31__0.webp', 37, 31, b'1'),
+('Product_37_31__1.webp', 37, 31, NULL),
+('Product_37_31__2.webp', 37, 31, NULL),
+('Product_37_31__3.webp', 37, 31, NULL),
+('Product_37_31__4.webp', 37, 31, NULL),
+('Product_37_31__5.webp', 37, 31, NULL);
 
 -- --------------------------------------------------------
 
@@ -144,7 +234,12 @@ CREATE TABLE `option` (
 INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
 (1, 'Màu', 1),
 (13, 'Color', 25),
-(14, 'Màu', 26);
+(14, 'Màu', 26),
+(18, 'Color', 30),
+(19, 'Border Color', 31),
+(22, 'Color', 34),
+(24, 'Color', 36),
+(25, 'Color', 37);
 
 -- --------------------------------------------------------
 
@@ -167,7 +262,16 @@ INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isD
 (1, 'Đen', 1, b'1'),
 (2, 'Trắng', 1, NULL),
 (13, 'Orginal', 13, b'1'),
-(14, 'Original', 14, b'1');
+(14, 'Original', 14, b'1'),
+(18, 'White', 18, b'1'),
+(19, 'Black', 18, NULL),
+(20, 'White', 19, b'1'),
+(21, 'Black', 19, NULL),
+(26, 'Original', 22, b'1'),
+(28, 'Black', 24, b'1'),
+(29, 'White', 24, NULL),
+(30, 'Black', 25, b'1'),
+(31, 'White', 25, NULL);
 
 -- --------------------------------------------------------
 
@@ -193,7 +297,12 @@ CREATE TABLE `sanpham` (
 INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mota_sanpham`, `ngaydang`, `giamgia`, `gia_sanpham`) VALUES
 (1, 1, 1, 'Chuột không dây siêu nhẹ Pulsar Xlite V4', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm \n|Switch quang học. Cuộn chuột Pulsar chống bụi.\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn \n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)', '2024-11-09', 5, 2250000),
 (25, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2 V2 Medium Inosuke - Pulsar x Demon Slayer Limited Edition', 'Switch quang học. Cuộn chuột Pulsar chống bụi.\r\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn.\r\n|Hỗ trợ report rate 4000Hz nhờ MCU Nordic (dongle 4000Hz bán rời).\r\n|Và một số thay đổi nhỏ, tăng trải nghiệm sử dụng sản phẩm.\r\n|Designed ', '2024-11-19', 10, 2050000),
-(26, 2, 2, 'Bàn phím cơ Filco Majestouch 2SC - Tenkeyless', 'Thiết kế Tenkeyless và Fullsize tiêu chuẩn dành cho bạn cần bàn phím cơ gọn gàng hoặc đầy đủ phím số để xử lý số liệu.\n|Kết nối cáp USB liền với độ trễ rất thấp giúp bạn chơi game hoặc gõ phím nhanh không độ trễ.\n|Chất liệu keycap PBT Doubleshot siêu bền ', '2024-11-19', 10, 3850000);
+(26, 2, 2, 'Bàn phím cơ Filco Majestouch 2SC - Tenkeyless', 'Thiết kế Tenkeyless và Fullsize tiêu chuẩn dành cho bạn cần bàn phím cơ gọn gàng hoặc đầy đủ phím số để xử lý số liệu.\n|Kết nối cáp USB liền với độ trễ rất thấp giúp bạn chơi game hoặc gõ phím nhanh không độ trễ.\n|Chất liệu keycap PBT Doubleshot siêu bền ', '2024-11-19', 10, 3850000),
+(30, 3, 2, 'Bàn phím từ HE DrunkDeer A75 | Magnetic Switch - Rapid Trigger', 'Ultra Response Speed: switch từ Hall Effect tốc độ phản hồi nhanh hơn 10 lần so với bàn phím cơ thông thường\r\n|Adjustable Actuation Distance: điều chỉnh điểm nhận phím từ 0.2mm đến 3.8mm, có thể điều chỉnh từng step 0.1mm\r\n|Rapid Trigger: phạm vi độ nhạy ', '2024-11-20', 10, 3850000),
+(31, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 - Rapid Trigger', 'Switch nam châm Hall Effect Fuji, sản xuất bởi Gateron\r\n|20 mức độ nhạy phím từ 0.1mm đến 3.8mm\r\n|Rapid Trigger luôn được bật và hoạt động liên tục\r\n|Dual-shot PBT keycap (KOP profile)\r\n|Khung nhôm CNC\r\n|Stab PCB mount (Spacebar 6.25u)\r\n|Đèn LED RGB 16 hi', '2024-11-20', 0, 4520000),
+(34, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Calabera - Limited Edition - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\r\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\r\n|Rapid Trigger\r\n|Keycap custom Dye Sub PBT 5 mặt (Profile AOP)\r\n|Khung nhôm CNC\r\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\r\n|Khung nhôm CNC\r\n|Stab PCB', '2024-11-20', 0, 4740000),
+(36, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Phantom - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\r\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\r\n|Rapid Trigger\r\n|Phantom PC Clear Keycaps (Cherry Profile)\r\n|Khung nhôm CNC\r\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\r\n|Khung nhôm CNC\r\n|Stab PCB mou', '2024-11-20', 10, 4180000),
+(37, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2H V3 Wireless (Hỗ trợ 8K Polling Rate)', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm\r\n|Thiết mới, trọng lượng chỉ còn 53 gram.\r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời).\r\n|Switch quang học, không bao giờ double click.\r\n|Designed in Korea', '2024-11-20', 0, 2499000);
 
 -- --------------------------------------------------------
 
@@ -301,25 +410,25 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `hang`
 --
 ALTER TABLE `hang`
-  MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT cho bảng `option`
 --
 ALTER TABLE `option`
-  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT cho bảng `option_contents`
 --
 ALTER TABLE `option_contents`
-  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `user`
