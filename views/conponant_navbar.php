@@ -1,19 +1,18 @@
+<?php
+include_once("models/danhmuc.php");
+include_once("models/hang.php");
+$danhmuc=getAllDm();
+$hang=getAllHang();
+?>
 <style>
-    body{
-        position: relative;
-        margin: 0;
-        padding: 0;
-    }
-    h1,h2,h3,h4,h5,h6,p{
-        margin: 0;
-        padding: 0;
-    }
+
     nav{
         align-items:center !important;
         position: fixed;
         top:0;
         z-index: 998;
         width: 100%;
+        background-color: rgba(0, 0, 0, .1);
         height: 125px;
         transition: .4s;
         a.logo{
@@ -125,6 +124,21 @@
             display: flex;
         }
     }
+    #btn_search{
+        margin: 0;
+        grid-column: 8/11;
+        input{
+            background: #eee;
+            border: none;
+            /* margin: 8px 0; */
+            padding: 10px 15px;
+            /* font-size: 13px; */
+            border-radius: 10px;
+            width: 100%;
+            outline: none;
+        }
+    
+    }
 </style>
 <nav class="col12">
     <a href="?page=home" class="logo"></a>
@@ -133,6 +147,14 @@
     <?php
       if(isset($_SESSION['role']) && $_SESSION['role']==1){
         echo "<a href='?page=admin'>Admin</a>";
+      }else{
+        echo"
+            <form id='btn_search' method='get'>
+                <input type='text'  hidden name='page' value='product'>
+                <input type='text' hidden name='shoptype' value='name'>
+                <input type='text'  onkeydown='searching(this,event)' name='shopId' placeholder='Search'>
+            </form>
+        ";
       }
     ?>
     <a href="?page=account" id="user">
@@ -153,11 +175,20 @@
     <div>
         <button popovertarget="nav_menu_popover">X</button>
     </div>  
-    <a href="">Khuyến Mãi Hời</a>
-    <a href="">Chuột</a>
-    <a href="">Bàn Phím</a>
-    <a href="">Tai Nghe</a>
-    <a href="">Lót Chuột</a>
+    <h4>Danh mục</h4>
+    <hr>
+    <?php
+        foreach($danhmuc as $itm){
+            echo "<a href='?page=product&shoptype=danhmuc&shopId={$itm['id_danhmuc']}'>{$itm['ten_danhmuc']}</a>";
+        }
+    ?>
+    <h4>Hãng</h4>
+    <hr>
+    <?php
+        foreach($hang as $itm){
+            echo "<a href='?page=product&shoptype=hang&shopId={$itm['id_hang']}'>{$itm['ten_hang']}</a>";
+        }
+    ?>
 </div>
 
 <div class="filter">
@@ -166,7 +197,14 @@
 
 
 <script>
-    
+    function searching(el,event){
+        // console.log(el.parentElement,event.keyCode );
+        if(event.keyCode==13){
+            el.parentElement.submit();
+        }
+        
+        // if()
+    }
     document.querySelector('.filter').addEventListener('mousemove',(e)=>{
         const curs = document.querySelector('.cursor');
         curs.style.top = e.y - curs.offsetWidth/2;
@@ -190,7 +228,8 @@
         
     }
     const page = new URLSearchParams(window.location.search).get('page');
-    if(page=='home' || page==null){
+    const shoptype = new URLSearchParams(window.location.search).get('shoptype');
+    if(page=='home' || (page=='product' && shoptype !=null && shoptype !='name' ) || page==null){
         document.body.onscroll = navbaronscroll;
     }else{
         document.querySelector('nav').classList.add('active');

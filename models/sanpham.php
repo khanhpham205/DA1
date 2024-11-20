@@ -97,6 +97,16 @@ function getNewProduct(){
     }
     return $sp;
 }
+function getDiscountProduct(){
+    $sp = [];
+    foreach(PDO_query("SELECT * FROM sanpham ORDER BY giamgia DESC limit 8;") as $item){
+        $imgs = getProductImgThumbnail($item['id_sanpham'])[0];
+        array_push($item,$imgs);
+        array_push($sp,$item);
+    }
+    return $sp;
+}
+
 function addToCart($idpro,$sl,$option,$id_user){
     $check = PDO_query("SELECT * From cart_item
         where id_user = :id_user and id_option = :id_option
@@ -121,7 +131,54 @@ function addToCart($idpro,$sl,$option,$id_user){
     return $check;
 
 }
-// CRUD
+function getProductByIdDanhmuc($id){
+    $re = [];
+    foreach(PDO_query("SELECT * FROM sanpham where id_danhmuc=:iddm;",['iddm'=>$id]) as $item){
+        $imgs = getProductImgThumbnail($item['id_sanpham'])[0];
+        array_push($item,$imgs);
+        array_push($re,$item);
+    }
+    return $re;
+}
+function getProduct(){
+    $re = [];
+    foreach(PDO_query("SELECT * FROM sanpham") as $item){
+        $imgs = getProductImgThumbnail($item['id_sanpham'])[0];
+        array_push($item,$imgs);
+        array_push($re,$item);
+    }
+    return $re;
+}
+function getProductByIdHang($id){
+    $re = [];
+    foreach(PDO_query("SELECT * FROM sanpham where id_hang=:idghng;",['idghng'=>$id]) as $item){
+        $imgs = getProductImgThumbnail($item['id_sanpham'])[0];
+        array_push($item,$imgs);
+        array_push($re,$item);
+    }
+    return $re;
+}
+function getProductByName($name){
+    $re = [];
+    foreach(PDO_query("SELECT * FROM sanpham where ten_sanpham like :ten",['ten'=>"%{$name}%"]) as $item){
+        $imgs = getProductImgThumbnail($item['id_sanpham'])[0];
+        array_push($item,$imgs);
+        array_push($re,$item);
+    }
+    return $re;
+}
+// USER
+// function getAllCartItemsByUserId($id){
+    // $re=[];
+    // $carts=PDO_query("SELECT id_sanpham, ten_sanpham,giamgia,gia, hang.ten_hang, danhmuc.ten_danhmuc from sanpham 
+    //   INNER JOIN danhmuc ON sanpham.id_danhmuc=danhmuc.id_danhmuc
+    //   INNER JOIN hang ON sanpham.id_hang=hang.id_hang
+    // ");
+
+    
+//   }
+
+//ADMIN CRUD
 function adminAddProduct($info){
     $value = [
         "id_hang"      => $info['hang'],

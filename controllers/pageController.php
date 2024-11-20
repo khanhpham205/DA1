@@ -5,7 +5,41 @@ include_once('models/danhmuc.php');
 class PageController{
     public function home(){
         $newSp=getNewProduct();
+        $discountSp =getDiscountProduct();
         include_once('views/home.php');
+    }
+    public function products(){
+        $newSp=getNewProduct();
+        $By = $_GET['shoptype'];
+        $shopId = $_GET['shopId'];
+        switch ($_GET['shoptype']) {
+            case 'danhmuc':
+                $shoptmp = getDanhmucById($_GET['shopId']);
+                $tag=[
+                    'name'    =>$shoptmp['ten_danhmuc'] ,
+                    'content' =>$shoptmp['mota_danhmuc'],
+                    'img'     =>$shoptmp['img']
+                ];
+                $listSp = getProductByIdDanhmuc($_GET['shopId']);
+                break;
+            case 'hang':
+                $shoptmp = getHangById($_GET['shopId']);
+                $tag=[
+                    'name'    =>$shoptmp['ten_hang'] ,
+                    'content' =>$shoptmp['mota_hang'],
+                    'img'     =>$shoptmp['img']
+                ];
+                $listSp = getProductByIdHang($_GET['shopId']);
+                break;
+            case 'name':
+                $tag=null;
+                $listSp = getProductByName($_GET['shopId']);
+                break;
+            default:
+                header("Refresh:0; url=?page=home");
+                break;
+        }
+        include_once('views/shop.php');
     }
     public function account($id){
         $user = getUserById($id)[0];

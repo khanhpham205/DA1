@@ -180,7 +180,7 @@
                     foreach($option as $op){
                         echo "<h3>{$op['tieude_option']}:</h3>";
                         foreach($op['ops'] as $opitems){
-                            echo"<input type='radio' name='option' onclick='chooseOption(this)' style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
+                            echo"<input type='radio' name='option' onclick='chooseOption(this)' class='check1' style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
                                     value='{$opitems['id_optioncontents']}' checked></input>";
                         }
                     }
@@ -252,5 +252,5 @@
             }
         }
     }
-
+    document.querySelector('.check1').click()
 </script>

@@ -95,7 +95,6 @@
         opacity: 0;
         z-index: -999;
     }
-
     @keyframes loading{
         0%,100%{
             stroke-dashoffset: 301%;

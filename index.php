@@ -1,4 +1,13 @@
 <style>
+    body{
+        position: relative;
+        margin: 0;
+        padding: 0;
+    }
+    h1,h2,h3,h4,h5,h6,p{
+        margin: 0;
+        padding: 0;
+    }
     .col12{
         display: grid;
         grid-template-columns: repeat(12,80px);
@@ -137,7 +146,8 @@
             if(isset($_GET['id'])){
                 $pageC->spDetail($_GET['id']);
             }else{
-                header("Refresh:0; url=index.php");
+                $pageC->products();
+                // header("Refresh:0; url=index.php");
             }
             break;
         case 'admin':

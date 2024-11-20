@@ -3,3 +3,6 @@
   function getAllDm(){
     return PDO_query("SELECT * FROM danhmuc");
   }
+  function getDanhmucById($id){
+    return PDO_query("SELECT * FROM danhmuc where id_danhmuc=:id",['id'=>$id])[0];
+  }
