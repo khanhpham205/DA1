@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 20, 2024 lúc 03:35 PM
--- Phiên bản máy phục vụ: 10.4.32-MariaDB
--- Phiên bản PHP: 8.2.12
+-- Host: 127.0.0.1
+-- Generation Time: Nov 21, 2024 at 07:09 AM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Cơ sở dữ liệu: `duan1`
+-- Database: `duan1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `cart_item`
+-- Table structure for table `cart_item`
 --
 
 CREATE TABLE `cart_item` (
@@ -35,7 +35,7 @@ CREATE TABLE `cart_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `cart_item`
+-- Dumping data for table `cart_item`
 --
 
 INSERT INTO `cart_item` (`id_carditem`, `id_user`, `soluong`, `id_option`) VALUES
@@ -44,12 +44,14 @@ INSERT INTO `cart_item` (`id_carditem`, `id_user`, `soluong`, `id_option`) VALUE
 (3, 1, 1, 14),
 (4, 1, 6, 19),
 (5, 1, 5, 31),
-(6, 1, 4, 30);
+(6, 1, 4, 30),
+(7, 1, 1, 32),
+(8, 1, 2, 39);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `danhmuc`
+-- Table structure for table `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -60,7 +62,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `danhmuc`
+-- Dumping data for table `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`, `img`) VALUES
@@ -70,7 +72,7 @@ INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`, `img`) VALUE
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `hang`
+-- Table structure for table `hang`
 --
 
 CREATE TABLE `hang` (
@@ -81,7 +83,7 @@ CREATE TABLE `hang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `hang`
+-- Dumping data for table `hang`
 --
 
 INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
@@ -93,7 +95,7 @@ INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `img`
+-- Table structure for table `img`
 --
 
 CREATE TABLE `img` (
@@ -104,7 +106,7 @@ CREATE TABLE `img` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `img`
+-- Dumping data for table `img`
 --
 
 INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VALUES
@@ -217,12 +219,58 @@ INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VAL
 ('Product_37_31__2.webp', 37, 31, NULL),
 ('Product_37_31__3.webp', 37, 31, NULL),
 ('Product_37_31__4.webp', 37, 31, NULL),
-('Product_37_31__5.webp', 37, 31, NULL);
+('Product_37_31__5.webp', 37, 31, NULL),
+('Product_38_32__0.webp', 38, 32, b'1'),
+('Product_38_32__1.webp', 38, 32, NULL),
+('Product_38_32__2.webp', 38, 32, NULL),
+('Product_38_32__3.webp', 38, 32, NULL),
+('Product_38_32__4.webp', 38, 32, NULL),
+('Product_38_33__0.webp', 38, 33, b'1'),
+('Product_38_33__1.webp', 38, 33, NULL),
+('Product_38_33__2.webp', 38, 33, NULL),
+('Product_38_33__3.webp', 38, 33, NULL),
+('Product_38_33__4.webp', 38, 33, NULL),
+('Product_38_34__0.webp', 38, 34, b'1'),
+('Product_38_34__1.webp', 38, 34, NULL),
+('Product_38_34__2.webp', 38, 34, NULL),
+('Product_38_34__3.webp', 38, 34, NULL),
+('Product_38_34__4.webp', 38, 34, NULL),
+('Product_38_35__0.webp', 38, 35, b'1'),
+('Product_38_35__1.webp', 38, 35, NULL),
+('Product_38_35__2.webp', 38, 35, NULL),
+('Product_38_35__3.webp', 38, 35, NULL),
+('Product_38_35__4.webp', 38, 35, NULL),
+('Product_39_36__0.webp', 39, 36, b'1'),
+('Product_39_36__1.webp', 39, 36, NULL),
+('Product_39_36__2.webp', 39, 36, NULL),
+('Product_39_36__3.webp', 39, 36, NULL),
+('Product_39_36__4.webp', 39, 36, NULL),
+('Product_39_37__0.webp', 39, 37, b'1'),
+('Product_39_37__1.webp', 39, 37, NULL),
+('Product_39_37__2.webp', 39, 37, NULL),
+('Product_39_37__3.webp', 39, 37, NULL),
+('Product_39_37__4.webp', 39, 37, NULL),
+('Product_40_38__0.webp', 40, 38, b'1'),
+('Product_40_38__1.webp', 40, 38, NULL),
+('Product_40_38__2.webp', 40, 38, NULL),
+('Product_40_38__3.webp', 40, 38, NULL),
+('Product_40_38__4.webp', 40, 38, NULL),
+('Product_40_39__0.webp', 40, 39, b'1'),
+('Product_40_39__1.webp', 40, 39, NULL),
+('Product_40_39__2.webp', 40, 39, NULL),
+('Product_40_39__3.webp', 40, 39, NULL),
+('Product_40_39__4.webp', 40, 39, NULL),
+('Product_40_39__5.webp', 40, 39, NULL),
+('Product_41_40__0.webp', 41, 40, b'1'),
+('Product_41_40__1.webp', 41, 40, NULL),
+('Product_41_40__2.webp', 41, 40, NULL),
+('Product_41_40__3.webp', 41, 40, NULL),
+('Product_41_40__4.webp', 41, 40, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `option`
+-- Table structure for table `option`
 --
 
 CREATE TABLE `option` (
@@ -232,7 +280,7 @@ CREATE TABLE `option` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `option`
+-- Dumping data for table `option`
 --
 
 INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
@@ -243,12 +291,16 @@ INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
 (19, 'Border Color', 31),
 (22, 'Color', 34),
 (24, 'Color', 36),
-(25, 'Color', 37);
+(25, 'Color', 37),
+(26, 'Color', 38),
+(27, 'Color', 39),
+(28, 'Color', 40),
+(29, 'Color', 41);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `option_contents`
+-- Table structure for table `option_contents`
 --
 
 CREATE TABLE `option_contents` (
@@ -259,7 +311,7 @@ CREATE TABLE `option_contents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `option_contents`
+-- Dumping data for table `option_contents`
 --
 
 INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isDefault`) VALUES
@@ -275,12 +327,21 @@ INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isD
 (28, 'Black', 24, b'1'),
 (29, 'White', 24, NULL),
 (30, 'Black', 25, b'1'),
-(31, 'White', 25, NULL);
+(31, 'White', 25, NULL),
+(32, 'Purple', 26, b'1'),
+(33, 'Black', 26, NULL),
+(34, 'Grey', 26, NULL),
+(35, 'White', 26, NULL),
+(36, 'Pink', 27, b'1'),
+(37, 'White', 27, NULL),
+(38, 'White', 28, b'1'),
+(39, 'Black', 28, NULL),
+(40, 'Original', 29, b'1');
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `sanpham`
+-- Table structure for table `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -295,7 +356,7 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `sanpham`
+-- Dumping data for table `sanpham`
 --
 
 INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mota_sanpham`, `ngaydang`, `giamgia`, `gia_sanpham`) VALUES
@@ -306,12 +367,16 @@ INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mo
 (31, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 - Rapid Trigger', 'Switch nam châm Hall Effect Fuji, sản xuất bởi Gateron\r\n|20 mức độ nhạy phím từ 0.1mm đến 3.8mm\r\n|Rapid Trigger luôn được bật và hoạt động liên tục\r\n|Dual-shot PBT keycap (KOP profile)\r\n|Khung nhôm CNC\r\n|Stab PCB mount (Spacebar 6.25u)\r\n|Đèn LED RGB 16 hi', '2024-11-20', 0, 4520000),
 (34, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Calabera - Limited Edition - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\r\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\r\n|Rapid Trigger\r\n|Keycap custom Dye Sub PBT 5 mặt (Profile AOP)\r\n|Khung nhôm CNC\r\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\r\n|Khung nhôm CNC\r\n|Stab PCB', '2024-11-20', 0, 4740000),
 (36, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Phantom - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\r\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\r\n|Rapid Trigger\r\n|Phantom PC Clear Keycaps (Cherry Profile)\r\n|Khung nhôm CNC\r\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\r\n|Khung nhôm CNC\r\n|Stab PCB mou', '2024-11-20', 10, 4180000),
-(37, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2H V3 Wireless (Hỗ trợ 8K Polling Rate)', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm\r\n|Thiết mới, trọng lượng chỉ còn 53 gram.\r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời).\r\n|Switch quang học, không bao giờ double click.\r\n|Designed in Korea', '2024-11-20', 0, 2499000);
+(37, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2H V3 Wireless (Hỗ trợ 8K Polling Rate)', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm\r\n|Thiết mới, trọng lượng chỉ còn 53 gram.\r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời).\r\n|Switch quang học, không bao giờ double click.\r\n|Designed in Korea', '2024-11-20', 0, 2499000),
+(38, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya X - Đi kèm dongle 8KHz', 'Kích thước to hơn so với Maya.\n|Tương thích phần mềm web Lamzu Aurora.\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\n|Switch quang học Omron Optical.\n|Maya X thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.\n|Trọng lượng siêu nhẹ', '2024-11-21', 20, 3135000),
+(39, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Atlantis Mini Champion Edition - Hỗ trợ 8KHz', 'Cải tiến trên phiên bản Mini Champion:\r\n\r\n|Switch quang Omron Optical\r\n|Hỗ trợ kết nối Wireless tối đa 8KHz. Chip MCU Nordic.\r\n|Tương thích ngược với dongle 4KHz\r\n|Mua receiver Lamzu 4KHz tại đây.\r\n|Mua receiver Lamzu 8KHz', '2024-11-21', 20, 2750000),
+(40, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Thorn - Hỗ trợ 8KHz', 'Hỗ trợ kết nối Wireless 8KHz (cần update firmware và Dongle 8KHz bán rời).\r\nChip MCU Nordic.\r\nThiết kế công thái học lưng lùi cao hoàn toàn mới.\r\nTrọng lượng siêu nhẹ chỉ 52 gram.', '2024-11-21', 30, 2499000),
+(41, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya Doodle (Limited) - Hỗ trợ 8KHz', 'Kích thước nhỏ hơn so với Maya X.\r\n|Thiết kế giới hạn được thiết kế bởi NachoCustomz.\r\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\r\n|Switch quang học Omron Optical.\r\n|Maya thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.\r\n|Trọng lượn', '2024-11-21', 20, 2499000);
 
 -- --------------------------------------------------------
 
 --
--- Cấu trúc bảng cho bảng `user`
+-- Table structure for table `user`
 --
 
 CREATE TABLE `user` (
@@ -325,7 +390,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Đang đổ dữ liệu cho bảng `user`
+-- Dumping data for table `user`
 --
 
 INSERT INTO `user` (`id_user`, `ten_user`, `password`, `gmail`, `phonenumber`, `address`, `role`) VALUES
@@ -334,11 +399,11 @@ INSERT INTO `user` (`id_user`, `ten_user`, `password`, `gmail`, `phonenumber`, `
 (3, 'use', 'Khanh083248', 'khanhsad@gmail.com', '0988998123', '', NULL);
 
 --
--- Chỉ mục cho các bảng đã đổ
+-- Indexes for dumped tables
 --
 
 --
--- Chỉ mục cho bảng `cart_item`
+-- Indexes for table `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`id_carditem`),
@@ -347,19 +412,19 @@ ALTER TABLE `cart_item`
   ADD KEY `id_option` (`id_option`);
 
 --
--- Chỉ mục cho bảng `danhmuc`
+-- Indexes for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id_danhmuc`);
 
 --
--- Chỉ mục cho bảng `hang`
+-- Indexes for table `hang`
 --
 ALTER TABLE `hang`
   ADD PRIMARY KEY (`id_hang`);
 
 --
--- Chỉ mục cho bảng `img`
+-- Indexes for table `img`
 --
 ALTER TABLE `img`
   ADD PRIMARY KEY (`id_img`),
@@ -367,21 +432,21 @@ ALTER TABLE `img`
   ADD KEY `id_optioncontents` (`id_optioncontents`);
 
 --
--- Chỉ mục cho bảng `option`
+-- Indexes for table `option`
 --
 ALTER TABLE `option`
   ADD PRIMARY KEY (`id_option`),
   ADD KEY `id_sanpham` (`id_sanpham`);
 
 --
--- Chỉ mục cho bảng `option_contents`
+-- Indexes for table `option_contents`
 --
 ALTER TABLE `option_contents`
   ADD PRIMARY KEY (`id_optioncontents`),
   ADD KEY `id_option` (`id_option`);
 
 --
--- Chỉ mục cho bảng `sanpham`
+-- Indexes for table `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_sanpham`),
@@ -389,95 +454,67 @@ ALTER TABLE `sanpham`
   ADD KEY `danhmuc` (`id_danhmuc`);
 
 --
--- Chỉ mục cho bảng `user`
+-- Indexes for table `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT cho các bảng đã đổ
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT cho bảng `cart_item`
+-- AUTO_INCREMENT for table `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id_carditem` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_carditem` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT cho bảng `danhmuc`
+-- AUTO_INCREMENT for table `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT cho bảng `hang`
+-- AUTO_INCREMENT for table `hang`
 --
 ALTER TABLE `hang`
   MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT cho bảng `option`
+-- AUTO_INCREMENT for table `option`
 --
 ALTER TABLE `option`
-  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
 
 --
--- AUTO_INCREMENT cho bảng `option_contents`
+-- AUTO_INCREMENT for table `option_contents`
 --
 ALTER TABLE `option_contents`
-  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
 
 --
--- AUTO_INCREMENT cho bảng `sanpham`
+-- AUTO_INCREMENT for table `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT cho bảng `user`
+-- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- Các ràng buộc cho các bảng đã đổ
+-- Constraints for dumped tables
 --
 
 --
--- Các ràng buộc cho bảng `cart_item`
+-- Constraints for table `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD CONSTRAINT `cart_cua_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `cart_item_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option_contents` (`id_optioncontents`);
-
---
--- Các ràng buộc cho bảng `img`
---
-ALTER TABLE `img`
-  ADD CONSTRAINT `img_of_option` FOREIGN KEY (`id_optioncontents`) REFERENCES `option_contents` (`id_optioncontents`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `thuoc_sanpham ` FOREIGN KEY (`id_sanpham`) REFERENCES `sanpham` (`id_sanpham`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Các ràng buộc cho bảng `option`
---
-ALTER TABLE `option`
-  ADD CONSTRAINT `option_of_product` FOREIGN KEY (`id_sanpham`) REFERENCES `sanpham` (`id_sanpham`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
---
--- Các ràng buộc cho bảng `option_contents`
---
-ALTER TABLE `option_contents`
-  ADD CONSTRAINT `option_contents_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option` (`id_option`),
-  ADD CONSTRAINT `option_contents_ibfk_2` FOREIGN KEY (`id_optioncontents`) REFERENCES `img` (`id_optioncontents`);
-
---
--- Các ràng buộc cho bảng `sanpham`
---
-ALTER TABLE `sanpham`
-  ADD CONSTRAINT `danhmuc` FOREIGN KEY (`id_danhmuc`) REFERENCES `danhmuc` (`id_danhmuc`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `hang` FOREIGN KEY (`id_hang`) REFERENCES `hang` (`id_hang`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `img` FOREIGN KEY (`id_sanpham`) REFERENCES `img` (`id_sanpham`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
