@@ -271,10 +271,9 @@
     </div>
     <div class="user_contenrs">
         <div class="active" id="thongtin">
-            <h1>Thong ke</h1>
             <div class="card">
                 <div class="avatar-container">
-                    <img src="<?= $user ? $user['avatar_url'] : 'https://via.placeholder.com/150' ?>" alt="Ảnh đại diện" class="avatar">
+                    <!-- <img src="<?= $user ? $user['avatar_url'] : 'https://via.placeholder.com/150' ?>" alt="Ảnh đại diện" class="avatar"> -->
                 </div>
                 <h2>Thông Tin Tài Khoản</h2>
                 <div class="user-info">
