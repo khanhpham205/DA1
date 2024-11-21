@@ -252,6 +252,43 @@
         }
         
     }
+        .giohang {
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+
+        .cart-table th,
+        .cart-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .checkout-btn {
+            background-color: #ff6b6b;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .checkout-btn:hover {
+            background-color: #ff4c4c;
+        }
+
 </style>
 <?php
 // var_dump($user);
