@@ -121,6 +121,7 @@
             grid-column:3/13 ;
             box-shadow: 0 0 5px black;
             h1{
+                margin: 10px 0;
                 text-align: center;
             }
         }
@@ -140,8 +141,8 @@
 <div class="user_tag">
     <a aria-valuetext="info"  href="?page=account&tag=info" >Thông Tin</a>
     <hr>
-    <a aria-valuetext="bill"  href="?page=account&tag=bill" >Đơn Hàng</a>
     <a aria-valuetext="cart"  href="?page=account&tag=cart" >Giỏ Hàng</a>
+    <a aria-valuetext="bill"  href="?page=account&tag=bill" >Đơn Hàng</a>
     <form id="logout" method="POST" >
         <button name="logout">Đăng Xuất</button>
     </form>

@@ -57,6 +57,13 @@ class PageController{
                     include('views/account_info.php');
                     break;
                 case 'cart':
+                    if(isset($_POST['soluong'])){
+                        changeSLCart($_POST['cartid'],$_POST['soluong']);
+                    }else if(isset($_POST['deletecart'])){
+                        deleteCart($_POST['deletecart']);
+                    }  
+                    
+                    
                     $cart = getAllCartItemsByUserId($id);
                     include('views/account_cart.php');
                     break;

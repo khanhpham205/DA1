@@ -39,3 +39,11 @@
     <input type="submit" name="cc" value="cc">
 </form>
 
+<input type="number" id='sad' onchange="console.log(this)">
+<div class="" onclick="a()">asdwad</div>
+<script>
+
+    function a(){
+        document.getElementById('sad').value++;
+    }
+</script>

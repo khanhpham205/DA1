@@ -107,32 +107,7 @@ function getDiscountProduct(){
     return $sp;
 }
 
-function addToCart($idpro,$sl,$option,$id_user){
-    if($id_user==null){
-        return 0;
-    }
-    $check = PDO_query("SELECT * From cart_item
-        where id_user = :id_user and id_option = :id_option
-     ",
-    ['id_user' => $id_user,'id_option' => $option]);
-    if(!$check){
-        // ko co 
-        PDO_execute("INSERT INTO cart_item(id_user,soluong,id_option) 
-        value(:user, :sl, :op)",
-        ['user'=>$id_user,'sl'=>$sl,'op'=>$option]);
-        return 1;
-    }
-    else if(count($check)>0){
-        PDO_execute("UPDATE  cart_item Set soluong = soluong + {$sl} 
-        where id_user = :id_user and id_option = :id_option",
-        ['id_user' => $id_user,'id_option' => $option]);
-        return 1;
-    }
-    
-    
-    return $check;
 
-}
 function getProductByIdDanhmuc($id){
     $re = [];
     foreach(PDO_query("SELECT * FROM sanpham where id_danhmuc=:iddm;",['iddm'=>$id]) as $item){
@@ -169,32 +144,79 @@ function getProductByName($name){
     }
     return $re;
 }
+// cart 
+function addToCart($idpro,$sl,$option,$id_user){
+    if($id_user==null){
+        return 0;
+    }
+    $check = PDO_query("SELECT * From cart_item
+        where id_user = :id_user and id_option = :id_option
+     ",
+    ['id_user' => $id_user,'id_option' => $option]);
+    if(!$check){
+        // ko co 
+        PDO_execute("INSERT INTO cart_item(id_user,soluong,id_option) 
+        value(:user, :sl, :op)",
+        ['user'=>$id_user,'sl'=>$sl,'op'=>$option]);
+        return 1;
+    }
+    else if(count($check)>0){
+        if($check[0]['soluong']+$sl >= 99){
+            PDO_execute("UPDATE  cart_item Set soluong = 99
+            where id_user = :id_user and id_option = :id_option",
+            ['id_user' => $id_user,'id_option' => $option]);
+            return 1;
+        }
+        PDO_execute("UPDATE  cart_item Set soluong = soluong + {$sl} 
+        where id_user = :id_user and id_option = :id_option",
+        ['id_user' => $id_user,'id_option' => $option]);
+        return 1;
+    }
+    
+    
+    return $check;
+
+}
+function changeSLCart($idcart, $sl){
+    PDO_execute("UPDATE cart_item set soluong = :sl where id_carditem=:id ",[
+        'sl'=>(int)$sl,
+        'id'=>(int)$idcart
+    ]);
+}
+
+function deleteCart($idcart){
+    PDO_execute("DELETE FROM cart_item where id_carditem=:id ",[
+        'id'=>(int)$idcart
+    ]);
+}
+
 // USER
 function getAllCartItemsByUserId($id){
     // {
-    //     "id_user":"",   
-    //     "id_carditem":"",   
-    //     "soluong":"",   
-    //     "id_option_content":"",
-    //     "noidung":"option contents",
-    //     "tieude_option":"",
-    //     "id_sanpham":"",
-    //     "ten_sanpham":"",
-    //     "giamgia":"",
-    //     "gia":""
+    //     "id_user": 1,
+    //     "soluong": 1,
+    //     "id_optioncontents":1 ,
+    //     "noidung": "",
+    //     "id_option": 14,
+    //     "isDefault": 1,
+    //     "tieude_option": "",
+    //     "id_sanpham": 1,
+    //     "id_hang": 1,
+    //     "id_danhmuc":1 ,
+    //     "ten_sanpham": "",
+    //     "mota_sanpham": "",
+    //     "ngaydang": "",
+    //     "giamgia": 10,
+    //     "gia_sanpham": 3850000,
+    //     "img": ""
     // }
-    // SELECT id_user, soluong ,option_contents.*,option.tieude_option, sanpham.* 
-    // FROM `cart_item` INNER join 
-    // option_contents on cart_item.id_option       = option_contents.id_optioncontents INNER JOIN
-    // option          on option_contents.id_option = option.id_option INNER JOIN
-    // sanpham 	       on option.id_sanpham`        = sanpham.id_sanpham
-    // where id_user = 2;
 
-    $cartitem = PDO_query("SELECT id_user, soluong ,option_contents.*,option.tieude_option, sanpham.*  FROM `cart_item` INNER JOIN 
+    $cartitem = PDO_query("SELECT id_carditem, id_user, soluong ,option_contents.*,option.tieude_option, sanpham.*  FROM `cart_item` INNER JOIN 
         `option_contents` on `cart_item`.id_option       = `option_contents`.`id_optioncontents` INNER JOIN
         `option`          on `option_contents`.id_option = `option`.id_option INNER JOIN
         `sanpham` 	      on `option`.id_sanpham        = `sanpham`.id_sanpham
         where id_user = :id
+        order by id_carditem desc
         ",[
             'id'=>$id
         ]
