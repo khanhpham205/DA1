@@ -1,0 +1,15 @@
+{
+    "0":{
+        "id_user":"",   
+        "id_carditem":"",   
+        "soluong":"",   
+        "id_option_content":"",
+        "noidung":"option contents",
+        "id_option":"",
+        "tieude_option":"",
+        "id_sanpham":"",
+        "ten_sanpham":"",
+        "giamgia":"",
+        "gia":""
+    }
+}

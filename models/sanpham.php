@@ -108,11 +108,13 @@ function getDiscountProduct(){
 }
 
 function addToCart($idpro,$sl,$option,$id_user){
+    if($id_user==null){
+        return 0;
+    }
     $check = PDO_query("SELECT * From cart_item
         where id_user = :id_user and id_option = :id_option
      ",
     ['id_user' => $id_user,'id_option' => $option]);
-    // echo json_encode($check,JSON_FORCE_OBJECT);
     if(!$check){
         // ko co 
         PDO_execute("INSERT INTO cart_item(id_user,soluong,id_option) 
@@ -168,15 +170,49 @@ function getProductByName($name){
     return $re;
 }
 // USER
-// function getAllCartItemsByUserId($id){
-    // $re=[];
-    // $carts=PDO_query("SELECT id_sanpham, ten_sanpham,giamgia,gia, hang.ten_hang, danhmuc.ten_danhmuc from sanpham 
-    //   INNER JOIN danhmuc ON sanpham.id_danhmuc=danhmuc.id_danhmuc
-    //   INNER JOIN hang ON sanpham.id_hang=hang.id_hang
-    // ");
+function getAllCartItemsByUserId($id){
+    // {
+    //     "id_user":"",   
+    //     "id_carditem":"",   
+    //     "soluong":"",   
+    //     "id_option_content":"",
+    //     "noidung":"option contents",
+    //     "tieude_option":"",
+    //     "id_sanpham":"",
+    //     "ten_sanpham":"",
+    //     "giamgia":"",
+    //     "gia":""
+    // }
+    // SELECT id_user, soluong ,option_contents.*,option.tieude_option, sanpham.* 
+    // FROM `cart_item` INNER join 
+    // option_contents on cart_item.id_option       = option_contents.id_optioncontents INNER JOIN
+    // option          on option_contents.id_option = option.id_option INNER JOIN
+    // sanpham 	       on option.id_sanpham`        = sanpham.id_sanpham
+    // where id_user = 2;
 
+    $cartitem = PDO_query("SELECT id_user, soluong ,option_contents.*,option.tieude_option, sanpham.*  FROM `cart_item` INNER JOIN 
+        `option_contents` on `cart_item`.id_option       = `option_contents`.`id_optioncontents` INNER JOIN
+        `option`          on `option_contents`.id_option = `option`.id_option INNER JOIN
+        `sanpham` 	      on `option`.id_sanpham        = `sanpham`.id_sanpham
+        where id_user = :id
+        ",[
+            'id'=>$id
+        ]
+    );
+
+    $re=[];
     
-//   }
+    foreach($cartitem as $itemm){
+        $temp = $itemm;
+        $img = getProductImgThumbnail($itemm['id_sanpham'])[0];
+        // array_push($itemm,$img);
+        $temp['img'] = $img['id_img'];
+        array_push($re,$temp);
+    }
+    return $re;
+
+}
+    
 
 //ADMIN CRUD
 function adminAddProduct($info){

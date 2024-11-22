@@ -1,5 +1,4 @@
 <?php
-// session_start();
 function PDOconnect(){
     // $svname = 'localhost';
     $username = 'root';
@@ -14,15 +13,7 @@ function PDOconnect(){
         echo 'Error' . $e;
     }
 }
-/**
- * @param string $sql là lệnh sql
- * ```
- * ```
- * ex: insert ?(?,?,?) value(?,?,?)
- * ```
- * ```
- * các param sau $sql là các giá trị được thế vào ?
- */
+
 function PDO_execute($sql){
     $sql_args = (count(func_get_args())>1)? func_get_args()[1]:null;
     try {

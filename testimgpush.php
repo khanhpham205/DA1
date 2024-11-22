@@ -14,8 +14,6 @@
 
         return $file_ary;
     }
-
-
     if(isset($_POST['cc']) && $_POST['cc']){
         $img0 = reArrayFiles($_FILES['image']);
         foreach($img0 as $img){
@@ -33,7 +31,6 @@
     $string = str_replace(' ', '', $b);
     $string1 = str_replace(' ', '', $a);
     echo $string == $string1;
-
 ?>
 
 <form method="POST" enctype="multipart/form-data">
@@ -41,3 +38,4 @@
     <input type="file" name="image1" id="image" accept="image/*" >
     <input type="submit" name="cc" value="cc">
 </form>
+

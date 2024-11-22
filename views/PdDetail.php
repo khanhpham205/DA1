@@ -180,7 +180,7 @@
                     foreach($option as $op){
                         echo "<h3>{$op['tieude_option']}:</h3>";
                         foreach($op['ops'] as $opitems){
-                            echo"<input type='radio' name='option' onclick='chooseOption(this)' class='check1' style=' margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
+                            echo"<input type='radio' name='option' onclick='chooseOption(this)' class='check1' style='margin:0 3px;background-image: url(". '"' ."contents/imgs/products/{$opitems['img']['id_img']}".'"'.")'
                                     value='{$opitems['id_optioncontents']}' checked></input>";
                         }
                     }
@@ -209,14 +209,11 @@
                     $giaspgiam = number_format($sp['gia_sanpham']*(1-($sp['giamgia'])/100));
                     $giasp = $giaspgiam.'đ <del>'.$giasp.'đ</del>';
                 }
-                echo("
-                <a href='?page=product&id={$sp['id_sanpham']}' class='sp'>
-                    <img src='contents/imgs/products/{$img}'>
-                    <h3 title='{$tensp}'> {$tensp} </h3>
-                    <p>{$giasp}</p>
-                </a>  
-                ");
-
+                echo("<a href='?page=product&id={$sp['id_sanpham']}' class='sp'>
+                        <img src='contents/imgs/products/{$img}'>
+                        <h3 title='{$tensp}'> {$tensp} </h3>
+                        <p>{$giasp}</p>
+                    </a>");
           }
         ?>
     </div>

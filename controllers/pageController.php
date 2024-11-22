@@ -43,6 +43,7 @@ class PageController{
     }
     public function account($id){
         $user = getUserById($id)[0];
+        $cart = getAllCartItemsByUserId($id);
         if(isset($_POST['logout'])){
             logout();
             header("Refresh:0; url=index.php?page=account");
@@ -95,16 +96,17 @@ class PageController{
             $id_option = (int)$_POST['option'];
             $sl = (int)$_POST['soluong'];
             $id_sanpham = (int)$_POST['addtocart'];
-            if(isset($_SESSION['user']) && $_SESSION['user']){
-                $id_user = (int)$_SESSION['user'];
-            }else{
+            if(!isset($_SESSION['user']) || $_SESSION['user']==null ){
                 header("Refresh:0; url=?page=account");
-            }
-            if(addToCart($id_sanpham,$sl,$id_option,$id_user)){
-                header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
             }else{
-                header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
+                $id_user = (int)$_SESSION['user'];
+                if(addToCart($id_sanpham,$sl,$id_option,$id_user)){
+                    header("Refresh:0; url=?page=product&id={$id_sanpham}&success= them san pham thanh cong");
+                }else{
+                    header("Refresh:0; url=?page=product&id={$id_sanpham}&warning= them san pham that bai");
+                }
             }
+
         }
         include_once('views/PdDetail.php');
     }

@@ -303,11 +303,14 @@
             
         </div>
         <div id="giohang">
-            
+
         </div>
         
     </div>
 </main>
+<?php
+  echo json_encode($cart,JSON_FORCE_OBJECT); 
+?>
 <script>
     document.querySelector('main').style.marginTop = document.querySelector('nav') ? document.querySelector('nav').offsetHeight + 10 + 'px' : '0px';
 

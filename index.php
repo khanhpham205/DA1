@@ -117,9 +117,6 @@
         }
     }
 </style>
-<!-- <head>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-</head> --> 
 <body> 
     <?php
         ob_start();
@@ -136,7 +133,7 @@
             $pageC->home();
             break;
         case 'account':
-            if(isset($_SESSION['user']) && $_SESSION['user']){
+            if(isset($_SESSION['user']) && $_SESSION['user']!=null){
                 $pageC->account($_SESSION['user']);
             }else{
                 $pageC->register();
