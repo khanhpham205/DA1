@@ -268,7 +268,7 @@
         <form method="post">
             <h1>Log-In</h1>
             <span>or use your email password</span>
-            <input type="text"         name="login_mail"     placeholder="Email hoặc mã tài khoản">
+            <input type="text"         name="login_mail"     placeholder="Email hoặc số điện thoại">
             <input type="password"     name="login_password" placeholder="Password">
             <div class="" style="display:flex; width:fit-content;align-items:center;" >
                 <input type="checkbox" name="remem">
