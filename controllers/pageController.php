@@ -43,12 +43,34 @@ class PageController{
     }
     public function account($id){
         $user = getUserById($id)[0];
-        $cart = getAllCartItemsByUserId($id);
         if(isset($_POST['logout'])){
             logout();
             header("Refresh:0; url=index.php?page=account");
         }
+        echo "<main class='col12'>";
         include_once('views/account.php');
+        echo "<div class='user_contents'>";
+    
+        if(isset($_GET['tag'])){
+            switch ($_GET['tag']) {
+                case 'info':
+                    include('views/account_info.php');
+                    break;
+                case 'cart':
+                    $cart = getAllCartItemsByUserId($id);
+                    include('views/account_cart.php');
+                    break;
+                case 'bill':
+                    include('views/account_bill.php');
+                    break;
+                default:
+                    include('views/account_info.php');
+                    break;
+            }
+        }else{
+            header("Refresh:0; url=index.php?page=account&tag=info");
+        }
+        echo "</div></main>";
     }
 
     public function register(){

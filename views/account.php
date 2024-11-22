@@ -97,9 +97,8 @@
             hr{
                 width: 100%;
             }
-            button{
+            a,button{
                 border: 2px solid rgba(0, 0, 0, 0);
-                height: 40px;
                 background: none;
                 border: none;
                 outline: none;
@@ -108,205 +107,47 @@
                 border-radius: 2px;
                 transition: 0.3s;
                 text-align: start;
+                color:inherit;
+                text-decoration: none;
             }
-            button.active{
+            a.active,button.active{
                 background-color: grey;
                 color:white;
             }
         }
-        .user_contenrs{
+        .user_contents{
             min-height: 80vh;
             border-radius: 10px;
             grid-column:3/13 ;
             box-shadow: 0 0 5px black;
-            >div{
-                display:none;
-                h1{
-                    text-align: center;
-                }
+            h1{
+                text-align: center;
             }
-            >div.active{
-                display: block;
-            }
-        }
-        .addbutn{
-            display: flex;
-            align-items: center ;
-            text-decoration: none;
-            width: fit-content;
-            padding:0 15px;
-            border-radius: 15px;
-            margin-left: 22px ;
-        }
-        .addbutn:hover{
-            box-shadow: 0 0 5px grey;
         }
 
-        #thongtin{
-
-        }
-        #donhang{
-            .admin_sanpham{
-                display: grid;
-                grid-template-columns: 150px 552px 88px 88px;
-                gap: 20px;
-                justify-content: center ;
-                height: 150px;
-                margin: 15px auto;
-                img{
-                    grid-row: 1/3;
-                    grid-column: 1/2;
-                    aspect-ratio: 1/1;
-                    width: 100%;
-                }
-                h1,h2,h3,h4,h5,h6{
-                    grid-column: 2/5;
-                    margin: 0;
-                    padding: 0;
-                    height: fit-content;
-                }
-                p{
-                    margin: 0;
-                }
-                a,button{
-                    text-decoration: none;
-                    cursor: pointer;
-                    align-self: end;
-                    justify-self: end;
-                    width: 100%;
-                    height: fit-content;
-                    background: none;
-                    border-radius: 20px;
-                    font-size: 15px;
-                    text-align: center;
-                }
-                .delete{
-                    grid-column: 4/5;
-                }
-                .edit{
-                    grid-column: 3/4;
-                }
-            }
-        }
-        #giohang{
-            button{
-                align-self: end;
-                justify-self: end;
-                width: 100%;
-                height: fit-content;
-                background: none;
-                border-radius: 20px;
-                font-size: 15px;
-            }
-            .admin_danhmuc{
-                justify-self: center;
-                display: grid;
-                grid-template-columns: 744px 88px 88px;
-                padding: 10px 0;
-                /* margin: auto 10px; */
-                width: fit-content;
-                border-bottom: 1px solid grey;
-                gap:20px;
-                /* box-shadow: 0 0 1px grey; */
-                h1,h2,h3,h4,h5,h6,p{
-                    padding: 0 15px;
-                    margin: 0;
-                }
-            }
-        }
         #logout{
             width: 100%;
-            >button:hover{
-                width: 100%;
-                color:#fff;
-                background-color: #c53030;
-            }
-            
+            color:red;
         }
-        #dangxuat{
-            
-            button{
-                align-self: end;
-                justify-self: end;
-                width: 100%;
-                height: fit-content;
-                background: none;
-                border-radius: 20px;
-                font-size: 15px;
-            }
-            .admin_hang{
-                justify-self: center;
-                display: grid;
-                grid-template-columns: 744px 88px 88px;
-                padding: 10px 0;
-                /* margin: auto 10px; */
-                width: fit-content;
-                border-bottom: 1px solid grey;
-                gap:20px;
-                /* box-shadow: 0 0 1px grey; */
-                h1,h2,h3,h4,h5,h6,p{
-                    padding: 0 15px;
-                    margin: 0;
-                }
-            }
-        }
-        
-    }
-        .giohang {
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .cart-table {
+        #logout:hover{
             width: 100%;
-            border-collapse: collapse;
-            margin-bottom: 20px;
-        }
-
-        .cart-table th,
-        .cart-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
-            text-align: center;
-        }
-
-        .cart-total {
-            text-align: right;
-            margin-top: 10px;
-        }
-
-        .checkout-btn {
-            background-color: #ff6b6b;
-            color: #fff;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .checkout-btn:hover {
-            background-color: #ff4c4c;
-        }
+            color:#fff;
+            background-color: #c53030;
+        }        
+    }
 
 </style>
-<?php
-// var_dump($user);
-
-
-
-?>
-<main class="col12">
-    <div class="user_tag">
-        <button aria-valuetext="thongtin" class="active" >Thông Tin Người Dùng</button>
-        <hr>
-        <button aria-valuetext="donhang">Đơn Hàng Của Bạn</button>
-        <button aria-valuetext="giohang">Giỏ Hàng</button>
-        <form id="logout" method="POST">
-            <button name="logout">Đăng Xuất</button>
-        </form>
-    </div>
-    <div class="user_contenrs">
+<div class="user_tag">
+    <a aria-valuetext="info"  href="?page=account&tag=info" >Thông Tin</a>
+    <hr>
+    <a aria-valuetext="bill"  href="?page=account&tag=bill" >Đơn Hàng</a>
+    <a aria-valuetext="cart"  href="?page=account&tag=cart" >Giỏ Hàng</a>
+    <form id="logout" method="POST" >
+        <button name="logout">Đăng Xuất</button>
+    </form>
+</div>
+<!-- <main class="col12">
+    <div class="user_contents">
         <div class="active" id="thongtin">
             <h1>Thong ke</h1>
             <div class="card">
@@ -339,31 +180,17 @@
             <h1>Đơn hàng </h1>
             
         </div>
-        <div id="giohang">
-
+        <div id="giohang" >
+            <h1>Giỏ Hàng Của Bạn</h1>
         </div>
-        
     </div>
-</main>
-<?php
-  echo json_encode($cart,JSON_FORCE_OBJECT); 
-?>
+</main> -->
 <script>
-    document.querySelector('main').style.marginTop = document.querySelector('nav') ? document.querySelector('nav').offsetHeight + 10 + 'px' : '0px';
-
-    const butts = [...document.querySelectorAll('button')];
-    const contents = [...document.querySelector('.user_contenrs').children];
-    butts.forEach((element)=>{element.addEventListener('click',(e)=>{
-
-            butts.forEach((but)=>{
-                but.classList.remove('active');
-            })
-            element.classList.add('active');
-            contents.forEach((el)=>{
-                el.classList.remove('active');
-            })
-            document.getElementById(element.getAttribute('aria-valuetext')).classList.add('active')
-        })
+    document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight + 10;
+    const butts = [...document.querySelectorAll('a')];
+    butts.forEach(e=>{
+        if(e.getAttribute('aria-valuetext')==new URLSearchParams(window.location.search).get('tag')){
+            e.classList.add('active')
+        }
     })
-
 </script>
