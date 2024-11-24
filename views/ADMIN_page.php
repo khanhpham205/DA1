@@ -197,7 +197,7 @@
         </div>
         <div id="sanpham">
             <h1>Sản Phẩm</h1>
-            <a href="?page=admin_edit&type=product" class="addbutn">
+            <a href="?page=admin_edit&type=sanpham" class="addbutn">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 12H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 9L12 15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -217,7 +217,7 @@
                     <div class='admin_sanpham'>
                         <img src='contents/imgs/products/{$sp[0]['id_img']}'>
                         <h3>{$sp['ten_sanpham']}<br><p class='pricetag'>{$giasp}</p></h3>
-                        <a href='' class='edit'>edit</a>
+                        <a href='?page=admin_edit&type=sanpham&id={$sp[0]['id_sanpham']}' class='edit'>edit</a>
                         <button class='delete'>delete</button>
                     </div>";
                 }
@@ -225,7 +225,7 @@
         </div>
         <div id="danhmuc">
             <h1>Danh Mục</h1>
-            <a href="" class="addbutn">
+            <a href="?page=admin_edit&type=danhmuc" class="addbutn">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 12H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 9L12 15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -267,7 +267,7 @@
         </div>
         <div id="hang">
             <h1>Hãng</h1>
-            <a href="" class="addbutn">
+            <a href="?page=admin_edit&type=hang" class="addbutn">
                 <svg width="30px" height="30px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M9 12H15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                     <path d="M12 9L12 15" stroke="#323232" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>

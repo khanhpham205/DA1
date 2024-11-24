@@ -17,25 +17,57 @@ class AdminController{
         if(!checkAdminUser($iduser)){
             header("Refresh:0; url=index.php");
         } 
+        $allDm = getAllDm();
+        $allHang = getAllHang();
         if(!$id){
-            // header("Refresh:0; url=index.php?page=admin");
-            $allDm = getAllDm();
-            $allHang = getAllHang();
+            //add
             if(isset($_POST['addproduct']) && $_POST['addproduct']){
-                // echo json_encode($_POST,JSON_FORCE_OBJECT); 
                 switch(adminAddProduct($_POST)){
                     case 0 : 
-                        header("Refresh:0; url=?page=admin_edit&type=product&warning=them san pham that bai");
+                        header("Refresh:0; url=?page=admin_edit&type=sanpham&warning=them san pham that bai");
                         break;
                     case 1 : 
-                        header("Refresh:0; url=?page=admin_edit&type=product&success=them san pham thanh cong");
+                        header("Refresh:0; url=?page=admin_edit&type=sanpham&success=them san pham thanh cong");
                         break;
                     default:
-                        header("Refresh:0; url=?page=admin_edit&type=product&warning=them san pham that bai");
+                        header("Refresh:0; url=?page=admin_edit&type=sanpham&warning=them san pham that bai");
                 } 
                 ;
             }
+            if(isset($_POST['addhang']) && $_POST['addhang']){
+                switch(adminAddDm($_POST)){
+                    case 0 : 
+                        header("Refresh:0; url=?page=admin_edit&type=danhmuc&warning=them danh muc that bai");
+                        break;
+                    case 1 : 
+                        header("Refresh:0; url=?page=admin_edit&type=danhmuc&success=them danh muc thanh cong");
+                        break;
+                    default:
+                        header("Refresh:0; url=?page=admin_edit&type=danhmuc&warning=them danh muc that bai");
+                } 
+                ;
+            }
+            if(isset($_POST['adddanhmuc']) && $_POST['adddanhmuc']){
+                switch(adminAddHang($_POST)){
+                    case 0 : 
+                        header("Refresh:0; url=?page=admin_edit&type=hang&warning=them danh muc that bai");
+                        break;
+                    case 1 : 
+                        header("Refresh:0; url=?page=admin_edit&type=hang&success=them danh muc thanh cong");
+                        break;
+                    default:
+                        header("Refresh:0; url=?page=admin_edit&type=hang&warning=them danh muc that bai");
+                } 
+                ;
+            }
+        }else{
+            //edit
+            if(isset($_POST['editproduct']) && $_POST['editproduct']){
+                adminEditProduct($_POST);
+            }
+            $item = adminGetdProductToEdit($id);
         }
+
         include_once('views/ADMIN_edit.php');
     }
 }

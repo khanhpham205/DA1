@@ -183,12 +183,12 @@ function changeSLCart($idcart, $sl){
         'id'=>(int)$idcart
     ]);
 }
-
 function deleteCart($idcart){
     PDO_execute("DELETE FROM cart_item where id_carditem=:id ",[
         'id'=>(int)$idcart
     ]);
 }
+
 
 // USER
 function getAllCartItemsByUserId($id){
@@ -233,8 +233,8 @@ function getAllCartItemsByUserId($id){
     }
     return $re;
 
-}
-    
+}    
+
 
 //ADMIN CRUD
 function adminAddProduct($info){
@@ -265,7 +265,7 @@ function adminAddProduct($info){
         'id_sanpham'     => $post_product
     ]);
 
-    for ($i = 0; $i < (int)$info['numofoptions'] ; $i++) {
+    for ($i = 0; $i <= (int)$info['numofoptions'] ; $i++) {
         $temp = ($i ==0)? 1:null;
         $nameOption= 'option_item_name'.$i;
         $imgOption= 'option_item_imgs'.$i;
@@ -304,4 +304,129 @@ function adminAddProduct($info){
     }
     return 1;
 
+}
+
+function adminEditProduct($info){
+    // echo json_encode($info,JSON_FORCE_OBJECT);
+    PDO_execute("UPDATE sanpham SET
+        ten_sanpham  = :ten,
+        mota_sanpham = :mota,
+        giamgia      = :giamgia,
+        gia_sanpham  = :gia,
+        id_danhmuc   = :danhmuc,
+        id_hang      = :hang
+        WHERE id_sanpham =:id",[
+            'id'       =>$info['id_sp'],
+            'ten'      =>$info['ten_sp'],
+            'mota'     =>$info['mota_sanpham'],
+            'giamgia'  =>$info['giamgia_sp'],
+            'gia'      =>$info['gia_sp'],
+            'danhmuc'  =>$info['danhmuc'],
+            'hang'     =>$info['hang'],
+    ]);
+    PDO_execute("UPDATE `option` SET
+        tieude_option  = :ten
+        WHERE id_option =:id",[
+            'id'       =>$info['id_option'],
+            'ten'      =>$info['optionname']
+    ]); 
+
+
+    $oldoptionctnts = PDO_query("SELECT * FROM option_contents where id_option = :id",[
+        'id'=>$info['id_option']
+    ]);
+
+    for($i = 1; $i <= (int)$info['numofoptions'] ; $i++) {
+        if($i <= count($oldoptionctnts)){
+            //sua
+            $oldimgs=PDO_query("SELECT * FROM img WHERE id_optioncontents=:idop",[
+                'idop'=>$info["id_optioncontents{$i}"]
+            ]);
+            PDO_execute("UPDATE option_contents SET noidung =:noidung where id_optioncontents=:id",[
+               'noidung'  => $info["option_item_name{$i}"], 
+               'id'       => $info["id_optioncontents{$i}"]
+            ]);
+            if(isset($_FILES["option_item_imgs{$i}"]) && count($_FILES["option_item_imgs{$i}"]) > 0 && $_FILES["option_item_imgs{$i}"]['name'][0] ){
+                
+                //xoa anh cu
+                foreach($oldimgs as $imgite){
+                    unlink("./contents/imgs/products/{$imgite['id_img']}");
+                }
+                PDO_execute("DELETE img where id_optioncontents=:id",['id'=>$info["id_optioncontents{$i}"]]);
+                //them anh moi
+                $imgs = reArrayFiles($_FILES["option_item_imgs{$i}"]);
+                $a=1;
+                for($imgnum = 0; $imgnum <= count($imgs)-1 ; $imgnum++){
+                    $img = $imgs[$imgnum];
+                    $nametmp = explode('.',$img['name']);
+                    $nameimg = "Product_{$info['id_sp']}_{$info["id_optioncontents{$i}"]}__{$imgnum}.{$nametmp[1]}";
+
+                    $post_img = PDO_execute("INSERT INTO 
+                        img( id_img, id_sanpham, id_optioncontents, isDefault)value
+                        (:id_img,:id_sanpham,:id_optioncontents,:isDefault)",[
+                        'id_img'            => $nameimg,
+                        'id_sanpham'        => $info['id_sp'],
+                        'id_optioncontents' => $info["id_optioncontents{$i}"],
+                        'isDefault'=> $a
+                        ]
+                    );
+                    move_uploaded_file($img['tmp_name'],"./contents/imgs/products/{$nameimg}");
+                    $a=null;
+                }
+            }
+        }else{
+            // them
+            $postopctnts = PDO_execute("INSERT INTO 
+                option_contents( noidung , id_option) 
+                value          (:noidung ,:id_option)",[
+                    'noidung'=>$info["option_item_name".$i],
+                    'id_option'=>$info['id_option']
+            ]);
+            $imgs = reArrayFiles($_FILES["option_item_imgs{$i}"]);
+            $a=1;
+            for($imgnum = 0; $imgnum <= count($imgs)-1 ; $imgnum++){
+                $img = $imgs[$imgnum];
+                $nametmp = explode('.',$img['name']);
+                var_dump($nametmp);
+                $nameimg = "Product_{$info['id_sp']}_{$postopctnts}__{$imgnum}.{$nametmp[1]}";
+
+                $post_img = PDO_execute("INSERT INTO 
+                    img( id_img, id_sanpham, id_optioncontents, isDefault)value
+                    (:id_img,:id_sanpham,:id_optioncontents,:isDefault)",[
+                    'id_img'            => $nameimg,
+                    'id_sanpham'        => $info['id_sp'],
+                    'id_optioncontents' => $postopctnts,
+                    'isDefault'=> $a
+                    ]
+                );
+                move_uploaded_file($img['tmp_name'],"./contents/imgs/products/{$nameimg}");
+                $a=null;
+            }
+        }
+    }
+}
+
+function adminGetdProductToEdit($idsp){
+    $sp = PDO_query("SELECT * FROM `sanpham` INNER JOIN
+        `option`        on `option`.id_sanpham        = sanpham.id_sanpham
+        where sanpham.id_sanpham =  :idsp;",[
+            'idsp'=>$idsp
+        ]
+    )[0];
+    $optioncontents = PDO_query("SELECT id_optioncontents, noidung FROM option_contents
+        where id_option = :idoption",[
+            'idoption'=>$sp['id_option']
+    ]);
+    $opcontss=[];
+
+    
+    foreach($optioncontents as $optionctns){
+        $imgs=PDO_query("SELECT * FROM img where id_optioncontents=:id",['id'=>$optionctns['id_optioncontents']]);
+        $optionctns['img']=$imgs;
+        array_push($opcontss,$optionctns);
+    }
+    $sp['options']=$opcontss;
+    // echo json_encode($sp,JSON_FORCE_OBJECT); 
+    // echo json_encode($opcontss,JSON_FORCE_OBJECT); 
+    return $sp;
 }

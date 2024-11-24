@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 21, 2024 at 09:31 AM
--- Server version: 10.4.32-MariaDB
--- PHP Version: 8.2.12
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th10 24, 2024 lúc 02:37 PM
+-- Phiên bản máy phục vụ: 10.4.32-MariaDB
+-- Phiên bản PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `duan1`
+-- Cơ sở dữ liệu: `duan1`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart_item`
+-- Cấu trúc bảng cho bảng `cart_item`
 --
 
 CREATE TABLE `cart_item` (
@@ -35,24 +35,21 @@ CREATE TABLE `cart_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `cart_item`
+-- Đang đổ dữ liệu cho bảng `cart_item`
 --
 
 INSERT INTO `cart_item` (`id_carditem`, `id_user`, `soluong`, `id_option`) VALUES
 (1, 2, 17, 2),
 (2, 2, 12, 1),
-(3, 1, 2, 14),
-(4, 1, 6, 19),
-(5, 1, 5, 31),
-(6, 1, 4, 30),
-(7, 1, 1, 32),
-(8, 1, 2, 39),
-(9, 1, 652, 50);
+(13, 1, 1, 32),
+(14, 1, 2, 33),
+(15, 1, 3, 34),
+(16, 1, 4, 35);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `danhmuc`
+-- Cấu trúc bảng cho bảng `danhmuc`
 --
 
 CREATE TABLE `danhmuc` (
@@ -63,7 +60,7 @@ CREATE TABLE `danhmuc` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `danhmuc`
+-- Đang đổ dữ liệu cho bảng `danhmuc`
 --
 
 INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`, `img`) VALUES
@@ -73,7 +70,7 @@ INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`, `img`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hang`
+-- Cấu trúc bảng cho bảng `hang`
 --
 
 CREATE TABLE `hang` (
@@ -84,7 +81,7 @@ CREATE TABLE `hang` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `hang`
+-- Đang đổ dữ liệu cho bảng `hang`
 --
 
 INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
@@ -96,7 +93,7 @@ INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `img`
+-- Cấu trúc bảng cho bảng `img`
 --
 
 CREATE TABLE `img` (
@@ -107,7 +104,7 @@ CREATE TABLE `img` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `img`
+-- Đang đổ dữ liệu cho bảng `img`
 --
 
 INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VALUES
@@ -124,14 +121,18 @@ INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VAL
 ('chu-t-khong-day-sieu-nh-pulsar-x2-v2-medium-inosuke-pulsar-x-demon-slayer-limited-edition-40070719832309.webp', 25, 13, NULL),
 ('chu-t-khong-day-sieu-nh-pulsar-x2-v2-medium-inosuke-pulsar-x-demon-slayer-limited-edition-40070719930613.webp', 25, 13, NULL),
 ('chu-t-khong-day-sieu-nh-pulsar-x2-v2-medium-inosuke-pulsar-x-demon-slayer-limited-edition-40070719963381.webp', 25, 13, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (1).webp', 1, NULL, b'1'),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (2).webp', 1, 2, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (3).webp', 1, NULL, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (4).webp', 1, NULL, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (5).webp', 1, 1, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (6).webp', 1, NULL, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (7).webp', 1, NULL, NULL),
-('Chuột không dây siêu nhẹ Pulsar Xlite V4 (8).webp', 1, NULL, NULL),
+('Product_1_1__0.webp', 1, 1, b'1'),
+('Product_1_1__1.webp', 1, 1, NULL),
+('Product_1_1__2.webp', 1, 1, NULL),
+('Product_1_1__3.webp', 1, 1, NULL),
+('Product_1_1__4.webp', 1, 1, NULL),
+('Product_1_1__5.webp', 1, 1, NULL),
+('Product_1_63__0.webp', 1, 63, b'1'),
+('Product_1_63__1.webp', 1, 63, NULL),
+('Product_1_63__2.webp', 1, 63, NULL),
+('Product_1_63__3.webp', 1, 63, NULL),
+('Product_1_63__4.webp', 1, 63, NULL),
+('Product_1_63__5.webp', 1, 63, NULL),
 ('Product_30_18__0.webp', 30, 18, b'1'),
 ('Product_30_18__1.webp', 30, 18, NULL),
 ('Product_30_18__2.webp', 30, 18, NULL),
@@ -412,7 +413,7 @@ INSERT INTO `img` (`id_img`, `id_sanpham`, `id_optioncontents`, `isDefault`) VAL
 -- --------------------------------------------------------
 
 --
--- Table structure for table `option`
+-- Cấu trúc bảng cho bảng `option`
 --
 
 CREATE TABLE `option` (
@@ -422,7 +423,7 @@ CREATE TABLE `option` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `option`
+-- Đang đổ dữ liệu cho bảng `option`
 --
 
 INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
@@ -455,7 +456,7 @@ INSERT INTO `option` (`id_option`, `tieude_option`, `id_sanpham`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `option_contents`
+-- Cấu trúc bảng cho bảng `option_contents`
 --
 
 CREATE TABLE `option_contents` (
@@ -466,12 +467,11 @@ CREATE TABLE `option_contents` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `option_contents`
+-- Đang đổ dữ liệu cho bảng `option_contents`
 --
 
 INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isDefault`) VALUES
 (1, 'Đen', 1, b'1'),
-(2, 'Trắng', 1, NULL),
 (13, 'Orginal', 13, b'1'),
 (14, 'Original', 14, b'1'),
 (18, 'White', 18, b'1'),
@@ -505,12 +505,13 @@ INSERT INTO `option_contents` (`id_optioncontents`, `noidung`, `id_option`, `isD
 (51, 'Original', 39, b'1'),
 (52, 'Original', 40, b'1'),
 (53, 'Original', 41, b'1'),
-(54, 'Original', 42, b'1');
+(54, 'Original', 42, b'1'),
+(63, 'Trắng', 1, NULL);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sanpham`
+-- Cấu trúc bảng cho bảng `sanpham`
 --
 
 CREATE TABLE `sanpham` (
@@ -525,11 +526,11 @@ CREATE TABLE `sanpham` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `sanpham`
+-- Đang đổ dữ liệu cho bảng `sanpham`
 --
 
 INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mota_sanpham`, `ngaydang`, `giamgia`, `gia_sanpham`) VALUES
-(1, 1, 1, 'Chuột không dây siêu nhẹ Pulsar Xlite V4', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm \n|Switch quang học. Cuộn chuột Pulsar chống bụi.\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn \n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)', '2024-11-09', 5, 2250000),
+(1, 1, 1, 'Chuột không dây siêu nhẹ Pulsar Xlite V4', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm \r\n|Switch quang học. Cuộn chuột Pulsar chống bụi.\r\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn \r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời)                                                          ', '2024-11-09', 5, 2250000),
 (25, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2 V2 Medium Inosuke - Pulsar x Demon Slayer Limited Edition', 'Switch quang học. Cuộn chuột Pulsar chống bụi.\r\n|Thay đổi cấu trúc bên trong, giảm trọng lượng, tăng độ chắc chắn.\r\n|Hỗ trợ report rate 4000Hz nhờ MCU Nordic (dongle 4000Hz bán rời).\r\n|Và một số thay đổi nhỏ, tăng trải nghiệm sử dụng sản phẩm.\r\n|Designed ', '2024-11-19', 10, 2050000),
 (26, 2, 2, 'Bàn phím cơ Filco Majestouch 2SC - Tenkeyless', 'Thiết kế Tenkeyless và Fullsize tiêu chuẩn dành cho bạn cần bàn phím cơ gọn gàng hoặc đầy đủ phím số để xử lý số liệu.\n|Kết nối cáp USB liền với độ trễ rất thấp giúp bạn chơi game hoặc gõ phím nhanh không độ trễ.\n|Chất liệu keycap PBT Doubleshot siêu bền ', '2024-11-19', 10, 3850000),
 (30, 3, 2, 'Bàn phím từ HE DrunkDeer A75 | Magnetic Switch - Rapid Trigger', 'Ultra Response Speed: switch từ Hall Effect tốc độ phản hồi nhanh hơn 10 lần so với bàn phím cơ thông thường\r\n|Adjustable Actuation Distance: điều chỉnh điểm nhận phím từ 0.2mm đến 3.8mm, có thể điều chỉnh từng step 0.1mm\r\n|Rapid Trigger: phạm vi độ nhạy ', '2024-11-20', 10, 3850000),
@@ -537,10 +538,10 @@ INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mo
 (34, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Calabera - Limited Edition - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\n|Rapid Trigger\n|Keycap custom Dye Sub PBT 5 mặt (Profile AOP)\n|Khung nhôm CNC\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\n|Stab PCB', '2024-11-20', 0, 4740000),
 (36, 3, 2, 'Bàn phím từ HE Arbiter Studio Polar 65 Phantom - Rapid Trigger', 'Fuji Dual-Rail Magnetic Switches - 36g Linear\n|Điều chỉnh điểm nhận phím từ 0.1mm - 3.8mm\n|Rapid Trigger\n|Phantom PC Clear Keycaps (Cherry Profile)\n|Khung nhôm CNC\n|PCB Mounted with Screw-in Stabilizer (Spacebar 6.25u)\n|Stab PCB mou', '2024-11-20', 10, 4180000),
 (37, 1, 1, 'Chuột không dây siêu nhẹ Pulsar X2H V3 Wireless (Hỗ trợ 8K Polling Rate)', 'Cảm biến Pulsar XS-1 - 32000 DPI, 750 IPS, LOD thấp nhất 0.7mm\r\n|Thiết mới, trọng lượng chỉ còn 53 gram.\r\n|Hỗ trợ report rate 8000Hz nhờ MCU Nordic (dongle 8000Hz bán rời).\r\n|Switch quang học, không bao giờ double click.\r\n|Designed in Korea', '2024-11-20', 0, 2499000),
-(38, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya X - Đi kèm dongle 8KHz', 'Kích thước to hơn so với Maya.\n|Tương thích phần mềm web Lamzu Aurora.\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\n|Switch quang học Omron Optical.\n|Maya X thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.\n|Trọng lượng siêu nhẹ', '2024-11-21', 20, 3135000),
+(38, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya X - Đi kèm dongle 8KHz accc', 'Kích thước to hơn so với Maya.\r\n|Tương thích phần mềm web Lamzu Aurora.\r\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\r\n|Switch quang học Omron Optical.\r\n|Maya X thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.\r\n|Trọng lượng siêu nhẹ ', '2024-11-21', 20, 3135000),
 (39, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Atlantis Mini Champion Edition - Hỗ trợ 8KHz', 'Cải tiến trên phiên bản Mini Champion:\n\n|Switch quang Omron Optical\n|Hỗ trợ kết nối Wireless tối đa 8KHz. Chip MCU Nordic.\n|Tương thích ngược với dongle 4KHz\n|Mua receiver Lamzu 4KHz tại đây.\n|Mua receiver Lamzu 8KHz', '2024-11-21', 20, 2750000),
 (40, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Thorn - Hỗ trợ 8KHz', 'Hỗ trợ kết nối Wireless 8KHz (cần update firmware và Dongle 8KHz bán rời).\n|Chip MCU Nordic.\n|Thiết kế công thái học lưng lùi cao hoàn toàn mới.\n|Trọng lượng siêu nhẹ chỉ 52 gram.', '2024-11-21', 30, 2499000),
-(41, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya Doodle (Limited) - Hỗ trợ 8KHz', 'Kích thước nhỏ hơn so với Maya X.\n|Thiết kế giới hạn được thiết kế bởi NachoCustomz.\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\n|Switch quang học Omron Optical.\n|Maya thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.', '2024-11-21', 20, 2499000),
+(41, 4, 1, 'Chuột không dây siêu nhẹ Lamzu Maya Doodle (Limited)', 'Kích thước nhỏ hơn so với Maya X.\r\n|Thiết kế giới hạn được thiết kế bởi NachoCustomz.\r\n|Hỗ trợ kết nối Wireless 8KHz Champion. Chip MCU Nordic.\r\n|Switch quang học Omron Optical.\r\n|Maya thiết kế lưng gồ giữa, khác với Atlantis lưng gồ lùi sâu.          ', '2024-11-21', 20, 2499000),
 (42, 2, 2, 'Bàn phím cơ Filco Majestouch Convertible 3X Matcha - Fullsize', 'Màu xanh Matcha tươi mát đậm chất Nhật Bản đã có phiên bản Convertible 3X - Mẫu bàn phím cơ Bluetooth mới nhất từ Filco!\n\n|Kết nối - Làm việc - Chuyển thiết bị - Lặp lại mỗi ngày.\n\n|Chỉ một bàn phím Filco duy nhất, bạn có thể làm việc đồng thời với 4 thiết bị không dây qua Bluetooth chuẩn 5.1 và thêm 1 máy tính qua cáp USB-C có thể tháo rời. Ngoài ra, Filco Majestouch Convertible 3 tương thích với hai hệ điều hành thông dụng nhất hiện nay là Windows và macOS, hệ điều hành được đa số lập trình viên sử dụng Linux cũng như tương thích với các hệ điều hành di động như iOS, Android.', '2024-11-21', 30, 4510000),
 (43, 2, 2, 'Bàn phím cơ Filco Majestouch Convertible 3 Hakua - Tenkeyless', 'Trắng hơn cả trắng, Hakua có nghĩa là Chalk trong tiếng Anh, phấn trắng trong tiếng Việt là một màu trắng tinh tươm, tinh tế với sắc độ trắng và độ tương phản cao như màu phấn trắng trên bản đen hay những nét bút đen trên nền vở trắng.\r\n\r\n|Kết nối - Làm việc - Chuyển thiết bị - Lặp lại mỗi ngày.\r\n\r\n|Chỉ một bàn phím Filco duy nhất, bạn có thể làm việc đồng thời với 4 thiết bị không dây qua Bluetooth chuẩn 5.1 và thêm 1 máy tính qua cáp USB-C có thể tháo rời. Ngoài ra, Filco Majestouch Convertible 3 tương thích với hai hệ điều hành thông dụng nhất hiện nay là Windows và macOS, hệ điều hành được đa số lập trình viên sử dụng Linux cũng như tương thích với các hệ điều hành di động như iOS, Android.\r\n\r\n|Designed in Japan', '2024-11-21', 30, 4290000),
 (44, 2, 2, 'Bàn phím cơ Filco Majestouch Minila-R Convertible', 'Mẫu bàn phím cơ vô cùng đặc biệt từ Filco Nhật Bản khi có thể sử dụng như bàn phím cơ Tenkeyless 87 phím trong kích thước của bàn phím cơ Mini chỉ 63 phím.\r\n\r\n|Thiết kế nhỏ gọn và thông minh giúp cho việc gõ phím dễ dàng hơn, giảm thiểu sự di chuyển tay và cảm giác thoải mái hơn khi sử dụng.\r\n|Khả năng chuyển đổi thiết bị kết nối giữa 4 kết nối Bluetooth và 1 kết nối USB, giúp người dùng linh hoạt kết nối với nhiều thiết bị khác nhau.\r\n|Bảo hành dài hạn lên đến 5 năm, đảm bảo chất lượng và sự tin tưởng của người dùng vào sản phẩm.\r\n|Tương thích với tất cả các hệ điều hành như Windows, MacOS, Android và iOS, mang lại tính đa dụng và tiện lợi cho người dùng.\r\n|Chất lượng sản phẩm đến từ thương hiệu bàn phím nổi tiếng Filco, với hơn 30 năm kinh nghiệm trong lĩnh vực bàn phím.\r\n|Designed in Japan', '2024-11-21', 20, 4180000),
@@ -557,7 +558,7 @@ INSERT INTO `sanpham` (`id_sanpham`, `id_hang`, `id_danhmuc`, `ten_sanpham`, `mo
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Cấu trúc bảng cho bảng `user`
 --
 
 CREATE TABLE `user` (
@@ -571,7 +572,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Dumping data for table `user`
+-- Đang đổ dữ liệu cho bảng `user`
 --
 
 INSERT INTO `user` (`id_user`, `ten_user`, `password`, `gmail`, `phonenumber`, `address`, `role`) VALUES
@@ -581,11 +582,11 @@ INSERT INTO `user` (`id_user`, `ten_user`, `password`, `gmail`, `phonenumber`, `
 (4, 'cuongpham', 'Cuong123@', 'cuongpham@gmaiil.com', '099123123123', '', NULL);
 
 --
--- Indexes for dumped tables
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `cart_item`
+-- Chỉ mục cho bảng `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD PRIMARY KEY (`id_carditem`),
@@ -594,19 +595,19 @@ ALTER TABLE `cart_item`
   ADD KEY `id_option` (`id_option`);
 
 --
--- Indexes for table `danhmuc`
+-- Chỉ mục cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   ADD PRIMARY KEY (`id_danhmuc`);
 
 --
--- Indexes for table `hang`
+-- Chỉ mục cho bảng `hang`
 --
 ALTER TABLE `hang`
   ADD PRIMARY KEY (`id_hang`);
 
 --
--- Indexes for table `img`
+-- Chỉ mục cho bảng `img`
 --
 ALTER TABLE `img`
   ADD PRIMARY KEY (`id_img`),
@@ -614,21 +615,21 @@ ALTER TABLE `img`
   ADD KEY `id_optioncontents` (`id_optioncontents`);
 
 --
--- Indexes for table `option`
+-- Chỉ mục cho bảng `option`
 --
 ALTER TABLE `option`
   ADD PRIMARY KEY (`id_option`),
   ADD KEY `id_sanpham` (`id_sanpham`);
 
 --
--- Indexes for table `option_contents`
+-- Chỉ mục cho bảng `option_contents`
 --
 ALTER TABLE `option_contents`
   ADD PRIMARY KEY (`id_optioncontents`),
   ADD KEY `id_option` (`id_option`);
 
 --
--- Indexes for table `sanpham`
+-- Chỉ mục cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
   ADD PRIMARY KEY (`id_sanpham`),
@@ -636,63 +637,63 @@ ALTER TABLE `sanpham`
   ADD KEY `danhmuc` (`id_danhmuc`);
 
 --
--- Indexes for table `user`
+-- Chỉ mục cho bảng `user`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`id_user`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- AUTO_INCREMENT cho các bảng đã đổ
 --
 
 --
--- AUTO_INCREMENT for table `cart_item`
+-- AUTO_INCREMENT cho bảng `cart_item`
 --
 ALTER TABLE `cart_item`
-  MODIFY `id_carditem` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_carditem` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- AUTO_INCREMENT for table `danhmuc`
+-- AUTO_INCREMENT cho bảng `danhmuc`
 --
 ALTER TABLE `danhmuc`
   MODIFY `id_danhmuc` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT for table `hang`
+-- AUTO_INCREMENT cho bảng `hang`
 --
 ALTER TABLE `hang`
   MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT for table `option`
+-- AUTO_INCREMENT cho bảng `option`
 --
 ALTER TABLE `option`
-  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_option` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
--- AUTO_INCREMENT for table `option_contents`
+-- AUTO_INCREMENT cho bảng `option_contents`
 --
 ALTER TABLE `option_contents`
-  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_optioncontents` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=64;
 
 --
--- AUTO_INCREMENT for table `sanpham`
+-- AUTO_INCREMENT cho bảng `sanpham`
 --
 ALTER TABLE `sanpham`
-  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `id_sanpham` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT cho bảng `user`
 --
 ALTER TABLE `user`
   MODIFY `id_user` int(6) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- Constraints for dumped tables
+-- Các ràng buộc cho các bảng đã đổ
 --
 
 --
--- Constraints for table `cart_item`
+-- Các ràng buộc cho bảng `cart_item`
 --
 ALTER TABLE `cart_item`
   ADD CONSTRAINT `cart_cua_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,

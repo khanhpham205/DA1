@@ -71,22 +71,38 @@
                 text-align: center;
             }
         }
+        .imgdmbox{
+            max-height: 400px;
+            overflow: hidden;
+            img{
+                width: 100%;
+            }
+        }
     }
 </style>
 
 <main class="col12">
-    <h1 class="full12col">Add <?=$type ?></h1>
-    <form action="" method="POST" id="addsp" class="formadd full12col col12" enctype="multipart/form-data">
-        <input type="text"     id="ten_sanpham"     name="ten_sp" placeholder="Product Name" required>
-        <input type="number"   id="gia_sanpham"     name="gia_sp" placeholder="Product Price" required>
-        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" min='0' max="90">
-        <textarea class="mota_sanpham" name="mota_sanpham" required></textarea>
+    <h1 class="full12col"><?php if(isset($item)){echo 'Edit ';}else{echo'Add ';} echo $type; ?></h1>
+    <form method="POST" id="editsanpham" class="formadd full12col col12" enctype="multipart/form-data">
+        <?php
+            if(isset($item)){
+                echo "<input type='text' name='id_sp' hidden value='{$item['id_sanpham']}' >";
+            }
+        ?>
+        <input type="text"     id="ten_sanpham"     name="ten_sp" placeholder="Product Name"   value="<?php if(isset($item)){echo $item['ten_sanpham'];}?>"    required>
+        <input type="number"   id="gia_sanpham"     name="gia_sp" placeholder="Product Price"  value="<?php if(isset($item)){echo $item['gia_sanpham'];}?>"    required>
+        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" min='0' max="90" value="<?php if(isset($item)){echo $item['giamgia'];}?>"  >
+        <textarea class="mota_sanpham" name="mota_sanpham" required><?php   if(isset($item)){echo $item['mota_sanpham'] ;}?> </textarea>
         <div id="danhmuc">
             <label for="danhmuc">Danh muc:</label>
             <select name="danhmuc"      name="danhmuc" required >
                 <?php
                   foreach($allDm as $dm){
-                    echo "<option value='{$dm['id_danhmuc']}'>{$dm['ten_danhmuc']}</option>";
+                    $check='';
+                    if(isset($item)&& $dm['id_danhmuc'] == $item['id_danhmuc']){
+                        $check='selected';
+                    }
+                    echo "<option value='{$dm['id_danhmuc']}' {$check} >{$dm['ten_danhmuc']}</option>";
                   }
                 ?>
             </select>
@@ -96,30 +112,71 @@
             <select name="hang"            name="hang"   required   >
                 <?php
                   foreach($allHang as $hang){
-                    echo "<option value='{$hang['id_hang']}'>{$hang['ten_hang']}</option>";
+                    $check='';
+                    if(isset($item)&& $hang['id_hang'] == $item['id_hang']){
+                        $check='selected';
+                    }
+                    echo "<option value='{$hang['id_hang']}' {$check}>{$hang['ten_hang']}</option>";
                   }
                 ?>
             </select>
         </div>
         <hr>
-        <!-- then option cho san pham -->
-        <input type="text" style="grid-column:1/4;" name="optionname" placeholder="Option Title" required>
-        <button onclick="addoption(event)">Add option items</button>
-        <div class="full12col col12 box_option">
+        <!-- them option cho san pham -->
+        <?php
+            if(isset($item)){
+                echo "<input type='text' name='id_option' hidden value='{$item['id_option']}' >";
+            }
+        ?>
+        <input type="text" style="grid-column:1/4;" name="optionname" placeholder="Option Title" required value="<?php if(isset($item)){echo $item['tieude_option'];}?>"  >
+        <button id="addoptionpd" onclick="addoption(event,null)">Add option items</button>
+        <!-- <div class="full12col col12 box_option">
             <input type="text" style="grid-column: span 10;" name="option_item_name0" placeholder="Opion Name" required>
             <label class="imglabel" style="grid-column: span 2;" for="imgupload">IMG Upload</label>
-            <input type="file" id='imgupload' accept="image/*" name="option_item_imgs0[]" multiple required onchange="imgview(this.parentElement.children[3],this)">
-            <div class="imgbox full12col"></div>
+            <input type="file" id='imgupload' accept="image/*" name="option_item_imgs0[]" multiple required oninput="imgview(this,null)">
+            <div class="imgbox full12col">
+            </div>
+        </div> -->
+        <input type="number" hidden  name="numofoptions" id="numofoptions" >
+        <input type="submit" name="<?php if(isset($item)){echo 'editproduct';}else{echo 'addproduct';}?>" class="full12col" value="<?php if(isset($item)){echo 'Edit';}else{echo 'Add';}?> Product">
+    </form>
+
+    <form action="" id="editdanhmuc" method="POST" class=" full12col col12" enctype="multipart/form-data">
+        <div class="full12col imgdmbox">
+
         </div>
-        <input type="number" hidden  name="numofoptions" id="numofoptions" value="1">
-        <input type="submit" name="addproduct" class="full12col" value="Add Product">
+        <input type="text"    name="ten_danhmuc"  class="full12col" placeholder="Tag Name" required>
+        <input type="text"    name="mota_danhmuc" class="full12col" placeholder="Tag describe" required>
+        <label class="imglabel"   style="grid-column:span 2;"     for="imgdanhmuc"      >IMG Upload</label>
+        <input type="file"    name="danhmucimg"   id='imgdanhmuc' accept="image/*"  required onchange="imgdanhmucview(this.parentElement.children[0],this)">
+
+        <input type="submit"  name="adddanhmuc" class="full12col" value="Them Danh Muc">
+    </form>
+    <form action="" id="edithang" method="POST" class=" full12col col12" enctype="multipart/form-data">
+        <div class="full12col imgdmbox">
+
+        </div>
+        <input type="text"    name="ten_hang"  class="full12col" placeholder="Tên hãng Name" required>
+        <input type="text"    name="mota_hang" class="full12col" placeholder="Mô tả Hãng" required>
+        <label class="imglabel"   style="grid-column:span 2;"  for="imghang"      >IMG Upload</label>
+        <input type="file"    name="hangimg"   id='imghang' accept="image/*"  required onchange="imgdanhmucview(this.parentElement.children[0],this)">
+        <input type="submit"  name="addhang" class="full12col" value="Them Danh Muc">
     </form>
 
 </main>
 <script>
     var numOfOptions = 1;
     document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
-    function imgview(blockimg,inputimgs){
+    
+    [...document.querySelectorAll('form')].forEach(e=>{
+        if(e.getAttribute('id')!=`edit${new URLSearchParams(window.location.search).get('type')}`){
+            e.remove();
+        }
+    })
+
+    function imgview(el){
+        const inputimgs = el;
+        const blockimg = el.parentElement.children[3];
         [...blockimg.children].forEach(e=>{
             e.remove();
         });
@@ -130,21 +187,100 @@
             blockimg.append(imgtag);
         });
     }
-    function addoption(e){
-        e.preventDefault();
-        const box = document.getElementById('addsp');
-        textaa =`<div class="full12col col12 box_option">
-                <input type="text" style="grid-column: span 10;" name="option_item_name${numOfOptions}" placeholder="Opion ${numOfOptions+1} Name">
-                <label class="imglabel" style="grid-column: span 2;" for="imgupload${numOfOptions}">IMG Upload</label>
-                <input type="file" id='imgupload${numOfOptions}' name="option_item_imgs${numOfOptions}[]"  accept="image/*" multiple require onchange="imgview(this.parentElement.children[3],this)">
-                <div class="imgbox full12col"></div>
-            </div>
-        `;
-        const btn_temp = box.children[box.children.length-1];        
-        box.children[box.children.length-1].remove()
-        box.innerHTML+=textaa;
-        box.append(btn_temp);
-        numOfOptions++;
+
+    function addoption(e,arr){
+        if(e instanceof Event){
+            e.preventDefault();
+        }
+        // <div class="full12col col12 box_option">
+        //     <input type="text" style="grid-column: span 10;" name="option_item_name${numOfOptions}" placeholder="Opion ${numOfOptions+1} Name">
+        //     <label class="imglabel" style="grid-column: span 2;" for="imgupload${numOfOptions}">IMG Upload</label>
+        //     <input type="file" id='imgupload${numOfOptions}' name="option_item_imgs${numOfOptions}[]"  accept="image/*" multiple require onchange="imgview(this)">
+        //     <div class="imgbox full12col"></div>
+        // </div>
+        const di = document.createElement('div');
+        const inpu = document.createElement('input');
+        const label = document.createElement('label');
+        const imginput = document.createElement('input');
+        const imgbox = document.createElement('div');
+
+        di.classList.add('full12col','col12','box_option');
+        di.append(inpu,label,imginput,imgbox);  
+
+        inpu.type='text';
+        inpu.name=`option_item_name${numOfOptions}`;
+        inpu.placeholder=`Opion ${numOfOptions+1} Name`;
+        inpu.required=true;
+        inpu.style.gridColumn='span 10';
+
+        label.htmlFor =`imgupload${numOfOptions}`;
+        label.style.gridColumn='span 2';
+        label.innerText='IMG Upload';
+        label.classList.add('imglabel');
+
+        imginput.id=`imgupload${numOfOptions}`;
+        imginput.type= 'file';
+        imginput.multiple=true;
+        imginput.accept='image/*';
+        imginput.name=`option_item_imgs${numOfOptions}[]`;
+        imginput.oninput = function(){
+            imgview(imginput,null);
+        };
+
+        imgbox.classList.add('imgbox','full12col');
+
+        if(arr){
+            console.log(arr);
+            inpu.value=arr['noidung'];
+            const opctsid =document.createElement('input')
+            opctsid.type='text';
+            opctsid.hidden=true;
+            opctsid.name=`id_optioncontents${numOfOptions}`;
+            opctsid.value=arr['id_optioncontents'];
+
+            for(const e in arr['img']){
+                const img = arr['img'][e];
+                const imgel = document.createElement('img');
+                imgel.src =`contents/imgs/products/${img['id_img']}`;
+                imgbox.append(imgel);
+            }
+            di.append(opctsid);
+            inpu.required=false;
+
+        }else{
+            imginput.required=true;
+        }
+
+        const box = document.getElementById('editsanpham');
+        box.insertBefore(di, [...box].at(-1));
+        
         document.getElementById('numofoptions').value = numOfOptions;
+        console.log(numOfOptions);
+        numOfOptions++;
+        
     }
+
+    function imgdanhmucview(blockimg,inputimgs){
+        [...blockimg.children].forEach(e=>{
+            e.remove();
+        });
+        imgs=[...inputimgs.files]
+        imgs.forEach(e => {
+            let imgtag = document.createElement('img');
+            imgtag.src = URL.createObjectURL(e);
+            blockimg.append(imgtag);
+        });
+    }
+    <?php
+        if(isset($item)){
+            // echo $item['tieude_option'];
+            // $item['options'];
+            foreach($item['options'] as $optionctnsss){
+                $json = json_encode($optionctnsss,JSON_FORCE_OBJECT); 
+                echo"addoption(event,$json);";
+            }
+        }else{
+            echo"addoption(event,null);";
+        }
+    ?>
 </script>
