@@ -214,3 +214,13 @@
     </script>
 </body>
 
+<?php
+$page = isset($_GET['page']) ? $_GET['page'] : '';
+$tag = isset($_GET['tag']) ? $_GET['tag'] : '';
+
+if ($page === 'account' && $tag === 'info') {
+    include 'views/account_info.php'; 
+} else {
+    echo '<h1>Trang chính</h1>';
+}
+?>
