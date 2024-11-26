@@ -33,7 +33,7 @@
       'id'=>$info['id_dm']
     ]);
     // danhmucimg
-    if(isset($_FILES['danhmucimg'])){
+    if(isset($_FILES['danhmucimg']) && $_FILES["danhmucimg"]['name'][0]){
       $bannername = PDO_query("SELECT * FROM danhmuc where id_danhmuc=:id",[
         'id'=>$info['id_dm']
       ])[0];

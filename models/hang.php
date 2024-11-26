@@ -33,7 +33,7 @@
       'mota'=>$info['mota_hang'],
       'id'=>$info['id_hang']
     ]);
-    if(isset($_FILES['hangimg'])){
+    if(isset($_FILES['hangimg']) && $_FILES["hangimg"]['name'][0]){
       $bannername = PDO_query("SELECT * FROM hang where id_hang=:id",[
         'id'=>$info['id_hang']
       ])[0];
