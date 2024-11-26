@@ -138,6 +138,7 @@
     }
 
 </style>
+<title>Account</title>
 <div class="user_tag">
     <a aria-valuetext="info"  href="?page=account&tag=info" >Thông Tin</a>
     <hr>

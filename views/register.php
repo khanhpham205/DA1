@@ -249,6 +249,8 @@
   include_once('views/conponant_navbar.php');
 ?>
 
+<title>POLY Register</title>
+
 <div class="container-register">
     <div class="form-container sign-up">
 

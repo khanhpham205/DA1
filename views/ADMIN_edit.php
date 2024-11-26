@@ -80,19 +80,22 @@
         }
     }
 </style>
+<title>POLY Computer ADMIN</title>
 
 <main class="col12">
     <h1 class="full12col"><?php if(isset($item)){echo 'Edit ';}else{echo'Add ';} echo $type; ?></h1>
+
+    <!-- sanpham -->
     <form method="POST" id="editsanpham" class="formadd full12col col12" enctype="multipart/form-data">
         <?php
-            if(isset($item)){
+            if(isset($item) && $type =='sanpham'){
                 echo "<input type='text' name='id_sp' hidden value='{$item['id_sanpham']}' >";
             }
         ?>
-        <input type="text"     id="ten_sanpham"     name="ten_sp" placeholder="Product Name"   value="<?php if(isset($item)){echo $item['ten_sanpham'];}?>"    required>
-        <input type="number"   id="gia_sanpham"     name="gia_sp" placeholder="Product Price"  value="<?php if(isset($item)){echo $item['gia_sanpham'];}?>"    required>
-        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" min='0' max="90" value="<?php if(isset($item)){echo $item['giamgia'];}?>"  >
-        <textarea class="mota_sanpham" name="mota_sanpham" required><?php   if(isset($item)){echo $item['mota_sanpham'] ;}?> </textarea>
+        <input type="text"     id="ten_sanpham"     name="ten_sp" placeholder="Product Name"   value="<?php if(isset($item) && $type=='sanpham' ){echo $item['ten_sanpham'];}?>"    required>
+        <input type="number"   id="gia_sanpham"     name="gia_sp" placeholder="Product Price"  value="<?php if(isset($item) && $type=='sanpham' ){echo $item['gia_sanpham'];}?>"    required>
+        <input type="number"   id="giamgia_sanpham" name="giamgia_sp" placeholder="Product Discount" min='0' max="90" value="<?php if(isset($item) && $type=='sanpham' ){echo $item['giamgia'];}?>"  >
+        <textarea class="mota_sanpham" name="mota_sanpham" required><?php   if(isset($item) && $type=='sanpham' ){echo $item['mota_sanpham'] ;}?> </textarea>
         <div id="danhmuc">
             <label for="danhmuc">Danh muc:</label>
             <select name="danhmuc"      name="danhmuc" required >
@@ -124,11 +127,11 @@
         <hr>
         <!-- them option cho san pham -->
         <?php
-            if(isset($item)){
+            if(isset($item)&& $type=='sanpham'){
                 echo "<input type='text' name='id_option' hidden value='{$item['id_option']}' >";
             }
         ?>
-        <input type="text" style="grid-column:1/4;" name="optionname" placeholder="Option Title" required value="<?php if(isset($item)){echo $item['tieude_option'];}?>"  >
+        <input type="text" style="grid-column:1/4;" name="optionname" placeholder="Option Title" required value="<?php if(isset($item)&&$type=='sanpham'){echo $item['tieude_option'];}?>" >
         <button id="addoptionpd" onclick="addoption(event,null)">Add option items</button>
         <!-- <div class="full12col col12 box_option">
             <input type="text" style="grid-column: span 10;" name="option_item_name0" placeholder="Opion Name" required>
@@ -140,35 +143,39 @@
         <input type="number" hidden  name="numofoptions" id="numofoptions" >
         <input type="submit" name="<?php if(isset($item)){echo 'editproduct';}else{echo 'addproduct';}?>" class="full12col" value="<?php if(isset($item)){echo 'Edit';}else{echo 'Add';}?> Product">
     </form>
-
+    <!-- danh muc -->
     <form action="" id="editdanhmuc" method="POST" class=" full12col col12" enctype="multipart/form-data">
         <div class="full12col imgdmbox">
-
+            <?php if(isset($item)&&$type=='danhmuc'){echo "<img src='contents/imgs/banner/{$item['img']}'>";}?>
         </div>
-        <input type="text"    name="ten_danhmuc"  class="full12col" placeholder="Tag Name" required>
-        <input type="text"    name="mota_danhmuc" class="full12col" placeholder="Tag describe" required>
-        <label class="imglabel"   style="grid-column:span 2;"     for="imgdanhmuc"      >IMG Upload</label>
-        <input type="file"    name="danhmucimg"   id='imgdanhmuc' accept="image/*"  required onchange="imgdanhmucview(this.parentElement.children[0],this)">
+        <input type="text"    name="ten_danhmuc"  class="full12col" placeholder="Tag Name"     value="<?php if(isset($item)&&$type=='danhmuc'){echo $item['ten_danhmuc'];}?>" required>
+        <input type="text"    name="mota_danhmuc" class="full12col" placeholder="Tag describe" value="<?php if(isset($item)&&$type=='danhmuc'){echo $item['mota_danhmuc'];}?>" required>
+        <label class="imglabel"   style="grid-column:span 2;"       for="imgdanhmuc"      >IMG Upload</label>
+        <input type="text" hidden name="id_dm" value="<?php if(isset($item)&&$type=='danhmuc'){echo $item['id_danhmuc'];}?>">
+        <input type="file"    name="danhmucimg"   id='imgdanhmuc'   accept="image/*"  <?php if(!isset($_GET['id'])){echo "required";}?> onchange="imgdanhmucview(this.parentElement.children[0],this)">
 
-        <input type="submit"  name="adddanhmuc" class="full12col" value="Them Danh Muc">
+        <input type="submit"  name="<?php if(isset($item)){echo 'editdanhmuc';}else{echo 'adddanhmuc';}?>" class="full12col" value="Them Danh Muc">
     </form>
+
+    <!-- hang -->
     <form action="" id="edithang" method="POST" class=" full12col col12" enctype="multipart/form-data">
         <div class="full12col imgdmbox">
-
+            <?php if(isset($item)&&$type=='hang'){echo "<img src='contents/imgs/banner/{$item['img']}'>";}?>
         </div>
-        <input type="text"    name="ten_hang"  class="full12col" placeholder="Tên hãng Name" required>
-        <input type="text"    name="mota_hang" class="full12col" placeholder="Mô tả Hãng" required>
+        <input type="text"    name="ten_hang"  class="full12col" placeholder="Tên hãng Name" value="<?php if(isset($item)&&$type=='hang'){echo $item['ten_hang'];}?>" required>
+        <input type="text"    name="mota_hang" class="full12col" placeholder="Mô tả Hãng" value="<?php if(isset($item)&&$type=='hang'){echo $item['mota_hang'];}?>" required>
         <label class="imglabel"   style="grid-column:span 2;"  for="imghang"      >IMG Upload</label>
-        <input type="file"    name="hangimg"   id='imghang' accept="image/*"  required onchange="imgdanhmucview(this.parentElement.children[0],this)">
-        <input type="submit"  name="addhang" class="full12col" value="Them Danh Muc">
+        <input type="text" hidden name="id_hang" value="<?php if(isset($item)&&$type=='hang'){echo $item['id_hang'];}?>">
+        <input type="file"    name="hangimg"   id='imghang' accept="image/*" <?php if(isset($_GET['id'])){echo "required";}?> onchange="imgdanhmucview(this.parentElement.children[0],this)">
+        <input type="submit"  name="<?php if(isset($item)){echo 'edithang';}else{echo 'addhang';}?>" class="full12col" value="Them Danh Muc">
     </form>
-
 </main>
 <script>
     var numOfOptions = 1;
     document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
     
     [...document.querySelectorAll('form')].forEach(e=>{
+        
         if(e.getAttribute('id')!=`edit${new URLSearchParams(window.location.search).get('type')}`){
             e.remove();
         }
@@ -272,11 +279,11 @@
         });
     }
     <?php
-        if(isset($item)){
+        if(isset($item)&&$type=='sanpham'){
             // echo $item['tieude_option'];
             // $item['options'];
             foreach($item['options'] as $optionctnsss){
-                $json = json_encode($optionctnsss,JSON_FORCE_OBJECT); 
+                // $json = json_encode($optionctnsss,JSON_FORCE_OBJECT); 
                 echo"addoption(event,$json);";
             }
         }else{

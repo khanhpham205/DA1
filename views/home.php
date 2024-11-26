@@ -59,6 +59,7 @@
         }
     }
 </style>
+<title>POLY Computer Home</title>
 <body>
     <?php include_once('componant_banner.php');?>
     <div class="danhmuc col12">

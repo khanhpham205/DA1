@@ -9,8 +9,9 @@ class AdminController{
             header("Refresh:0; url=index.php");
         }
         $allPd = getAllProduct();
-        $allDm = getAllProduct();
-        ;
+        $allDm = getAllDm();
+        $allHang = getAllHang();
+
         include_once('views/ADMIN_page.php');
     }
     function edit($iduser,$type,$id){
@@ -34,38 +35,54 @@ class AdminController{
                 } 
                 ;
             }
-            if(isset($_POST['addhang']) && $_POST['addhang']){
+            if(isset($_POST['adddanhmuc']) && $_POST['adddanhmuc']){
                 switch(adminAddDm($_POST)){
                     case 0 : 
-                        header("Refresh:0; url=?page=admin_edit&type=danhmuc&warning=them danh muc that bai");
+                        header("Refresh:0; url=?page=admin_edit&type=danhmuc&warning=danh muc da ton tai");
                         break;
                     case 1 : 
                         header("Refresh:0; url=?page=admin_edit&type=danhmuc&success=them danh muc thanh cong");
                         break;
                     default:
                         header("Refresh:0; url=?page=admin_edit&type=danhmuc&warning=them danh muc that bai");
-                } 
-                ;
+                };
             }
-            if(isset($_POST['adddanhmuc']) && $_POST['adddanhmuc']){
+            if(isset($_POST['addhang']) && $_POST['addhang']){
                 switch(adminAddHang($_POST)){
                     case 0 : 
-                        header("Refresh:0; url=?page=admin_edit&type=hang&warning=them danh muc that bai");
+                        header("Refresh:0; url=?page=admin_edit&type=hang&warning=hang da ton tai");
                         break;
                     case 1 : 
                         header("Refresh:0; url=?page=admin_edit&type=hang&success=them danh muc thanh cong");
                         break;
                     default:
                         header("Refresh:0; url=?page=admin_edit&type=hang&warning=them danh muc that bai");
-                } 
-                ;
+                };
             }
         }else{
             //edit
             if(isset($_POST['editproduct']) && $_POST['editproduct']){
                 adminEditProduct($_POST);
+            }else if(isset($_POST['edithang']) && $_POST['edithang']){
+                adminEditHang($_POST);
+            }else if(isset($_POST['editdanhmuc']) && $_POST['editdanhmuc']){
+                adminEditDm($_POST);
             }
-            $item = adminGetdProductToEdit($id);
+            switch ($type) {
+                case 'sanpham':
+                    $item = adminGetdProductToEdit($id);
+                    break;
+                case 'danhmuc':
+                    $item = getDanhmucById($id);
+                    break;
+                case 'hang':
+                    $item = getHangById($id);
+                    break;
+                default:
+                    $item=null;
+                    header("Refresh:0; url=?page=admin");
+                    break;
+            }
         }
 
         include_once('views/ADMIN_edit.php');

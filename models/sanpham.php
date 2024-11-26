@@ -107,7 +107,6 @@ function getDiscountProduct(){
     return $sp;
 }
 
-
 function getProductByIdDanhmuc($id){
     $re = [];
     foreach(PDO_query("SELECT * FROM sanpham where id_danhmuc=:iddm;",['iddm'=>$id]) as $item){
@@ -189,7 +188,6 @@ function deleteCart($idcart){
     ]);
 }
 
-
 // USER
 function getAllCartItemsByUserId($id){
     // {
@@ -234,8 +232,6 @@ function getAllCartItemsByUserId($id){
     return $re;
 
 }    
-
-
 //ADMIN CRUD
 function adminAddProduct($info){
     $value = [
@@ -284,7 +280,7 @@ function adminAddProduct($info){
         for($imgnum = 0; $imgnum< count($imgs) ; $imgnum++){
             $img = $imgs[$imgnum];
             $nametmp = explode('.',$img['name']);
-            var_dump($nametmp);
+            // var_dump($nametmp);
             $nameimg = "Product_{$post_product}_{$post_option_item}__{$imgnum}.{$nametmp[1]}";
 
             $post_img = PDO_execute("INSERT INTO 

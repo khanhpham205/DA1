@@ -92,6 +92,16 @@
     }
 </style>
 
+<title>
+    <?php
+        if(isset($tag['name'])){
+            echo $tag['name'];
+        }else{
+            echo 'POLY Computer Shop';
+        }
+    ?>
+</title>
+
 <main class="banner_danhmuc banner col12">
     <div class="content">
         <?php

@@ -134,6 +134,10 @@
         }
     }
 </style>
+<title><?php
+                echo $sp['ten_sanpham'];
+            ?></title>
+
 <main class="col12">
     <div id="imglist">
         <?php

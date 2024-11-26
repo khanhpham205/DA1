@@ -81,6 +81,7 @@
             color:white;
             background: red !important;
         }
+        
         #thongke{
 
         }
@@ -128,7 +129,7 @@
             }
         }
         #danhmuc{
-            button{
+            /* button{
                 align-self: end;
                 justify-self: end;
                 width: 100%;
@@ -136,33 +137,33 @@
                 background: none;
                 border-radius: 20px;
                 font-size: 15px;
-            }
+            } */
             .admin_danhmuc{
                 justify-self: center;
                 display: grid;
                 grid-template-columns: 744px 88px 88px;
                 padding: 10px 0;
-                /* margin: auto 10px; */
                 width: fit-content;
                 border-bottom: 1px solid grey;
                 gap:20px;
-                /* box-shadow: 0 0 1px grey; */
                 h1,h2,h3,h4,h5,h6,p{
                     padding: 0 15px;
                     margin: 0;
                 }
+                >a,button{
+                    text-decoration: none;
+                    cursor: pointer;
+                    align-self: end;
+                    justify-self: end;
+                    width: 100%;
+                    background: none;
+                    border-radius: 20px;
+                    font-size: 15px;
+                    text-align: center;
+                }
             }
         }
         #hang{
-            button{
-                align-self: end;
-                justify-self: end;
-                width: 100%;
-                height: fit-content;
-                background: none;
-                border-radius: 20px;
-                font-size: 15px;
-            }
             .admin_hang{
                 justify-self: center;
                 display: grid;
@@ -177,10 +178,22 @@
                     padding: 0 15px;
                     margin: 0;
                 }
+                >a,button{
+                    text-decoration: none;
+                    cursor: pointer;
+                    align-self: end;
+                    justify-self: end;
+                    width: 100%;
+                    background: none;
+                    border-radius: 20px;
+                    font-size: 15px;
+                    text-align: center;
+                }
             }
         }
     }
 </style>
+<title>POLY Computer ADMIN</title>
 <main class="col12">
     <div class="admin_tag">
         <button aria-valuetext="thongke" class="active" >Thống Kê</button>
@@ -234,36 +247,16 @@
                 <p>Add</p>
             </a>
             <hr>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
-            <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
-                <button class="edit">edit</button>
-                <button class="delete">delete</button>
-            </div>
+            <?php
+              foreach($allDm as $Dm){
+                echo "
+                <div class='admin_danhmuc'>
+                    <h3>{$Dm['ten_danhmuc']}</h3>
+                    <a href='?page=admin_edit&type=danhmuc&id={$Dm['id_danhmuc']}' class='edit'>edit</a>
+                    <button class='delete'>delete</button>
+                </div>";
+              }
+            ?>
         </div>
         <div id="hang">
             <h1>Hãng</h1>
@@ -276,11 +269,21 @@
                 <p>Add</p>
             </a>
             <hr>
-            <div class="admin_hang">
+            <?php
+              foreach($allHang as $ha){
+                echo "
+                <div class='admin_hang'>
+                    <h3>{$ha['ten_hang']}</h3>
+                    <a href='?page=admin_edit&type=hang&id={$ha['id_hang']}' class='edit'>edit</a>
+                    <button class='delete'>delete</button>
+                </div>";
+              }
+            ?>
+            <!-- <div class="admin_hang">
                 <h3>ten hang</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
-            </div>
+            </div> -->
         </div>
     </div>
 </main>
