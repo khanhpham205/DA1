@@ -65,3 +65,26 @@
       session_unset();
   }
   
+  function changeaccountinfo($info){
+    if(!filter_var($info['email'], FILTER_VALIDATE_EMAIL)){
+      header("Refresh:0; url=index.php?page=account&tag=info&error=email khong hop le");
+      return 0;
+    }
+    PDO_execute("UPDATE user SET 
+      ten_user = :username,
+      gmail    = :usermail,
+      phonenumber=:userphone,
+      `address`=:userad
+      WHERE id_user =:id",[
+        'username'=>$info['ten_user'],
+        'usermail'=>$info['email'],
+        'userphone'=>$info['phonenumber'],
+        'userad'=>$info['address'],
+        'id'=>$info['id_user'],
+      ]);
+    // echo json_encode($info,JSON_FORCE_OBJECT);
+    header("Refresh:0; url=index.php?page=account&tag=info&success=doi thong tin tai khoan thanh cong");
+    return 1;
+
+  }
+
