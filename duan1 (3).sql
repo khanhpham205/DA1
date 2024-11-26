@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 24, 2024 lúc 02:37 PM
+-- Thời gian đã tạo: Th10 26, 2024 lúc 08:51 AM
 -- Phiên bản máy phục vụ: 10.4.32-MariaDB
 -- Phiên bản PHP: 8.2.12
 
@@ -43,8 +43,7 @@ INSERT INTO `cart_item` (`id_carditem`, `id_user`, `soluong`, `id_option`) VALUE
 (2, 2, 12, 1),
 (13, 1, 1, 32),
 (14, 1, 2, 33),
-(15, 1, 3, 34),
-(16, 1, 4, 35);
+(15, 1, 3, 34);
 
 -- --------------------------------------------------------
 
@@ -64,8 +63,8 @@ CREATE TABLE `danhmuc` (
 --
 
 INSERT INTO `danhmuc` (`id_danhmuc`, `ten_danhmuc`, `mota_danhmuc`, `img`) VALUES
-(1, 'Chuột', 'Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Poly Computer sẽ xuất hiện tại đây.', 'Banner_danhmuc_1.webp'),
-(2, 'Bàn phím cơ', 'Bàn phím cơ là thiết bị không thể thiếu giúp bạn sử dụng máy tính hàng giờ liền tại văn phòng, tại nhà mà không cảm thấy mệt mỏi. Không chỉ làm việc, bàn phím cơ còn là công cụ giúp bạn tự tin chiến thắng đối thủ với những pha highlight mãn nhãn.', 'Banner_danhmuc_2.webp');
+(1, 'Chuột', 'Chuột gaming, chuột văn phòng hay những chú chuột không dây, có dây mới nhất bạn có thể tìm thấy tại Poly Computer sẽ xuất hiện tại đây.', 'Banner_danhmuc_1tmp.webp'),
+(2, 'Bàn phím cơ', 'Bàn phím cơ là thiết bị không thể thiếu giúp bạn sử dụng máy tính hàng giờ liền tại văn phòng, tại nhà mà không cảm thấy mệt mỏi. Không chỉ làm việc, bàn phím cơ còn là công cụ giúp bạn tự tin chiến thắng đối thủ với những pha highlight mãn nhãn.', 'Banner_danhmuc_2tmp.webp');
 
 -- --------------------------------------------------------
 
@@ -85,7 +84,7 @@ CREATE TABLE `hang` (
 --
 
 INSERT INTO `hang` (`id_hang`, `ten_hang`, `mota_hang`, `img`) VALUES
-(1, 'Pulsar', 'Là thương hiệu rất nổi tại thị trường Mỹ và Nhật, Pulsar Gaming Gears là thương hiệu gaming gear đến từ Hàn Quốc nổi tiếng với các sản phẩm tuy đơn giản nhưng tương xứng với giá trị mà người dùng phải bỏ ra.', 'Banner_hang_1.webp'),
+(1, 'Pulsar', 'Là thương hiệu rất nổi tại thị trường Mỹ và Nhật, Pulsar Gaming Gears là thương hiệu gaming gear đến từ Hàn Quốc nổi tiếng với các sản phẩm tuy đơn giản nhưng tương xứng với giá trị mà người dùng phải bỏ ra.', 'Banner_hang_1tmp.webp'),
 (2, 'Filco', 'Filco mechanical keyboards have been prized for years for their excellent longevity and superior typing experience.\r\nThe Japanese-designed Majestouch keyboards have been produced since 2004, but only around 2008 did they become popular when they were adop', 'Banner_hang_2.webp'),
 (3, 'DrunkDeer', 'DrunkDeer được thành lập từ năm 2018 với đội ngũ kỹ sư nghiên cứu chuyên sâu vào thế giới bàn phím cơ.|Quá trình nghiên cứu của DrunkDeer được hoàn tất vào tháng 12/2022 với loại switch nam châm (magnetic switch) hoàn toàn mới đạt chuẩn sản xuất hàng loạt', 'Banner_hang_3.webp'),
 (4, 'Lamzu', 'Lamzu là một thương hiệu gaming gear cao cấp được thành lập vào năm 2022. Với cam kết mang đến trải nghiệm chơi game tuyệt vời nhất cho người dùng, Lamzu đã tạo ra tiếng vang lớn trong cộng đồng game thủ FPS với sản phẩm đầu tiên là chuột Atlantis.|Sản ph', 'Banner_hang_4.webp');
@@ -662,7 +661,7 @@ ALTER TABLE `danhmuc`
 -- AUTO_INCREMENT cho bảng `hang`
 --
 ALTER TABLE `hang`
-  MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_hang` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT cho bảng `option`
@@ -698,6 +697,27 @@ ALTER TABLE `user`
 ALTER TABLE `cart_item`
   ADD CONSTRAINT `cart_cua_user` FOREIGN KEY (`id_user`) REFERENCES `user` (`id_user`) ON DELETE NO ACTION ON UPDATE NO ACTION,
   ADD CONSTRAINT `cart_item_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option_contents` (`id_optioncontents`);
+
+--
+-- Các ràng buộc cho bảng `img`
+--
+ALTER TABLE `img`
+  ADD CONSTRAINT `img_ibfk_1` FOREIGN KEY (`id_optioncontents`) REFERENCES `option_contents` (`id_optioncontents`);
+
+--
+-- Các ràng buộc cho bảng `option`
+--
+ALTER TABLE `option`
+  ADD CONSTRAINT `option_ibfk_1` FOREIGN KEY (`id_option`) REFERENCES `option_contents` (`id_option`),
+  ADD CONSTRAINT `sp` FOREIGN KEY (`id_sanpham`) REFERENCES `sanpham` (`id_sanpham`) ON DELETE NO ACTION ON UPDATE NO ACTION;
+
+--
+-- Các ràng buộc cho bảng `sanpham`
+--
+ALTER TABLE `sanpham`
+  ADD CONSTRAINT `sanpham_ibfk_1` FOREIGN KEY (`id_danhmuc`) REFERENCES `danhmuc` (`id_danhmuc`),
+  ADD CONSTRAINT `sanpham_ibfk_2` FOREIGN KEY (`id_hang`) REFERENCES `hang` (`id_hang`),
+  ADD CONSTRAINT `sanpham_ibfk_3` FOREIGN KEY (`id_sanpham`) REFERENCES `img` (`id_sanpham`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
