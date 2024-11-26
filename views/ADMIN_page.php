@@ -204,7 +204,7 @@
     </div>
     <div class="admin_contents">
         <div class="active" id="thongke">
-            <h1>Thong ke</h1>
+            <h1>Thống kê</h1>
             <!-- <form action="">
             </form> -->
         </div>

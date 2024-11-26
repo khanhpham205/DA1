@@ -65,31 +65,31 @@
             }
         }
     }
-    .banner_danhmuc{
-        width: 100%;
-        color: white; 
-        align-items: center;
-        background: url('contents/imgs/banner/<?=$tag['img']?>');
-        background-position: center;
-        background-repeat: no-repeat;
-        background-size: cover;
-        overflow: hidden;
-        height:600px;            
-        margin: 0;
-        .content{
-            height: fit-content;
-            grid-column: 2/6;
-            background-color: #272727;
-            padding: 10px;
-            border-radius: 10px;
-            h1{
-                padding: 0 10px;
+            .banner_danhmuc{
+                width: 100%;
+                color: white; 
+                align-items: center;
+                background: url('contents/imgs/banner/<?=$tag['img']?>');
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                overflow: hidden;
+                height:600px;            
+                margin: 0;
+                .content{
+                    height: fit-content;
+                    grid-column: 2/6;
+                    background-color: #272727;
+                    padding: 10px;
+                    border-radius: 10px;
+                    h1{
+                        padding: 0 10px;
+                    }
+                    p{
+                        padding: 0 10px;
+                    }
+                }
             }
-            p{
-                padding: 0 10px;
-            }
-        }
-    }
 </style>
 
 <title>

@@ -42,18 +42,22 @@ class PageController{
         include_once('views/shop.php');
     }
     public function account($id){
-        $user = getUserById($id)[0];
         if(isset($_POST['logout'])){
             logout();
             header("Refresh:0; url=index.php?page=account");
         }
+        if (isset($_POST['doithongtin'])) {
+            changeaccountinfo($_POST);
+        }        
+        $user = getUserById($id)[0];
+
         echo "<main class='col12'>";
         include_once('views/account.php');
         echo "<div class='user_contents'>";
     
         if(isset($_GET['tag'])){
             switch ($_GET['tag']) {
-                case 'info':
+                case 'info': 
                     include('views/account_info.php');
                     break;
                 case 'cart':
