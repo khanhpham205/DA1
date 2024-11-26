@@ -191,7 +191,7 @@
     </div>
     <div class="admin_contents">
         <div class="active" id="thongke">
-            <h1>Thong ke</h1>
+            <h1>Thống kê</h1>
             <!-- <form action="">
             </form> -->
         </div>
@@ -235,32 +235,32 @@
             </a>
             <hr>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
             <div class="admin_danhmuc">
-                <h3>ten danh muc</h3>
+                <h3>Tên danh mục</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
@@ -277,7 +277,7 @@
             </a>
             <hr>
             <div class="admin_hang">
-                <h3>ten hang</h3>
+                <h3>Tên hãng</h3>
                 <button class="edit">edit</button>
                 <button class="delete">delete</button>
             </div>
