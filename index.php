@@ -215,6 +215,7 @@
 </body>
 
 <?php
+include_once('contents/footer.php');
 // $page = isset($_GET['page']) ? $_GET['page'] : '';
 // $tag = isset($_GET['tag']) ? $_GET['tag'] : '';
 
