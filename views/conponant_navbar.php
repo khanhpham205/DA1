@@ -219,11 +219,11 @@ $hang=getAllHang();
         const nav = document.querySelector('nav');
         if(banner.getBoundingClientRect().bottom < nav.offsetHeight){
             nav.classList.add('active');
-            nav.children[0].children[0].src= "./imgs/logo/2.png";
+            // nav.children[0].children[0].src= "./imgs/logo/2.png";
         }
         else{
             nav.classList.remove('active');
-            nav.children[0].children[0].src= "./imgs/logo/3.png";
+            // nav.children[0].children[0].src= "./imgs/logo/3.png";
         }
         
     }

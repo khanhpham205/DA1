@@ -231,7 +231,7 @@
                         <img src='contents/imgs/products/{$sp[0]['id_img']}'>
                         <h3>{$sp['ten_sanpham']}<br><p class='pricetag'>{$giasp}</p></h3>
                         <a href='?page=admin_edit&type=sanpham&id={$sp[0]['id_sanpham']}' class='edit'>edit</a>
-                        <button class='delete'>delete</button>
+                        <button class='delete' value>delete</button>
                     </div>";
                 }
             ?>

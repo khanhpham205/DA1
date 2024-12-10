@@ -52,9 +52,7 @@
     }
   }
 
-  // function checkpass($pass){
-  //   return preg_match('(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}', $pass);
-  // }
+
   function checkmail($mail){
     return str_contains($mail,'@');
   }
@@ -86,5 +84,11 @@
     header("Refresh:0; url=index.php?page=account&tag=info&success=doi thong tin tai khoan thanh cong");
     return 1;
 
+  }
+
+
+
+  function getAddressUser($id){
+    return PDO_query("SELECT `address` from user where id_user = :id",['id'=>$id])[0]['address'];
   }
 

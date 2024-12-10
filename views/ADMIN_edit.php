@@ -162,15 +162,17 @@
         <div class="full12col imgdmbox">
             <?php if(isset($item)&&$type=='hang'){echo "<img src='contents/imgs/banner/{$item['img']}'>";}?>
         </div>
-        <input type="text"    name="ten_hang"  class="full12col" placeholder="Tên hãng Name" value="<?php if(isset($item)&&$type=='hang'){echo $item['ten_hang'];}?>" required>
-        <input type="text"    name="mota_hang" class="full12col" placeholder="Mô tả Hãng" value="<?php if(isset($item)&&$type=='hang'){echo $item['mota_hang'];}?>" required>
+        <input type="text"    name="ten_hang"  class="full12col" placeholder="Tên hãng Name" value="<?php if(isset($item) && $type=='hang'){echo $item['ten_hang'];}?>" required>
+        <input type="text"    name="mota_hang" class="full12col" placeholder="Mô tả Hãng" value="<?php if(isset($item) && $type=='hang'){echo $item['mota_hang'];}?>" required>
         <label class="imglabel"   style="grid-column:span 2;"  for="imghang"      >IMG Upload</label>
-        <input type="text" hidden name="id_hang" value="<?php if(isset($item)&&$type=='hang'){echo $item['id_hang'];}?>">
+        <input type="text" hidden name="id_hang" value="<?php if(isset($item) && $type=='hang'){echo $item['id_hang'];}?>">
         <input type="file"    name="hangimg"   id='imghang' accept="image/*" <?php if(isset($_GET['id'])){echo "required";}?> onchange="imgdanhmucview(this.parentElement.children[0],this)">
         <input type="submit"  name="<?php if(isset($item)){echo 'edithang';}else{echo 'addhang';}?>" class="full12col" value="Them Danh Muc">
     </form>
 </main>
+
 <script>
+    console.log(123);
     var numOfOptions = 1;
     document.querySelector('main').style.marginTop = document.querySelector('nav').offsetHeight +10;
     
@@ -178,6 +180,7 @@
         
         if(e.getAttribute('id')!=`edit${new URLSearchParams(window.location.search).get('type')}`){
             e.remove();
+            
         }
     })
 
@@ -283,7 +286,7 @@
             // echo $item['tieude_option'];
             // $item['options'];
             foreach($item['options'] as $optionctnsss){
-                // $json = json_encode($optionctnsss,JSON_FORCE_OBJECT); 
+                $json = json_encode($optionctnsss,JSON_FORCE_OBJECT); 
                 echo"addoption(event,$json);";
             }
         }else{

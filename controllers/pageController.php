@@ -2,6 +2,7 @@
 include_once('models/sanpham.php');
 include_once('models/user.php');
 include_once('models/danhmuc.php');
+include_once('models/donhang.php');
 class PageController{
     public function home(){
         $newSp=getNewProduct();
@@ -65,13 +66,24 @@ class PageController{
                         changeSLCart($_POST['cartid'],$_POST['soluong']);
                     }else if(isset($_POST['deletecart'])){
                         deleteCart($_POST['deletecart']);
-                    }  
-                    
-                    
+                    } 
+                    if(isset($_POST['thanhtoan'])){
+                       //dat mua hang
+                       addDonHang($_POST['donmua'],$_POST['thanhtoan']);
+                    } 
+                    $idUserForCard = $id;
+                    $address = getAddressUser($id);
+
                     $cart = getAllCartItemsByUserId($id);
                     include('views/account_cart.php');
                     break;
                 case 'bill':
+                    if(isset($_POST['huydonhang'])){
+                        // echo $_POST['huydonhang'];
+                        huyDonHang($_POST['huydonhang']);
+                    }
+                    $address = getAddressUser($id);
+                    $data = getallbillbyuser($id);
                     include('views/account_bill.php');
                     break;
                 default:
@@ -91,8 +103,10 @@ class PageController{
             $lopass=$_POST['login_password'];
             $usersession = login($lomail,$lopass);
             if($usersession){
-                header('Location: index.php');
+                header('Location: index.php?success=danh nhap thanh cong');
             }else{
+                header("Refresh:0; url=?page=account&warning=sai ten dang nhap hoac mat khau");
+
                 //danh nhap thai bai
                 // echo"<script> alert('Ten dang nhap hoac mat khau khong ton tai')</script>";
             }

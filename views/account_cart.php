@@ -114,15 +114,125 @@
                 }
             }
         }
-            .bill{
-                grid-column: span 4 ;
+        .bill{
+            border-radius: 20px;
+            background-color: rgba(255,255,255,.9);
+            grid-column: span 4 ;
+            margin: 5px;
+            display: grid;
+            grid-template-columns: 90%;
+            gap: 10px;
+            /* grid-template-rows: ; */
+            grid-auto-rows: min-content;
+            justify-content: center ;
+            .bill_name{
+                margin: 0;
+                padding-bottom: 10px;
+                border-bottom: 1px solid black;
             }
+            
+            .bill_info{
+                display: grid;
+                grid-template-columns: 50% 50%;
+                width: 100%;
+                /* justify-content: center; */
+                /* align-content: start; */
+                .bill_items_list{
+                    grid-column:1/3 ;
+                    min-height: 100px;
+                    border-bottom:1px solid black;
+                    .bill_items{
+                        display: grid;
+                        grid-template-columns: 50% 45%;
+                        grid-template-rows:  45% 45%;
+                        gap: 5px;
+                        width: 90%;
+                        justify-self: center;
+                        justify-content: center;
+                        margin-bottom: 12px;
+                        .bill_items_name{
+                            text-align: start;
+                            grid-column: 1/3;
+                            width: 100%;
+                            padding:0;
+                            margin:0;
+                        }
+                        .bill_items_sl{
+                            grid-column: 2/3;
+                            grid-row: 2/3;
+                            align-self: end;
+                            text-align: end;
+                            font-size: 70%;
+
+                            .pricetag{
+                                align-self: end;
+                                text-align: end;
+                                width: 100%;
+                            }
+                        }
+                        .bill_items_option{
+                            color: grey;
+                            font-size: 80%;
+                            align-self: end;
+                            text-align: start;
+                            width: 100%;
+                        }
+                    }
+                    .bill_items:not(:last-child):after{
+                        content:"";
+                        grid-column: 1/3 ;
+                        display: block;
+                        border-bottom: 1px solid grey;
+                    }
+                }
+                >.titletag{
+                    margin: 2px 0;
+                    text-align:start;
+                    grid-column: 1/2;
+                }
+                >.contenttag{
+                    text-align:end;
+                    margin: 2px 0;
+                    grid-column: 2/3;
+                }
+                label{
+                    grid-column: 1/3 ;
+                    text-align: start;
+                }
+                #address{
+                    width: 100%;
+                    text-align: center;
+                    grid-column: 1/3 ;
+                }
+                #giacuoicung{
+                    color:red;
+                    font-size: 13px;
+                }
+                #btn_thanhtoan{
+                    grid-column:1/3 ;
+                    width: 100%;
+                    background-color: #FF794C;
+                    border-radius: 100vh;
+                    color: White;
+                    font-size: 15px;
+                    padding: 4px 0;
+                    border:none;
+                    border: solid 2px #FF794C;
+                }
+                #btn_thanhtoan:hover{
+                    background:none;
+                    border: solid 2px #FF794C;
+
+                    color: #FF794C;
+                }
+            }
+        }
         >div{
             text-align: center;
         }
-
     }
 </style>
+
 <div id="giohang" >
     <h1 style="text-align:start;">Giỏ Hàng Của Bạn</h1>
     <div class="col10">
@@ -136,7 +246,7 @@
                 }
                 echo "
                     <div class='item'>
-                        <input type='checkbox' name=''>
+                        <input type='checkbox' class='checkinput' data-id='{$cartitemm['id_carditem']}' name=''>
                         <img src='contents/imgs/products/{$cartitemm['img']}'>
                         <div class='pd_name'>
                             <h5>{$cartitemm['ten_sanpham']}</h5>
@@ -153,14 +263,33 @@
                             <div onmousedown='this.parentElement.children[1].stepUp( 1 );' onmouseup='this.parentElement.submit()'>+</div>
                             <input type='number' name='cartid' hidden value='{$cartitemm['id_carditem']}'>
                         </form>
+                        <div class='bill_items' hidden>
+                            <input type='text' name='donmua[]' value='{$cartitemm['id_carditem']}' hidden>
+                            <h5 class='bill_items_name'>{$cartitemm['ten_sanpham']}</h5>
+                            <p class='bill_items_option' >{$cartitemm['tieude_option']}:{$cartitemm['noidung']}</p>
+                            <p class='bill_items_sl' data-cost='{$cartitemm['soluong']},{$cartitemm['gia_sanpham']},{$cartitemm['giamgia']}' >{$cartitemm['soluong']} x <span class='pricetag'>{$giasp}</span></p>
+                        </div>
                     </div>
                 ";
-            }
-              
+            } 
             ?>
         </div>
         <div class="bill">
-            <h3>Chọn Mua</h3>
+            <h3 class="bill_name">Chọn Mua</h3>
+            <form class="bill_info" id="muahang" method="POST">
+                <div class="bill_items_list">
+
+                </div>
+                <h5 class="titletag">Tổng giá niên yết:</h5>
+                <h6 class="contenttag" >0</h6>
+                <h5 class="titletag">Khuyến Mãi:</h5>
+                <h6 class="contenttag">0</h6>
+                <h5 class="titletag">Tổng thành tiền:</h5>
+                <h6 class="contenttag" id='giacuoicung' >0</h6>
+                <h5 class="titletag">Địa chỉ nhận hàng:</h5>
+                <h6 class="contenttag" ><?php echo($address);?> </h6>
+                <button name="thanhtoan" id="btn_thanhtoan" value="<?php echo $idUserForCard;?>">Mua hàng</button>
+            </form>
         </div>
     </div>
 </div>
@@ -168,5 +297,42 @@
     function changeSL(){
         // document.getElementById('sluo').parentElement.submit();
     }
-    document.getElementById('sluo').parentElement.children[1].subm
+    var allcartitems = [...document.querySelectorAll('.checkinput')];
+    var bill = document.querySelector('.bill_items_list');
+
+    allcartitems.forEach(element=>{
+        element.addEventListener('change',e=>{
+            const info = [...e.target.parentElement.children].at(-1);
+            if(e.target.checked){
+                // checked
+                const tmpinfo = info.cloneNode(true);
+                tmpinfo.hidden=false;
+                bill.append(tmpinfo);
+            }
+            else{
+                // not checked
+                let listbillitems = [...bill.children];
+                const itm = listbillitems.filter(e=> e.children[0].value == info.children[0].value)
+                bill.removeChild(itm[0]);
+            }
+            //load thanh tien moi
+            loadcostbillinfo()
+        })
+    })
+    function loadcostbillinfo(){
+        const infocostbill = document.querySelectorAll('.contenttag');
+        console.log(infocostbill);
+        let tonghanghoa = 0;
+        let discount    = 0;
+
+        [...bill.children].forEach(e=>{
+            const data = e.children[3].dataset.cost.split(',');
+            tonghanghoa += Number(data[0]) * Number(data[1]);
+            discount += Number(data[0]) * (Number(data[1]) * (Number(data[2]))/100 ) ;            
+        })
+        infocostbill[0].innerHTML = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND'}).format(tonghanghoa);
+        infocostbill[1].innerHTML = `- ${Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND'}).format(discount)}`;
+        infocostbill[2].innerHTML = Intl.NumberFormat('de-DE', { style: 'currency', currency: 'VND'}).format(tonghanghoa-discount);
+    }
+    loadcostbillinfo()
 </script>

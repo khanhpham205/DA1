@@ -149,7 +149,7 @@ function addToCart($idpro,$sl,$option,$id_user){
         return 0;
     }
     $check = PDO_query("SELECT * From cart_item
-        where id_user = :id_user and id_option = :id_option
+        where id_user = :id_user and id_option = :id_option and id_donhang is null
      ",
     ['id_user' => $id_user,'id_option' => $option]);
     if(!$check){
@@ -213,15 +213,12 @@ function getAllCartItemsByUserId($id){
         `option_contents` on `cart_item`.id_option       = `option_contents`.`id_optioncontents` INNER JOIN
         `option`          on `option_contents`.id_option = `option`.id_option INNER JOIN
         `sanpham` 	      on `option`.id_sanpham        = `sanpham`.id_sanpham
-        where id_user = :id
-        order by id_carditem desc
-        ",[
+        where id_user = :id and id_donhang is NULL
+        order by id_carditem desc",[
             'id'=>$id
         ]
     );
-
     $re=[];
-    
     foreach($cartitem as $itemm){
         $temp = $itemm;
         $img = getProductImgThumbnail($itemm['id_sanpham'])[0];
@@ -230,7 +227,6 @@ function getAllCartItemsByUserId($id){
         array_push($re,$temp);
     }
     return $re;
-
 }    
 //ADMIN CRUD
 function adminAddProduct($info){
@@ -261,8 +257,8 @@ function adminAddProduct($info){
         'id_sanpham'     => $post_product
     ]);
 
-    for ($i = 0; $i <= (int)$info['numofoptions'] ; $i++) {
-        $temp = ($i ==0)? 1:null;
+    for ($i = 1; $i <= (int)$info['numofoptions'] ; $i++) {
+        $temp = ($i ==1)? 1:null;
         $nameOption= 'option_item_name'.$i;
         $imgOption= 'option_item_imgs'.$i;
 
@@ -327,7 +323,6 @@ function adminEditProduct($info){
             'ten'      =>$info['optionname']
     ]); 
 
-
     $oldoptionctnts = PDO_query("SELECT * FROM option_contents where id_option = :id",[
         'id'=>$info['id_option']
     ]);
@@ -335,27 +330,34 @@ function adminEditProduct($info){
     for($i = 1; $i <= (int)$info['numofoptions'] ; $i++) {
         if($i <= count($oldoptionctnts)){
             //sua
-            $oldimgs=PDO_query("SELECT * FROM img WHERE id_optioncontents=:idop",[
-                'idop'=>$info["id_optioncontents{$i}"]
-            ]);
+            
             PDO_execute("UPDATE option_contents SET noidung =:noidung where id_optioncontents=:id",[
                'noidung'  => $info["option_item_name{$i}"], 
                'id'       => $info["id_optioncontents{$i}"]
             ]);
-            if(isset($_FILES["option_item_imgs{$i}"]) && count($_FILES["option_item_imgs{$i}"]) > 0 && $_FILES["option_item_imgs{$i}"]['name'][0] ){
-                
+            
+            if($_FILES["option_item_imgs{$i}"]['name'][0] !=''){
+                PDO_execute("DELETE FROM img where id_optioncontents = :idoption",[
+                    'idoption'=>$info["id_optioncontents{$i}"]
+                ]);
+                $tmpimgname ='tmp';
                 //xoa anh cu
+                $oldimgs=PDO_query("SELECT * FROM img WHERE id_optioncontents=:idop",[
+                    'idop'=>$info["id_optioncontents{$i}"]
+                ]);
                 foreach($oldimgs as $imgite){
+                    if(str_contains($imgite['id_img'],'tmp')){
+                        $tmpimgname='';
+                    }
                     unlink("./contents/imgs/products/{$imgite['id_img']}");
                 }
-                PDO_execute("DELETE img where id_optioncontents=:id",['id'=>$info["id_optioncontents{$i}"]]);
                 //them anh moi
                 $imgs = reArrayFiles($_FILES["option_item_imgs{$i}"]);
                 $a=1;
                 for($imgnum = 0; $imgnum <= count($imgs)-1 ; $imgnum++){
                     $img = $imgs[$imgnum];
                     $nametmp = explode('.',$img['name']);
-                    $nameimg = "Product_{$info['id_sp']}_{$info["id_optioncontents{$i}"]}__{$imgnum}.{$nametmp[1]}";
+                    $nameimg = "Product_{$info['id_sp']}_{$info["id_optioncontents{$i}"]}__{$imgnum}_{$tmpimgname}.{$nametmp[1]}";
 
                     $post_img = PDO_execute("INSERT INTO 
                         img( id_img, id_sanpham, id_optioncontents, isDefault)value
@@ -414,7 +416,6 @@ function adminGetdProductToEdit($idsp){
             'idoption'=>$sp['id_option']
     ]);
     $opcontss=[];
-
     
     foreach($optioncontents as $optionctns){
         $imgs=PDO_query("SELECT * FROM img where id_optioncontents=:id",['id'=>$optionctns['id_optioncontents']]);
@@ -425,4 +426,12 @@ function adminGetdProductToEdit($idsp){
     // echo json_encode($sp,JSON_FORCE_OBJECT); 
     // echo json_encode($opcontss,JSON_FORCE_OBJECT); 
     return $sp;
+}
+function delProduct($idsp){
+    $sp = PDO_execute("DELETE FROM sanpham where id_sanpham= :id",['id'=>$idsp]);
+    $optionscontentsimg = PDO_query("SELECT * FROM option_contents where id_sanpham= :id",['id'=>$idsp]);
+    foreach($optionscontentsimg as $opsimg){
+        unlink($opsimg['id_img']);
+    }
+    // return $sp;
 }

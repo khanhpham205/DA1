@@ -2,7 +2,7 @@
 function PDOconnect(){
     // $svname = 'localhost';
     $username = 'root';
-    $DBname = 'duan1';
+    $DBname = 'duan12';
     $pass = '';
     try {
         $conn = new PDO("mysql:dbname={$DBname}", $username, $pass);

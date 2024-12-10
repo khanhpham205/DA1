@@ -23,6 +23,7 @@
             aspect-ratio: 1/1;
             img {
                 width: 100%;
+                border-radius:20px;
                 aspect-ratio: 1/1;
             }
         }
