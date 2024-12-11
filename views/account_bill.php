@@ -53,9 +53,14 @@
                     color: grey;
                     font-size: 13px;
                 }
-                p.pricetag{
+                p:not(.op){
+
                     justify-self: end ;
                     font-size: 13px;
+                    span.pricetag{
+                        justify-self: end ;
+                        font-size: 13px;
+                    }
                 }
             }
             }
@@ -160,7 +165,7 @@
                             <div class='bill_itms_card'>
                                 <h4>{$i['ten_sanpham']}</h4>
                                 <p class='op'>{$i['tieude_option']} : {$i['noidung']}</p>
-                                <p class='pricetag'>{$giasp}</p>
+                                <p> {$i['soluong']} x <span class='pricetag'>{$giasp}</span></p>
                             </div>
                         ";
                     }
