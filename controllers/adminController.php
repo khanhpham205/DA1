@@ -8,9 +8,20 @@ class AdminController{
         if(!checkAdminUser($iduser)){
             header("Refresh:0; url=index.php");
         }
+
+        if(isset($_POST['updatadonhangstatus'])){
+            updataTrangThaiDonHang($_POST['iddonhang'],$_POST['updatadonhangstatus']);
+        }
+
+
+
+
+
+
         $allPd = getAllProduct();
         $allDm = getAllDm();
         $allHang = getAllHang();
+        $allDonHang = getAllDonHang();
 
         include_once('views/ADMIN_page.php');
     }

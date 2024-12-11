@@ -128,72 +128,71 @@
     <div class="content_tags active" id="all">
         <?php
             function loadddddddd($data,$address){
-
-            foreach($data as $item){
-                switch ($item['status']) {
-                    case 'choxacnhan':
-                        $status = 'Chờ xác nhận';
-                        break;
-                    case 'chogiaohang':
-                        $status = 'Chờ giao hàng';
-                        break;
-                    case 'giaohangthanhcong':
-                        $status = 'Giao hàng thành công';
-                        break;
-                    case 'huydonhang':
-                        $status = 'Đã hủy đơn hàng';
-                        break;
-                }
-
-                $tonghanghoa=0;
-                $tonggiamgia=0;
-                $div = '';
-
-                foreach($item['cart_items'] as $i){
-                    $tonghanghoa += $i['gia_sanpham'] * $i['soluong'];
-                    $tonggiamgia += ($i['gia_sanpham']/100) * $i['giamgia'] * $i['soluong'];
-                    $giasp = number_format($i['gia_sanpham']).'đ';
-                    if($i['giamgia']!=0){
-                        $giaspgiam = number_format($i['gia_sanpham']*(1-($i['giamgia'])/100));
-                        $giasp = $giaspgiam.'đ <del>'.$giasp.'</del>';
+                foreach($data as $item){
+                    switch ($item['status']) {
+                        case 'choxacnhan':
+                            $status = 'Chờ xác nhận';
+                            break;
+                        case 'chogiaohang':
+                            $status = 'Chờ giao hàng';
+                            break;
+                        case 'giaohangthanhcong':
+                            $status = 'Giao hàng thành công';
+                            break;
+                        case 'huydonhang':
+                            $status = 'Đã hủy đơn hàng';
+                            break;
                     }
-                    $div.="
-                        <div class='bill_itms_card'>
-                            <h4>{$i['ten_sanpham']}</h4>
-                            <p class='op'>{$i['tieude_option']} : {$i['noidung']}</p>
-                            <p class='pricetag'>{$giasp}</p>
-                        </div>
-                    ";
+
+                    $tonghanghoa=0;
+                    $tonggiamgia=0;
+                    $div = '';
+
+                    foreach($item['cart_items'] as $i){
+                        $tonghanghoa += $i['gia_sanpham'] * $i['soluong'];
+                        $tonggiamgia += ($i['gia_sanpham']/100) * $i['giamgia'] * $i['soluong'];
+                        $giasp = number_format($i['gia_sanpham']).'đ';
+                        if($i['giamgia']!=0){
+                            $giaspgiam = number_format($i['gia_sanpham']*(1-($i['giamgia'])/100));
+                            $giasp = $giaspgiam.'đ <del>'.$giasp.'</del>';
+                        }
+                        $div.="
+                            <div class='bill_itms_card'>
+                                <h4>{$i['ten_sanpham']}</h4>
+                                <p class='op'>{$i['tieude_option']} : {$i['noidung']}</p>
+                                <p class='pricetag'>{$giasp}</p>
+                            </div>
+                        ";
+                    }
+
+                    $a1 = number_format($tonghanghoa);
+                    $a2 = number_format($tonggiamgia);
+                    $a3 = number_format($tonghanghoa - $tonggiamgia);
+
+                    echo "
+                        <div class='bill_item'>
+                            <div class='bill_items'>
+                                {$div}
+                            </div>
+                            <div class='bill_info'>
+                                <h4 style='grid-column:1/3; text-align:center; color:#FF794C;'>{$status}</h4>
+                                <h5 class='titletag'>Tổng giá niên yết:</h5>
+                                <h6 class='contenttag'>{$a1}đ</h6>
+
+                                <h5 class='titletag'>Khuyến Mãi:</h5>
+                                <h6 class='contenttag'>- {$a2}đ</h6>
+
+                                <h5 class='titletag'>Tổng thành tiền:</h5>
+                                <h6 class='contenttag' id='giacuoicung' style='color:red;'>{$a3}đ</h6>
+
+                                <h5 class='titletag'>Địa chỉ nhận hàng:</h5>
+                                <h6 class='contenttag'>{$address}</h6>
+                            </div>
+                            <form method='POST' class='btn_huy'>
+                            <button name='huydonhang' value='{$item['id_donhang']}' title='chỉ có thể hủy khi đơn hàng chưa được xác nhận'>Hủy Đơn Hàng</button>
+                            </form>
+                        </div>";
                 }
-
-                $a1 = number_format($tonghanghoa);
-                $a2 = number_format($tonggiamgia);
-                $a3 = number_format($tonghanghoa - $tonggiamgia);
-
-                echo "
-                    <div class='bill_item'>
-                        <div class='bill_items'>
-                            {$div}
-                        </div>
-                        <div class='bill_info'>
-                            <h4 style='grid-column:1/3; text-align:center; color:#FF794C;'>{$status}</h4>
-                            <h5 class='titletag'>Tổng giá niên yết:</h5>
-                            <h6 class='contenttag'>{$a1}đ</h6>
-
-                            <h5 class='titletag'>Khuyến Mãi:</h5>
-                            <h6 class='contenttag'>- {$a2}đ</h6>
-
-                            <h5 class='titletag'>Tổng thành tiền:</h5>
-                            <h6 class='contenttag' id='giacuoicung' style='color:red;'>{$a3}đ</h6>
-
-                            <h5 class='titletag'>Địa chỉ nhận hàng:</h5>
-                            <h6 class='contenttag'>{$address}</h6>
-                        </div>
-                        <form method='POST' class='btn_huy'>
-                        <button name='huydonhang' value='{$item['id_donhang']}' title='chỉ có thể hủy khi đơn hàng chưa được xác nhận'>Hủy Đơn Hàng</button>
-                        </form>
-                    </div>";
-            }
             }
             loadddddddd($data,$address);
         ?>

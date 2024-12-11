@@ -85,9 +85,6 @@
     return 1;
 
   }
-
-
-
   function getAddressUser($id){
     return PDO_query("SELECT `address` from user where id_user = :id",['id'=>$id])[0]['address'];
   }

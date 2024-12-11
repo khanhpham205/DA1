@@ -69,11 +69,18 @@ class PageController{
                     } 
                     if(isset($_POST['thanhtoan'])){
                        //dat mua hang
-                       addDonHang($_POST['donmua'],$_POST['thanhtoan']);
+                       //addDonHang($_POST['donmua'],$_POST['thanhtoan']);
+                       switch (addDonHang($_POST['donmua'],$_POST['thanhtoan'])) {
+                        case 0:
+                            header("Refresh:0; url=index.php?page=account&tag=info&warning=vui long cap nhat dia chi tai khoan truoc khi mua hang");
+                            break;
+                        case 1:
+                            header("Refresh:0; url=index.php?page=account&tag=bill&success=dat hang thanh cong");
+                            break;
+                       }
                     } 
                     $idUserForCard = $id;
                     $address = getAddressUser($id);
-
                     $cart = getAllCartItemsByUserId($id);
                     include('views/account_cart.php');
                     break;
