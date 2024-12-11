@@ -435,3 +435,34 @@ function delProduct($idsp){
     }
     // return $sp;
 }
+
+
+function getSpbanchay(){
+    $donhang = PDO_query("SELECT soluong,sanpham.id_sanpham
+    FROM `cart_item` INNER JOIN 
+    donhang          on donhang.id_donhang                 = cart_item.id_donhang       INNER JOIN
+    option_contents  on option_contents.id_optioncontents  = cart_item.id_option        INNER JOIN 
+    `option`         on `option`.`id_option`               = option_contents.id_option  INNER JOIN 
+    sanpham          on sanpham.id_sanpham                 = `option`.`id_sanpham`
+    where 
+    cart_item.id_donhang is not null and 
+    donhang.status='giaohangthanhcong'
+    ");
+
+    $listSp =[];
+
+    foreach($donhang as $i){
+        if(isset($listSp[$i['id_sanpham']])){
+            $listSp[$i['id_sanpham']] += $i['soluong'];
+        }else{
+            $listSp[$i['id_sanpham']] = $i['soluong'];
+        }
+    }
+    arsort($listSp);
+    foreach($listSp as $key => $item ){
+        $sp = PDO_query("SELECT ten_sanpham, gia_sanpham, giamgia from sanpham where id_sanpham = :id",['id'=>$key])[0];
+        $listSp[$key]=['sp'=>$sp,'soluong'=>$item];
+    }
+
+    return $listSp;
+}

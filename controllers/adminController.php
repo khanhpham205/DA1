@@ -13,10 +13,11 @@ class AdminController{
             updataTrangThaiDonHang($_POST['iddonhang'],$_POST['updatadonhangstatus']);
         }
 
-
-
-
-
+        $thongke=[
+            "thongke1"=>getAllDonhangSuccess(),
+            "chart"=> getInfoForChart(),
+            "spbanchay" => getSpbanchay()
+        ];
 
         $allPd = getAllProduct();
         $allDm = getAllDm();

@@ -1,4 +1,48 @@
 <style>
+    option:disabled{
+        opacity: 0.6;
+        background-color: #ff888f;
+    }
+    /* ______________________________________________________________________ */
+    .tags{
+        display: flex;
+        justify-content: center;
+        li{
+            cursor: pointer;
+            user-select: none;
+            text-decoration: none;
+            list-style: none;
+            margin: auto 10px ;
+        }
+        li.active{
+            font-size: 110%;
+            font-weight: bold;
+            /* box-shadow: 0 0 5px grey; */
+        }
+        li.active + .content_tags{
+            display: block;
+
+        }
+    }
+    .content_tags{
+        display: none;
+    }
+    .content_tags.active{
+        display: block;
+        justify-content: center;
+    }
+    .titletag{
+        margin: 2px 0;
+        text-align:start;
+        grid-column: 1/2;
+    }
+    .contenttag{
+        text-align:end;
+        margin: 2px 0;
+        grid-column: 2/3;
+    }
+
+
     main{
         input,select{
             background-color: #eee;
@@ -41,7 +85,7 @@
             grid-column:3/13 ;
             box-shadow: 0 0 5px black;
             >div{
-                display:none;
+                display:none ;
                 h1{
                     margin-top:10px ;
                     text-align: center;
@@ -51,7 +95,7 @@
                 }
             }
             >div.active{
-                display: block;
+                display: block ;
             }
         }
         .addbutn{
@@ -82,14 +126,8 @@
             color:white;
             background: red !important;
         }
-        
-    }
-    
-    
-    #thongke{
-
-    }
-    
+    }    
+   
     /* _______________________________SAN PHAM_______________________________ */
     .admin_sanpham{
         display: grid;
@@ -214,9 +252,13 @@
                         color: grey;
                         font-size: 13px;
                     }
-                    p.pricetag{
-                        justify-self: end ;
+                    p:not(.op){
                         font-size: 13px;
+                        justify-self: end ;
+                        .pricetag{
+                            justify-self: end ;
+                            font-size: 13px;
+                        }
                     }
                 }
                 .donhang_items:not(:last-child):after{
@@ -235,48 +277,42 @@
             }
         }
     }
-    option:disabled{
-        opacity: 0.6;
-        background-color: #ff888f;
-    }
-    /* ______________________________________________________________________ */
-    .tags{
-        display: flex;
+    /* _______________________________THONG KE_______________________________ */
+    #thongke.active{
+        padding:10px ;
+        display: grid;
+        grid-template-columns: 70% 25%;
         justify-content: center;
-        li{
-            cursor: pointer;
-            user-select: none;
-            text-decoration: none;
-            list-style: none;
-            margin: auto 10px ;
+        gap:20px;
+        .chart{
+            .chartline{
+                background-color: #f3f4f6;
+                border-radius: 10px;
+            }
         }
-        li.active{
-            font-size: 110%;
-            font-weight: bold;
-            /* box-shadow: 0 0 5px grey; */
+        .sphot{
+            .sphot_items{
+                margin: 5px auto;
+                background-color: #f3f4f6;
+                border-radius: 10px;
+                padding:5px ;
+                display: grid;
+                grid-template-columns: 50% 50%;
+                h1,h2,h3,h4,h5,h6{
+                    grid-column: 1/3;
+                }
+                .pricetag{
+                    text-align: end;
+                    font-size: 12px;
+                }
+                p:not(:last-child){
+                    color: grey;
+                    font-size: 13px;
+                }
+            }
         }
-        li.active + .content_tags{
-            display: block;
+    }
 
-        }
-    }
-    .content_tags{
-        display: none;
-    }
-    .content_tags.active{
-        display: block;
-        justify-content: center;
-    }
-    .titletag{
-        margin: 2px 0;
-        text-align:start;
-        grid-column: 1/2;
-    }
-    .contenttag{
-        text-align:end;
-        margin: 2px 0;
-        grid-column: 2/3;
-    }
 </style>
 <title>POLY Computer ADMIN</title>
 <main class="col12">
@@ -291,9 +327,33 @@
     <div class="admin_contents">
 
         <div class="active" id="thongke">
-            <h1>Thống kê</h1>
-            <!-- <form action="">
-            </form> -->
+            <div class="">
+                <h3>Thu Nhập Tháng Này: <span class="pricetag"> <?php echo number_format($thongke['thongke1']['thuNhap'])?>đ</span></h3>
+                <h3>Số Sản Phấm Bán Được Tháng Này: <?php echo number_format($thongke['thongke1']['spdaban'])?></h3>
+            </div>
+            <div class="chart">
+                <div class="chartline"></div>
+            </div>
+            <div class="sphot" style="grid-column:2/3; grid-row:1/3;">
+                <h3>Sản Phẩm Bán Chạy</h3>
+               
+                <?php
+                  foreach($thongke['spbanchay'] as $sp){
+                    $giasp = number_format($sp['sp']['gia_sanpham']).'đ';  
+                    if($sp['sp']['giamgia']!=0){
+                        $giaspgiam = number_format($sp['sp']['gia_sanpham']*(1-($sp['sp']['giamgia'])/100));
+                        $giasp = $giaspgiam.'đ <del>'.$giasp.'</del>';
+                    }
+                    echo"
+                         <div class='sphot_items'>
+                            <h5>{$sp['sp']['ten_sanpham']}</h5>
+                            <p>Đã bán: {$sp['soluong']}</p>
+                            <p class='pricetag'> {$giasp}</p>
+                        </div>
+                    ";
+                  }
+                ?>
+            </div>
         </div>
 
 
@@ -392,7 +452,6 @@
             <hr>
             <div class="content_tags active" id="all">  
                 <?php
-                    // echo json_encode($allDonHang,JSON_FORCE_OBJECT);
                     function verifying($e){return $e['status'] == 'choxacnhan';}
                     function delivering($e){return $e['status'] == 'chogiaohang';}
                     function success($e){return $e['status'] == 'giaohangthanhcong';}
@@ -408,15 +467,15 @@
                                 if($i['giamgia']!=0){
                                     $giaspgiam = number_format($i['gia_sanpham']*(1-($i['giamgia'])/100));
                                     $giasp = $giaspgiam.'đ <del>'.$giasp.'</del>';
-                                    $tonggia += $i['gia_sanpham']*(1-($i['giamgia'])/100);
+                                    $tonggia += $i['soluong'] * $i['gia_sanpham']*(1-($i['giamgia'])/100);
                                 }else{
-                                    $tonggia +=  + $i['gia_sanpham'];
+                                    $tonggia += $i['soluong'] * $i['gia_sanpham'];
                                 }
                                 $div.="
                                     <div class='donhang_items'>
                                         <h4>{$i['ten_sanpham']}</h4>
                                         <p class='op'>{$i['tieude_option']} : {$i['noidung']}</p>
-                                        <p class='pricetag'>{$giasp}</p>
+                                        <p>{$i['soluong']} x <span class='pricetag'>{$giasp}</span></p>
                                     </div>
                                 ";
                             }
@@ -529,6 +588,66 @@
             })
         })
     })
+</script>
+<!-- chart  -->
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+    var options = {
+        chart: {
+            type: 'line',
+            width:672,
+            toolbar:{
+                show:false
+            }
+        },
+        stroke:{
+            width:2
+        },
+        markers:{
+            size:6,
+            hover:{
+                size:9
+            }
+        },
+        title:{
+            text:'Thống kê đơn hàng các tháng qua',
+            align:'left',
+            offsetY:5,
+            offsetX:6,
+            style:{
+                fontSize:20,
+                fontWeight:'bold',
+                color:'#FF794C'
+            }
+        },
+        legend:{
+            position:'top',
+            horizontalAlign:'right'
+        },
+        series: [
+        ],
+        xaxis: {
+            categories: []
+        }
+    }
 
+    
+    <?php
+      echo "const chartinfo =".json_encode($thongke['chart'],JSON_FORCE_OBJECT).';';
+    ?>
+    options.series=[
+        {
+            name: 'Đơn hàng thành công',
+            data: Object.values(chartinfo.thanhcong)
+        },
+        {
+            name: 'Đơn hàng đã hủy',
+            data: Object.values(chartinfo.huy)
+        }
+    ];
+    options.xaxis.categories=Object.values(chartinfo.date);
 
+    
+    var chart = new ApexCharts(document.querySelector(".chartline"), options);
+    chart.render();
 </script>
